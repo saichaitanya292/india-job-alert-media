@@ -18,8 +18,14 @@
     main { padding:22px 14px 44px; }
     .tools { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:18px; }
     input { flex:1; min-width:190px; padding:13px 15px; border:1px solid #d6e0ef; border-radius:13px; font:inherit; background:#fff; }
+    .filters { display:flex; gap:8px; overflow-x:auto; padding:2px 0 12px; }
+    .filter { border:1px solid #cbd8eb; background:#fff; color:var(--navy); border-radius:999px; padding:9px 14px; font:inherit; font-size:13px; font-weight:700; white-space:nowrap; cursor:pointer; }
+    .filter[aria-pressed="true"] { background:var(--blue); border-color:var(--blue); color:#fff; }
     .count { color:var(--muted); font-size:13px; margin:0 0 12px; }
     #jobs { display:grid; gap:12px; }
+    .help { margin-top:24px; padding:20px; background:#fff; border:1px solid var(--line); border-radius:18px; line-height:1.6; }
+    .help h2 { margin-top:0; font-size:19px; }
+    .help a { color:var(--blue); }
     .job { background:#fff; border:1px solid var(--line); border-radius:18px; padding:19px; box-shadow:0 5px 18px #16345b08; }
     .job h2 { margin:0 0 9px; font-size:19px; line-height:1.35; }
     .meta { display:flex; flex-wrap:wrap; gap:7px 13px; color:var(--muted); font-size:13px; margin-bottom:16px; }
@@ -41,18 +47,47 @@
     <div class="tools">
       <input id="search" type="search" aria-label="Search jobs" placeholder="Search role, company, or location…">
     </div>
+    <div class="filters" id="role-filter" aria-label="Filter jobs by role">
+      <button class="filter" type="button" data-role="all" aria-pressed="true">All jobs</button>
+      <button class="filter" type="button" data-role="qa" aria-pressed="false">QA / Testing</button>
+      <button class="filter" type="button" data-role="developer" aria-pressed="false">Developer</button>
+      <button class="filter" type="button" data-role="ai" aria-pressed="false">AI / Data</button>
+      <button class="filter" type="button" data-role="devops" aria-pressed="false">Cloud / DevOps</button>
+      <button class="filter" type="button" data-role="intern" aria-pressed="false">Internships</button>
+      <button class="filter" type="button" data-role="remote" aria-pressed="false">Remote</button>
+    </div>
     <p id="count" class="count">Loading latest jobs…</p>
     <section id="jobs" aria-live="polite"></section>
-    <footer>Listings link to the original source. Check the employer's official page for eligibility, closing dates, and application details. India Job Alert does not collect applications or charge job seekers.</footer>
+    <section class="help">
+      <h2>Job seeker quick help</h2>
+      <p><strong>How do I apply?</strong> Open a listing and tap “Apply / View job” to visit the original employer or job-board page. Follow its instructions.</p>
+      <p><strong>Are these jobs verified?</strong> Listings are collected from external sources. Check the employer’s official website, eligibility, deadline and URL before sharing personal information.</p>
+      <p><strong>Is it free?</strong> India Job Alert does not charge candidates to browse listings or apply.</p>
+      <p><strong>Recruiters:</strong> For a sponsored listing enquiry, email <a href="mailto:india.tech.jobalerts@gmail.com?subject=Sponsored%20job%20listing%20enquiry">india.tech.jobalerts@gmail.com</a>. Sponsored posts are subject to verification and approval.</p>
+    </section>
+    <footer>Listings link to the original source. Check the employer's official page for eligibility, closing dates, and application details. India Job Alert does not collect applications or charge job seekers. Sponsored posts must be clearly labelled.</footer>
   </main>
   <script>
     const jobsElement = document.getElementById('jobs');
     const searchElement = document.getElementById('search');
     const countElement = document.getElementById('count');
+    const roleFilters = document.getElementById('role-filter');
+    let activeRole = 'all';
     let allJobs = [];
+    function matchesRole(job, role) {
+      const text = [job.title, job.company, job.location].join(' ').toLowerCase();
+      if (role === 'all') return true;
+      if (role === 'qa') return /\\b(qa|quality assurance|test|testing|sdet|selenium|playwright|cypress)\\b/.test(text);
+      if (role === 'developer') return /developer|software engineer|frontend|front-end|backend|back-end|full.stack|java developer/.test(text);
+      if (role === 'ai') return /artificial intelligence|machine learning|\\bai\\b|data scientist|data analyst|nlp|computer vision/.test(text);
+      if (role === 'devops') return /devops|cloud engineer|site reliability|kubernetes|aws|azure/.test(text);
+      if (role === 'intern') return /intern|internship/.test(text);
+      if (role === 'remote') return /remote|worldwide|anywhere/.test(text);
+      return true;
+    }
     function renderJobs() {
       const q = searchElement.value.trim().toLowerCase();
-      const filtered = allJobs.filter(job => [job.title, job.company, job.location].join(' ').toLowerCase().includes(q));
+      const filtered = allJobs.filter(job => matchesRole(job, activeRole) && [job.title, job.company, job.location].join(' ').toLowerCase().includes(q));
       countElement.textContent = filtered.length + (filtered.length === 1 ? ' job listing' : ' job listings');
       jobsElement.replaceChildren();
       if (!filtered.length) {
@@ -85,6 +120,13 @@
       });
     }
     searchElement.addEventListener('input', renderJobs);
+    roleFilters.addEventListener('click', event => {
+      const button = event.target.closest('button[data-role]');
+      if (!button) return;
+      activeRole = button.dataset.role;
+      roleFilters.querySelectorAll('button[data-role]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      renderJobs();
+    });
     fetch('./jobs.json?updated=' + Date.now(), { cache: 'no-store' })
       .then(response => { if (!response.ok) throw new Error('Jobs data unavailable'); return response.json(); })
       .then(data => {
