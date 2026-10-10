@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0750a5">
   <title>Latest Tech Jobs | India Job Alert</title>
-  <meta name="description" content="Browse latest technology job alerts and apply directly through the original job listing.">
+  <meta name="description" content="Search technology job listings by role, company, and location. Browse QA, software development, AI, data, cloud, DevOps, internship and remote opportunities.">
+  <meta property="og:title" content="Latest Tech Jobs | India Job Alert">
+  <meta property="og:description" content="Search technology jobs and apply through the original listing.">
+  <meta property="og:url" content="https://saichaitanya292.github.io/india-job-alert-media/">
+  <meta name="robots" content="index,follow">
   <style>
     :root { color-scheme: light; --blue:#0750a5; --navy:#071d50; --ink:#15243b; --muted:#5d6b80; --line:#e4ebf5; }
     * { box-sizing:border-box; }
@@ -30,7 +34,8 @@
     .job h2 { margin:0 0 9px; font-size:19px; line-height:1.35; }
     .meta { display:flex; flex-wrap:wrap; gap:7px 13px; color:var(--muted); font-size:13px; margin-bottom:16px; }
     .apply { display:inline-block; background:#ffd21c; color:var(--navy); text-decoration:none; font-weight:800; border-radius:11px; padding:11px 16px; }
-    .apply:focus-visible, input:focus-visible { outline:3px solid #77b9ff; outline-offset:2px; }
+    .apply:focus-visible, input:focus-visible, .filter:focus-visible { outline:3px solid #77b9ff; outline-offset:2px; }
+    @media (prefers-reduced-motion: no-preference) { .job { animation: appear .18s ease-out; } @keyframes appear { from { opacity:.65; transform:translateY(3px); } to { opacity:1; transform:translateY(0); } } }
     .empty { padding:24px; text-align:center; background:#fff; border-radius:16px; color:var(--muted); }
     footer { color:var(--muted); font-size:12px; line-height:1.6; padding:25px 5px 0; }
   </style>
@@ -63,7 +68,7 @@
       <p><strong>How do I apply?</strong> Open a listing and tap “Apply / View job” to visit the original employer or job-board page. Follow its instructions.</p>
       <p><strong>Are these jobs verified?</strong> Listings are collected from external sources. Check the employer’s official website, eligibility, deadline and URL before sharing personal information.</p>
       <p><strong>Is it free?</strong> India Job Alert does not charge candidates to browse listings or apply.</p>
-      <p><strong>Recruiters:</strong> For a sponsored listing enquiry, email <a href="mailto:india.tech.jobalerts@gmail.com?subject=Sponsored%20job%20listing%20enquiry">india.tech.jobalerts@gmail.com</a>. Sponsored posts are subject to verification and approval.</p>
+      <p><strong>Recruiters:</strong> Send a direct message to <a href="https://www.instagram.com/india.tech.jobalerts/" target="_blank" rel="noopener noreferrer">@india.tech.jobalerts</a> to enquire about sponsored listings. Every listing is subject to verification and approval; paid posts must be labelled sponsored.</p>
     </section>
     <footer>Listings link to the original source. Check the employer's official page for eligibility, closing dates, and application details. India Job Alert does not collect applications or charge job seekers. Sponsored posts must be clearly labelled.</footer>
   </main>
@@ -77,9 +82,9 @@
     function matchesRole(job, role) {
       const text = [job.title, job.company, job.location].join(' ').toLowerCase();
       if (role === 'all') return true;
-      if (role === 'qa') return /\\b(qa|quality assurance|test|testing|sdet|selenium|playwright|cypress)\\b/.test(text);
+      if (role === 'qa') return /\b(qa|quality assurance|test|testing|sdet|selenium|playwright|cypress)\b/.test(text);
       if (role === 'developer') return /developer|software engineer|frontend|front-end|backend|back-end|full.stack|java developer/.test(text);
-      if (role === 'ai') return /artificial intelligence|machine learning|\\bai\\b|data scientist|data analyst|nlp|computer vision/.test(text);
+      if (role === 'ai') return /artificial intelligence|machine learning|\bai\b|data scientist|data analyst|nlp|computer vision/.test(text);
       if (role === 'devops') return /devops|cloud engineer|site reliability|kubernetes|aws|azure/.test(text);
       if (role === 'intern') return /intern|internship/.test(text);
       if (role === 'remote') return /remote|worldwide|anywhere/.test(text);
@@ -109,6 +114,13 @@
         const location = document.createElement('span');
         location.textContent = '📍 ' + (job.location || 'Location not specified');
         meta.append(company, location);
+        if (job.published || job.updated) {
+          const date = document.createElement('span');
+          const rawDate = job.published || job.updated;
+          const parsedDate = new Date(rawDate);
+          date.textContent = Number.isNaN(parsedDate.getTime()) ? '' : '🕒 ' + parsedDate.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+          if (date.textContent) meta.append(date);
+        }
         const link = document.createElement('a');
         link.className = 'apply';
         link.textContent = 'Apply / View job ↗';
