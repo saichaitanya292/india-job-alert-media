@@ -1,5 +1,789 @@
 [
   {
+    "title": "Praktikant (m/w/d) Commercial Excellence - GYM",
+    "company": "JUIT GmbH",
+    "location": "Berlin",
+    "url": "https://www.arbeitnow.com/jobs/companies/juit-gmbh/praktikant-commercial-excellence-gym-berlin-270700",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "(Senior) CRM Manager (f/m/d)",
+    "company": "JUIT GmbH",
+    "location": "Berlin",
+    "url": "https://www.arbeitnow.com/jobs/companies/juit-gmbh/senior-crm-manager-berlin-51968",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Platform Engineer (m/w/d) Prototypen & KI-gestützte Produktentwicklung",
+    "company": "Becker Büttner Held PartGmbB",
+    "location": "Berlin",
+    "url": "https://www.arbeitnow.com/jobs/companies/becker-buttner-held-partgmbb/platform-engineer-prototypen-ki-gestutzte-produktentwicklung-berlin-180418",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Werkstudent*in (w/m/d) Visual Design",
+    "company": "LEONINE Holding GmbH",
+    "location": "Köln",
+    "url": "https://www.arbeitnow.com/jobs/companies/leonine-holding-gmbh/werkstudentin-visual-design-koln-250653",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Werkstudent Social Media (m/w/d)",
+    "company": "LEONINE Holding GmbH",
+    "location": "Berlin",
+    "url": "https://www.arbeitnow.com/jobs/companies/leonine-holding-gmbh/werkstudent-social-media-berlin-489656",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Account Executive DACH",
+    "company": "Didomi",
+    "location": "Berlin,Germany",
+    "url": "https://www.arbeitnow.com/jobs/companies/didomi/account-executive-dach-berlingermany-480059",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Veeam Data Cloud Vault Solution Specialist",
+    "company": "veeamsoftware",
+    "location": "Remote",
+    "url": "https://www.arbeitnow.com/jobs/companies/veeamsoftware/remote-veeam-data-cloud-vault-solution-specialist-93212",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Lead / Principal Consultant - Data and AI",
+    "company": "celonis",
+    "location": "Munich",
+    "url": "https://www.arbeitnow.com/jobs/companies/celonis/lead-principal-consultant-data-and-ai-munich-216900",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Lead Deployment Architect - AI",
+    "company": "celonis",
+    "location": "Munich",
+    "url": "https://www.arbeitnow.com/jobs/companies/celonis/lead-deployment-architect-ai-munich-351079",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Account Executive - Enterprise Sales",
+    "company": "newrelic",
+    "location": "Berlin; Munich",
+    "url": "https://www.arbeitnow.com/jobs/companies/newrelic/account-executive-enterprise-sales-berlin-munich-339398",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Senior Project Manager (all genders)",
+    "company": "Agilerobotsse",
+    "location": "Munich, Bavaria",
+    "url": "https://www.arbeitnow.com/jobs/companies/agilerobotsse/senior-project-manager-all-genders-munich-bavaria-225623",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Senior IT Infrastructure Engineer (m/f/d)",
+    "company": "Agilerobotsse",
+    "location": "Munich, Bavaria",
+    "url": "https://www.arbeitnow.com/jobs/companies/agilerobotsse/senior-it-infrastructure-engineer-munich-bavaria-57931",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Senior Sales Manager, Regional Enterprise",
+    "company": "wolt",
+    "location": "Berlin; Cologne; Frankfurt am Main; Hamburg; Munich",
+    "url": "https://www.arbeitnow.com/jobs/companies/wolt/senior-sales-manager-regional-enterprise-berlin-cologne-frankfurt-am-main-hamburg-munich-77313",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Regional VP of Sales, DACH and CEE regions",
+    "company": "Monday.com",
+    "location": "Munich",
+    "url": "https://www.arbeitnow.com/jobs/companies/mondaycom/regional-vp-of-sales-dach-and-cee-regions-munich-50947",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Associate GTM Recruiter",
+    "company": "Constructor",
+    "location": "Remote",
+    "url": "https://www.arbeitnow.com/jobs/companies/constructor/associate-gtm-recruiter-munich-198363",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Product Operations Manager",
+    "company": "Almetra",
+    "location": "Berlin",
+    "url": "https://www.arbeitnow.com/jobs/companies/almetra/product-operations-manager-berlin-10297",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Senior Verkaufsberater Showroom (m/w/d)",
+    "company": "Pergolux",
+    "location": "Germany | Leipzig | Showroom",
+    "url": "https://www.arbeitnow.com/jobs/companies/pergolux/senior-verkaufsberater-showroom-leipzig-345069",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Senior Social & Influencer Executive | ESPA",
+    "company": "Thehutgroup",
+    "location": "Manchester",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/thehutgroup/senior-social-influencer-executive-espa-manchester-115909",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Senior Regulatory Officer (UK/EU) - THG Nutrition",
+    "company": "Thehutgroup",
+    "location": "Manchester",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/thehutgroup/senior-regulatory-officer-uk-eu-thg-nutrition-manchester-101226",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Senior Data Platform Engineer",
+    "company": "Akersystems",
+    "location": "Remote/Home Based",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/akersystems/remote-senior-data-platform-engineer-206793",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Lead Software Engineer (eDV)",
+    "company": "Akersystems",
+    "location": "Hybrid",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/akersystems/lead-software-engineer-edv-hybrid-373067",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Senior Data Analyst – Labour & Productivity (Contractor)",
+    "company": "Sohohouseco",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/sohohouseco/senior-data-analyst-labour-productivity-contractor-london-268246",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Strategic Finance",
+    "company": "Metaview",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/metaview/strategic-finance-london-136061",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Superintendent Pharmacist",
+    "company": "Montu Uk",
+    "location": "Winnersh",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/montu-uk/superintendent-pharmacist-winnersh-191796",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "People Operations Lead",
+    "company": "Goodlord",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/goodlord/people-operations-lead-london-58660",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Field & Event Marketing Manager, EMEA",
+    "company": "Deepgram",
+    "location": "London, UK",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/deepgram/field-event-marketing-manager-emea-london-481806",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Director, Text-to-Speech Synthesis Research",
+    "company": "Deepgram",
+    "location": "London, UK",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/deepgram/director-text-to-speech-synthesis-research-london-479290",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Research Staff, Voice AI Foundations [UK - Remote]",
+    "company": "Deepgram",
+    "location": "London, UK",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/deepgram/research-staff-voice-ai-foundations-uk-remote-london-192034",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Enterprise Account Manager (German-speaking, UK)",
+    "company": "Coder",
+    "location": "United Kingdom",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/coder/enterprise-account-manager-german-speaking-uk-united-kingdom-108682",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Staff Software Engineer (Agentic Engineering)",
+    "company": "Coder",
+    "location": "United Kingdom",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/coder/staff-software-engineer-agentic-engineering-united-kingdom-132010",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Software Engineering Manager (Agentic Engineering)",
+    "company": "Coder",
+    "location": "United Kingdom",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/coder/software-engineering-manager-agentic-engineering-united-kingdom-491302",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "BizOps Manager",
+    "company": "Foundation Health",
+    "location": "Manchester",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/foundation-health/bizops-manager-manchester-265515",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Product and Technical Communications",
+    "company": "Lovable",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/lovable/product-and-technical-communications-london-467402",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Project Coordinator",
+    "company": "Sfg20",
+    "location": "Remote UK - North",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/sfg20/project-coordinator-manchester-198786",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Lead Product Designer",
+    "company": "Fanduel",
+    "location": "Edinburgh",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/fanduel/lead-product-designer-edinburgh-495593",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Senior Implementation Specialist",
+    "company": "Karbon",
+    "location": "Remote",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/karbon/remote-senior-implementation-specialist-499251",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Senior Software Engineer",
+    "company": "Everquote",
+    "location": "Belfast, Northern Ireland",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/everquote/senior-software-engineer-belfast-northern-ireland-440055",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Server & Infrastructure Engineer - Unannounced project",
+    "company": "Nmcareers",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/nmcareers/server-infrastructure-engineer-unannounced-project-london-269288",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Senior Technical Animator - Unannounced Project",
+    "company": "Nmcareers",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/nmcareers/senior-technical-animator-unannounced-project-london-139741",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Senior Director, Global Commissioning & Handover",
+    "company": "Volta",
+    "location": "London, UK",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/volta/senior-director-global-commissioning-handover-london-469281",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Forward Deployed Engineer - EMEA",
+    "company": "Redpanda Data",
+    "location": "UK - Remote",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/redpanda-data/remote-forward-deployed-engineer-emea-385166",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Commercial Associate",
+    "company": "Hook",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/hook/commercial-associate-london-227556",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Senior Mechanical Engineer",
+    "company": "Arcticrd",
+    "location": "Calmsden, Cirencester",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/arcticrd/senior-mechanical-engineer-cirencester-18716",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Member of Scientific Staff, Computational Chemistry",
+    "company": "Substrate Bio",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/substrate-bio/member-of-scientific-staff-computational-chemistry-london-438452",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Member of Technical Staff,  Intelligence - Functoional Genomics",
+    "company": "Substrate Bio",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/substrate-bio/member-of-technical-staff-intelligence-functoional-genomics-london-245155",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Member of Technical Staff, Intelligence",
+    "company": "Substrate Bio",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/substrate-bio/member-of-technical-staff-intelligence-london-318884",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Protein Production Scientist, Biologics",
+    "company": "Substrate Bio",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/substrate-bio/protein-production-scientist-biologics-london-282244",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Member of Scientific Staff, Cell Line Development",
+    "company": "Substrate Bio",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/substrate-bio/member-of-scientific-staff-cell-line-development-london-233833",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "ML Research Engineer - Member of Technical Staff",
+    "company": "Callosum",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/callosum/ml-research-engineer-member-of-technical-staff-london-451626",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Security Lead - Member of Technical Staff",
+    "company": "Callosum",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/callosum/security-lead-member-of-technical-staff-london-363052",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Research Engineer, Benchmarking - Member of Technical Staff",
+    "company": "Callosum",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/callosum/research-engineer-benchmarking-member-of-technical-staff-london-166488",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Evolutionary Optimisation - Member of Technical Staff",
+    "company": "Callosum",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/callosum/evolutionary-optimisation-member-of-technical-staff-london-92921",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Research Engineer, Evals - Member of Technical Staff",
+    "company": "Callosum",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/callosum/research-engineer-evals-member-of-technical-staff-london-216280",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Networking & Interconnect Systems - Member of Technical Staff",
+    "company": "Callosum",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/callosum/networking-interconnect-systems-member-of-technical-staff-london-390636",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Agent Runtime & Systems - Member of Technical Staff",
+    "company": "Callosum",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/callosum/agent-runtime-systems-member-of-technical-staff-london-226717",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Customer Service Advisor",
+    "company": "Allica Bank",
+    "location": "Milton Keynes Office",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/allica-bank/customer-service-advisor-milton-keynes-312134",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Senior Talent Partner (FTC)",
+    "company": "Siena",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/siena/senior-talent-partner-ftc-london-342068",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Technical GTM Lead",
+    "company": "Cosine",
+    "location": "London Office",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/cosine/technical-gtm-lead-london-4704",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "ML Systems Engineer - Model Training and Infrastructure (SWE-focused LLMs)",
+    "company": "Cosine",
+    "location": "London Office",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/cosine/ml-systems-engineer-model-training-and-infrastructure-swe-focused-llms-london-49524",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Warehouse Supervisor - Manchester",
+    "company": "Deliveroo",
+    "location": "Manchester - Western St (Hop)",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/deliveroo/warehouse-supervisor-manchester-217657",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Enterprise Account Executive",
+    "company": "Plaid",
+    "location": "London Office",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/plaid/enterprise-account-executive-london-48926",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Account Executive - Mid-Market",
+    "company": "Plaid",
+    "location": "London Office",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/plaid/account-executive-mid-market-london-297299",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Business Operations",
+    "company": "Plaid",
+    "location": "London Office",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/plaid/business-operations-london-482054",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Executive Business Partner",
+    "company": "Odysseyml",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/odysseyml/executive-business-partner-london-430638",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Data Analyst",
+    "company": "Cube",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/cube/data-analyst-london-190016",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Data Solution Architect",
+    "company": "Cube",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/cube/data-solution-architect-london-11450",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Master Trainer OpenAI (AI & Cloud Partners), London",
+    "company": "Nonplusultra",
+    "location": "London (UK)",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/nonplusultra/master-trainer-openai-ai-cloud-partners-london-london-uk-384586",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Senior Data Engineer - Real time analytics",
+    "company": "Aircall",
+    "location": "London Office",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/aircall/senior-data-engineer-real-time-analytics-london-office-443811",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Software Engineering Internship 2027",
+    "company": "Riverlane",
+    "location": "Cambridge",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/riverlane/software-engineering-internship-2027-cambridge-355663",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Engineering Graduate Scheme 2027",
+    "company": "Riverlane",
+    "location": "Cambridge",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/riverlane/engineering-graduate-scheme-2027-cambridge-461500",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Senior Security & Compliance Engineer",
+    "company": "Xyz Reality",
+    "location": "London Office",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/xyz-reality/senior-security-compliance-engineer-london-22843",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Full Stack Engineer",
+    "company": "Xyz Reality",
+    "location": "London Office",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/xyz-reality/full-stack-engineer-london-131242",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Marketing Communications Manager",
+    "company": "Phrase",
+    "location": "United Kingdom",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/phrase/marketing-communications-manager-united-kingdom-413845",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Software Engineer",
+    "company": "Unmind",
+    "location": "London, HQ",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/unmind/software-engineer-london-342570",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Senior Motor Fleet Underwriter",
+    "company": "Flock",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/flock/senior-motor-fleet-underwriter-london-84588",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Broker Development Manager",
+    "company": "Flock",
+    "location": "Bristol",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/flock/broker-development-manager-bristol-302999",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Strategic Client Manager",
+    "company": "Flock",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/flock/strategic-client-manager-london-148027",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Engineering Lead",
+    "company": "Flock",
+    "location": "London",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/flock/engineering-lead-london-48807",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Broker Development Manager",
+    "company": "Flock",
+    "location": "Leeds",
+    "url": "https://www.arbeitnow.co.uk/jobs/companies/flock/broker-development-manager-leeds-170650",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Account Manager - Montpellier",
+    "company": "Deliveroo",
+    "location": "Not specified",
+    "url": "https://www.arbeitnow.fr/jobs/companies/deliveroo/account-manager-montpellier-292127",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Account Manager Lille",
+    "company": "Deliveroo",
+    "location": "Paris",
+    "url": "https://www.arbeitnow.fr/jobs/companies/deliveroo/account-manager-lille-paris-451217",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Senior Data Scientist",
+    "company": "Duck Duck Go",
+    "location": "Remote",
+    "url": "https://www.arbeitnow.fr/jobs/companies/duck-duck-go/remote-senior-data-scientist-9830",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Sales Account Executive",
+    "company": "TransPerfect",
+    "location": "Paris, Île-de-France, France",
+    "url": "https://www.arbeitnow.fr/jobs/companies/transperfect/sales-account-executive-paris-407031",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Responsable Métrologie – Transport de Biologie H/F/X",
+    "company": "TopChrono",
+    "location": "Saint Ouen, Île-de-France, France",
+    "url": "https://www.arbeitnow.fr/jobs/companies/topchrono/responsable-metrologie-transport-de-biologie-saint-ouen-139503",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Chargé de Ressources Humaines en alternance H/F/X",
+    "company": "TopChrono",
+    "location": "Saint Ouen, Île-de-France, France",
+    "url": "https://www.arbeitnow.fr/jobs/companies/topchrono/charge-de-ressources-humaines-en-alternance-saint-ouen-416558",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Strategic Partner Account Manager DACH",
+    "company": "Aircall",
+    "location": "Paris Office",
+    "url": "https://www.arbeitnow.fr/jobs/companies/aircall/strategic-partner-account-manager-dach-paris-office-147415",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Regional Marketing Intern, DACH Market",
+    "company": "Aircall",
+    "location": "Paris Office",
+    "url": "https://www.arbeitnow.fr/jobs/companies/aircall/regional-marketing-intern-dach-market-paris-office-81760",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Account Manager",
+    "company": "Aircall",
+    "location": "Paris Office",
+    "url": "https://www.arbeitnow.fr/jobs/companies/aircall/account-manager-paris-office-95611",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "PDLC/SDLC Expert – Python & GenAI H/F",
+    "company": "capco",
+    "location": "Not specified",
+    "url": "https://www.arbeitnow.fr/jobs/companies/capco/pdlc-sdlc-expert-python-genai-h-f-351172",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Presales System Engineer, Territory - PACA (Remote: Marseille or Aix-based)",
+    "company": "purestorage",
+    "location": "Remote",
+    "url": "https://www.arbeitnow.fr/jobs/companies/purestorage/presales-system-engineer-territory-paca-remote-marseille-or-aix-based-23119",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Technical Customer Support Specialist",
+    "company": "Happyrobot.ai",
+    "location": "Remote",
+    "url": "https://www.arbeitnow.fr/jobs/companies/happyrobotai/remote-technical-customer-support-specialist-390100",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Stage Software Robotics - 2027",
+    "company": "Exotec",
+    "location": "Lille, France",
+    "url": "https://www.arbeitnow.fr/jobs/companies/exotec/stage-software-robotics-2027-lille-49357",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Stage Quality, Methods and Industrials Operations - 2027",
+    "company": "Exotec",
+    "location": "Lille, France",
+    "url": "https://www.arbeitnow.fr/jobs/companies/exotec/stage-quality-methods-and-industrials-operations-2027-lille-193232",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Stage Data - 2027",
+    "company": "Exotec",
+    "location": "Lille, France",
+    "url": "https://www.arbeitnow.fr/jobs/companies/exotec/stage-data-2027-lille-63849",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Stage - Hardware Robotics - 2027",
+    "company": "Exotec",
+    "location": "Lille, France",
+    "url": "https://www.arbeitnow.fr/jobs/companies/exotec/stage-hardware-robotics-2027-lille-183556",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Senior Account Executive – France",
+    "company": "Neptune Software",
+    "location": "Neptune Software Remote France",
+    "url": "https://www.arbeitnow.fr/jobs/companies/neptune-software/remote-senior-account-executive-france-345197",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Product Lead (Strategy + Full Stack)",
+    "company": "Optimizee Group",
+    "location": "Worldwide",
+    "url": "https://www.workingnomads.com/job/go/1857010/",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
+    "title": "Face Deduplication Collection",
+    "company": "TELUS Digital",
+    "location": "United Kingdom",
+    "url": "https://www.workingnomads.com/job/go/1785901/",
+    "published": "",
+    "updated": "2026-10-11T08:56:53.464601+00:00"
+  },
+  {
     "title": "People Operations Working Student",
     "company": "gympass",
     "location": "Not specified",
@@ -1612,790 +2396,6 @@
     "company": "Dornier MedTech GmbH",
     "location": "DMT-Germany - Wessling",
     "url": "https://www.arbeitnow.com/jobs/companies/dornier-medtech-gmbh/werkstudent-forschung-laser-research-dmt-germany-wessling-95614",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Full Stack Developer (m/w/d)",
-    "company": "Dehoga Baden-Württemberg",
-    "location": "Stuttgart",
-    "url": "https://www.arbeitnow.com/jobs/companies/dehoga-baden-wurttemberg/full-stack-developer-stuttgart-22007",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Business Analyst (m/w/d) - auch für Berufseinsteiger",
-    "company": "Fahrrad Xxl De",
-    "location": "Dresden",
-    "url": "https://www.arbeitnow.com/jobs/companies/fahrrad-xxl-de/business-analyst-auch-fur-berufseinsteiger-dresden-159795",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Werkstudent*in Klimafreundliche Schifffahrt und Häfen",
-    "company": "NOW GmbH Nationale Organisation für den Wandel in der ...",
-    "location": "Berlin Fasanenstrasse",
-    "url": "https://www.arbeitnow.com/jobs/companies/now-gmbh-nationale-organisation-fur-den-wandel-in-der/werkstudentin-klimafreundliche-schifffahrt-und-hafen-berlin-fasanenstrasse-432542",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Werkstudent*in für Studien- & Projektkoordination",
-    "company": "NOW GmbH Nationale Organisation für den Wandel in der ...",
-    "location": "Berlin Fasanenstrasse",
-    "url": "https://www.arbeitnow.com/jobs/companies/now-gmbh-nationale-organisation-fur-den-wandel-in-der/werkstudentin-fur-studien-projektkoordination-berlin-fasanenstrasse-410655",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Working Student (m/f/d) Maintenance Development",
-    "company": "Nexrail",
-    "location": "Office Dortmund",
-    "url": "https://www.arbeitnow.com/jobs/companies/nexrail/working-student-maintenance-development-office-dortmund-495249",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Werkstudent Marketing Projektmanagement (m|w|d) - ca. 10 Wochenstunden",
-    "company": "Assecor Group",
-    "location": "Cybay Hannover",
-    "url": "https://www.arbeitnow.com/jobs/companies/assecor-group/werkstudent-marketing-projektmanagement-mwd-ca-10-wochenstunden-cybay-hannover-239812",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Werkstudent Content (m|w|d) - ca. 15 Wochenstunden",
-    "company": "Assecor Group",
-    "location": "Cybay Hannover",
-    "url": "https://www.arbeitnow.com/jobs/companies/assecor-group/werkstudent-content-mwd-ca-15-wochenstunden-cybay-hannover-367159",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "(Senior) Property und Key Account Manager / Immobilienverwalter (m/w/d) | Leipzig, München",
-    "company": "Zenveo GmbH",
-    "location": "Leipzig Zenveo",
-    "url": "https://www.arbeitnow.com/jobs/companies/zenveo-gmbh/senior-property-und-key-account-manager-immobilienverwalter-leipzig-munchen-leipzig-zenveo-452900",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Praktikant (m/w/d) Commercial Excellence - LEH",
-    "company": "JUIT GmbH",
-    "location": "Berlin",
-    "url": "https://www.arbeitnow.com/jobs/companies/juit-gmbh/praktikant-commercial-excellence-leh-berlin-273429",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Account Executive",
-    "company": "saucelabs",
-    "location": "London",
-    "url": "https://www.arbeitnow.co.uk/jobs/companies/saucelabs/account-executive-london-62420",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Principal Product Designer - Hospitality",
-    "company": "opentable",
-    "location": "London",
-    "url": "https://www.arbeitnow.co.uk/jobs/companies/opentable/principal-product-designer-hospitality-london-31317",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Client Delivery Associate - Energy Markets",
-    "company": "Kraken",
-    "location": "London, UK",
-    "url": "https://www.arbeitnow.co.uk/jobs/companies/kraken/client-delivery-associate-energy-markets-london-146543",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior Software Engineer - Comms",
-    "company": "Kraken",
-    "location": "London, UK",
-    "url": "https://www.arbeitnow.co.uk/jobs/companies/kraken/senior-software-engineer-comms-london-298022",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Director Customer Growth, Telco",
-    "company": "Kraken",
-    "location": "London, UK",
-    "url": "https://www.arbeitnow.co.uk/jobs/companies/kraken/director-customer-growth-telco-london-206667",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Training Coordinator",
-    "company": "Abound",
-    "location": "Milton Keynes",
-    "url": "https://www.arbeitnow.co.uk/jobs/companies/abound/training-coordinator-milton-keynes-459038",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior Underwriter",
-    "company": "Abound",
-    "location": "London",
-    "url": "https://www.arbeitnow.co.uk/jobs/companies/abound/senior-underwriter-london-169090",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Complaints Specialist",
-    "company": "Abound",
-    "location": "Milton Keynes",
-    "url": "https://www.arbeitnow.co.uk/jobs/companies/abound/complaints-specialist-milton-keynes-266935",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Content Creator (UK)",
-    "company": "Fonio",
-    "location": "London",
-    "url": "https://www.arbeitnow.co.uk/jobs/companies/fonio/content-creator-uk-london-200098",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Partnerships Manager",
-    "company": "Apexx",
-    "location": "London HQ",
-    "url": "https://www.arbeitnow.co.uk/jobs/companies/apexx/partnerships-manager-farringdon-470122",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior Product Manager - Self-Service & Onboarding",
-    "company": "Apexx",
-    "location": "London HQ",
-    "url": "https://www.arbeitnow.co.uk/jobs/companies/apexx/senior-product-manager-self-service-onboarding-farringdon-10867",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Executive Assistant",
-    "company": "Outpost Technologies",
-    "location": "London",
-    "url": "https://www.arbeitnow.co.uk/jobs/companies/outpost-technologies/executive-assistant-london-166116",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior Support Specialist- UK",
-    "company": "Ema",
-    "location": "United Kingdom (Remote)",
-    "url": "https://www.arbeitnow.co.uk/jobs/companies/ema/senior-support-specialist-uk-london-186280",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Freelance Product Manager (m/w/d)",
-    "company": "Naturida",
-    "location": "Remote",
-    "url": "https://www.arbeitnow.fr/jobs/companies/naturida/remote-freelance-product-manager-3910",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Technical Customer Support Specialist",
-    "company": "Happyrobot.ai",
-    "location": "Remote",
-    "url": "https://www.arbeitnow.ch/jobs/companies/happyrobotai/remote-technical-customer-support-specialist-54073",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "SAP Industry Solution Advisor (m/w/d)",
-    "company": "Gambit",
-    "location": "Schweiz",
-    "url": "https://www.arbeitnow.ch/jobs/companies/gambit/sap-industry-solution-advisor-schweiz-293380",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Ingénieur·e·s en mécanique",
-    "company": "cross-ING AG",
-    "location": "Yverdon-les-Bains, Waadt, Schweiz",
-    "url": "https://www.arbeitnow.ch/jobs/companies/cross-ing-ag/ingenieures-en-mecanique-yverdon-les-bains-286086",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior OT Cyber Security Engineer",
-    "company": "cross-ING AG",
-    "location": "Dietlikon, Zürich, Schweiz",
-    "url": "https://www.arbeitnow.ch/jobs/companies/cross-ing-ag/senior-ot-cyber-security-engineer-dietlikon-97793",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior Systems & Network Engineer (80–100%)",
-    "company": "cross-ING AG",
-    "location": "Villigen, Aargau, Schweiz",
-    "url": "https://www.arbeitnow.ch/jobs/companies/cross-ing-ag/senior-systems-network-engineer-80-100-villigen-447324",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior OT / SCADA & Automation Engineer (80–100%)",
-    "company": "cross-ING AG",
-    "location": "Villigen, Aargau, Schweiz",
-    "url": "https://www.arbeitnow.ch/jobs/companies/cross-ing-ag/senior-ot-scada-automation-engineer-80-100-villigen-186123",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Sr. Delivery Solutions Architect",
-    "company": "databricks",
-    "location": "Zürich",
-    "url": "https://www.arbeitnow.ch/jobs/companies/databricks/sr-delivery-solutions-architect-zurich-376814",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Delivery Solutions Architect",
-    "company": "databricks",
-    "location": "Zürich",
-    "url": "https://www.arbeitnow.ch/jobs/companies/databricks/delivery-solutions-architect-zurich-441047",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior Consultant, Data & AI",
-    "company": "Xebiadach",
-    "location": "Not specified",
-    "url": "https://www.arbeitnow.ch/jobs/companies/xebiadach/senior-consultant-data-ai-189809",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Enterprise Sales Lead - Healthcare",
-    "company": "ElevenLabs",
-    "location": "Remote",
-    "url": "https://www.arbeitnow.ch/jobs/companies/elevenlabs/remote-enterprise-sales-lead-healthcare-270863",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Direct Tax Lead",
-    "company": "ElevenLabs",
-    "location": "Remote",
-    "url": "https://www.arbeitnow.ch/jobs/companies/elevenlabs/remote-direct-tax-lead-263237",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Enterprise Sales Lead, Financial Services",
-    "company": "ElevenLabs",
-    "location": "Remote",
-    "url": "https://www.arbeitnow.ch/jobs/companies/elevenlabs/remote-enterprise-sales-lead-financial-services-307085",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Enterprise Account Executive - Financial Services",
-    "company": "ElevenLabs",
-    "location": "Remote",
-    "url": "https://www.arbeitnow.ch/jobs/companies/elevenlabs/remote-enterprise-account-executive-financial-services-101853",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Applied AI Engineer",
-    "company": "ElevenLabs",
-    "location": "Remote",
-    "url": "https://www.arbeitnow.ch/jobs/companies/elevenlabs/remote-applied-ai-engineer-404690",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Full-stack Engineer - Creative Agents",
-    "company": "ElevenLabs",
-    "location": "Remote",
-    "url": "https://www.arbeitnow.ch/jobs/companies/elevenlabs/remote-full-stack-engineer-creative-agents-292788",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Full-Stack Engineer (Backend Leaning) - Creative Agents",
-    "company": "ElevenLabs",
-    "location": "Remote",
-    "url": "https://www.arbeitnow.ch/jobs/companies/elevenlabs/remote-full-stack-engineer-backend-leaning-creative-agents-323217",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Self-Serve Product Manager - ElevenCreative",
-    "company": "ElevenLabs",
-    "location": "Remote",
-    "url": "https://www.arbeitnow.ch/jobs/companies/elevenlabs/remote-self-serve-product-manager-elevencreative-158784",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Enterprise Product Manager - ElevenCreative",
-    "company": "ElevenLabs",
-    "location": "Remote",
-    "url": "https://www.arbeitnow.ch/jobs/companies/elevenlabs/remote-enterprise-product-manager-elevencreative-286182",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Impact Producer",
-    "company": "ElevenLabs",
-    "location": "Remote",
-    "url": "https://www.arbeitnow.ch/jobs/companies/elevenlabs/remote-impact-producer-224521",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Non-Eng Template",
-    "company": "ElevenLabs",
-    "location": "Remote",
-    "url": "https://www.arbeitnow.ch/jobs/companies/elevenlabs/remote-non-eng-template-281163",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Mid-Market Sales Lead - East",
-    "company": "ElevenLabs",
-    "location": "Remote",
-    "url": "https://www.arbeitnow.ch/jobs/companies/elevenlabs/remote-mid-market-sales-lead-east-103816",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Accounts Payable Specialist (Poland)",
-    "company": "ElevenLabs",
-    "location": "Remote",
-    "url": "https://www.arbeitnow.ch/jobs/companies/elevenlabs/remote-accounts-payable-specialist-poland-211081",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Corporate Account Executive III - NA",
-    "company": "Camunda",
-    "location": "Remote",
-    "url": "https://www.arbeitnow.ch/jobs/companies/camunda/remote-corporate-account-executive-iii-na-240221",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Enterprise Account Executive III - UAE",
-    "company": "Camunda",
-    "location": "Remote",
-    "url": "https://www.arbeitnow.ch/jobs/companies/camunda/remote-enterprise-account-executive-iii-uae-464914",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior Backend Developer (Node.js / Nest.js)",
-    "company": "Proxify",
-    "location": "Time zone: CET (+/- 3 hours)",
-    "url": "https://www.workingnomads.com/job/go/1925654/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior Backend Developer (Python)",
-    "company": "Proxify",
-    "location": "Time zone: CET (+/- 3 hours)",
-    "url": "https://www.workingnomads.com/job/go/1925652/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior Business Central Developer",
-    "company": "Proxify",
-    "location": "CET (+/- 3 hours)",
-    "url": "https://www.workingnomads.com/job/go/1925645/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior Cloud Engineer (Azure)",
-    "company": "Proxify",
-    "location": "Time zone: CET (+/- 3 hours)",
-    "url": "https://www.workingnomads.com/job/go/1925640/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior Data Engineer (Azure)",
-    "company": "Proxify",
-    "location": "CET (+/- 3 hours)",
-    "url": "https://www.workingnomads.com/job/go/1925636/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior DevOps Engineer (Azure)",
-    "company": "Proxify",
-    "location": "Time zone: CET (+/- 3 hours)",
-    "url": "https://www.workingnomads.com/job/go/1925634/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior Fullstack Developer (React.js / Node.js)",
-    "company": "Proxify",
-    "location": "Time zone: CET (+/- 3 hours)",
-    "url": "https://www.workingnomads.com/job/go/1925629/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior Python Developer (Fullstack, BE-Heavy)",
-    "company": "Proxify",
-    "location": "CET (+/- 3 hours)",
-    "url": "https://www.workingnomads.com/job/go/1925623/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior Django Developer",
-    "company": "Proxify",
-    "location": "CET (+/- 3 hours)",
-    "url": "https://www.workingnomads.com/job/go/1925616/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior Fullstack Developer (.NET)",
-    "company": "Proxify",
-    "location": "CET (+/- 3 hours)",
-    "url": "https://www.workingnomads.com/job/go/1925599/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior Backend Developer (.NET)",
-    "company": "Proxify",
-    "location": "Time zone: CET (+/- 3 hours)",
-    "url": "https://www.workingnomads.com/job/go/1925598/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior AI Engineer (Backend-Focused)",
-    "company": "Proxify",
-    "location": "Time zone: CET (+/- 3 hours)",
-    "url": "https://www.workingnomads.com/job/go/1925596/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior QA Automation Engineer",
-    "company": "Proxify",
-    "location": "Time zone: CET (+/- 3 hours)",
-    "url": "https://www.workingnomads.com/job/go/1925594/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior Salesforce Developer",
-    "company": "Proxify",
-    "location": "Time zone: CET (+/- 3 hours)",
-    "url": "https://www.workingnomads.com/job/go/1925592/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior SAP S/4HANA Developer",
-    "company": "Proxify",
-    "location": "Time zone: CET (+/- 3 hours)",
-    "url": "https://www.workingnomads.com/job/go/1925590/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior Vue Developer",
-    "company": "Lemon.io",
-    "location": "Europe, LATAM, APAC, the U.S., Canada",
-    "url": "https://www.workingnomads.com/job/go/1923073/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Outbound SDR — Technology Advisory (Self-Employed, Remote)",
-    "company": "CTO Samurai",
-    "location": "Poland, the Philippines or South Africa",
-    "url": "https://www.workingnomads.com/job/go/1922550/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Data Analyst (No Experience Required)",
-    "company": "Peroptyx",
-    "location": "Japan - Remote",
-    "url": "https://www.workingnomads.com/job/go/1920476/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior React Full-stack Developer",
-    "company": "Lemon.io",
-    "location": "Europe, LATAM, APAC, the U.S., Canada",
-    "url": "https://www.workingnomads.com/job/go/1920195/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "AI Content Analyst (No Experience Required)",
-    "company": "Peroptyx",
-    "location": "Australia",
-    "url": "https://www.workingnomads.com/job/go/1915664/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Data Analyst (No Experience Required)",
-    "company": "Peroptyx",
-    "location": "Canada",
-    "url": "https://www.workingnomads.com/job/go/1915662/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Live Photo Collection Study in India",
-    "company": "TELUS Digital",
-    "location": "Anywhere in India",
-    "url": "https://www.workingnomads.com/job/go/1907122/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Content Reviewer United States - English-speaking",
-    "company": "TELUS Digital",
-    "location": "United States",
-    "url": "https://www.workingnomads.com/job/go/1907058/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Quality Assurance Rater - Spanish (ES)",
-    "company": "TELUS Digital",
-    "location": "Global",
-    "url": "https://www.workingnomads.com/job/go/1906010/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Data Analyst (No Experience Required)",
-    "company": "Peroptyx",
-    "location": "Germany",
-    "url": "https://www.workingnomads.com/job/go/1901972/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Data Analyst (No Experience Required)",
-    "company": "Peroptyx",
-    "location": "Belgium",
-    "url": "https://www.workingnomads.com/job/go/1901964/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "AI Content Analyst (No Experience Required)",
-    "company": "Peroptyx",
-    "location": "South Korea",
-    "url": "https://www.workingnomads.com/job/go/1901953/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior UI & UX / Graphic Designer",
-    "company": "Lemon.io",
-    "location": "Europe, LATAM, APAC, the U.S., Canada",
-    "url": "https://www.workingnomads.com/job/go/1901331/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Storyteller: Freelance B2B Interviewer and Writer",
-    "company": "Elite Editing",
-    "location": "EMEA or APAC time zones only",
-    "url": "https://www.workingnomads.com/job/go/1899188/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Beekman Social - Account Manager",
-    "company": "Beekman Social",
-    "location": "Remote, USA Only",
-    "url": "https://www.workingnomads.com/job/go/1891955/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Stack .NET Developer / Algorithm Engineer – Backend Focus.",
-    "company": "CloudGeometry",
-    "location": "Brazil",
-    "url": "https://www.workingnomads.com/job/go/1889808/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior back-end Engineer",
-    "company": "Lemon.io",
-    "location": "EU, US, Canada, UK, Australia, Singapore, Ireland, Norway, Switzerland, Iceland, and Mexico",
-    "url": "https://www.workingnomads.com/job/go/1885527/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Looking For Online ESL Teachers - Remote- Joining Rewards of up to USD $100",
-    "company": "Polly English",
-    "location": "North America",
-    "url": "https://www.workingnomads.com/job/go/1884997/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Content Reviewer - United States",
-    "company": "TELUS Digital",
-    "location": "United States",
-    "url": "https://www.workingnomads.com/job/go/1879612/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Head of Engineering",
-    "company": "Lemon.io",
-    "location": "Europe, Latin America, USA",
-    "url": "https://www.workingnomads.com/job/go/1878435/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Phone Sales Agent - Restock",
-    "company": "Sun Coast Sciences",
-    "location": "Philippines, Nicaragua, South Africa, Guatemala",
-    "url": "https://www.workingnomads.com/job/go/1874420/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Phone Sales Recovery Agent",
-    "company": "Sun Coast Sciences",
-    "location": "Philippines, Guatemala, Nicaragua, South Africa",
-    "url": "https://www.workingnomads.com/job/go/1874422/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Appointment Setting Representative",
-    "company": "Sun Coast Sciences",
-    "location": "Philippines, Guatemala, South Africa, Nicaragua",
-    "url": "https://www.workingnomads.com/job/go/1874418/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Protocol Review Specialist",
-    "company": "Sun Coast Sciences",
-    "location": "Philippines, Guatemala, Nicaragua, South Africa",
-    "url": "https://www.workingnomads.com/job/go/1874416/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Quality Assurance Rater - Spanish (Spain)",
-    "company": "TELUS Digital",
-    "location": "Global",
-    "url": "https://www.workingnomads.com/job/go/1873858/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Quality Assurance Rater - French (FR)",
-    "company": "TELUS Digital",
-    "location": "Global",
-    "url": "https://www.workingnomads.com/job/go/1873836/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Quality Assurance Rater - German (DE)",
-    "company": "TELUS Digital",
-    "location": "Global",
-    "url": "https://www.workingnomads.com/job/go/1873579/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior SEO & Organic Growth Strategist",
-    "company": "Powered by search",
-    "location": "Global",
-    "url": "https://www.workingnomads.com/job/go/1867649/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior Performance Marketing Strategist",
-    "company": "Powered by search",
-    "location": "Global",
-    "url": "https://www.workingnomads.com/job/go/1867456/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Personalized Internet Ads Assessor - English - Remote",
-    "company": "TELUS Digital",
-    "location": "USA",
-    "url": "https://www.workingnomads.com/job/go/1867454/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Senior Data Scientist",
-    "company": "Lemon.io",
-    "location": "Europe, LATAM, APAC, the U.S., Canada",
-    "url": "https://www.workingnomads.com/job/go/1867268/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Account Manager - Dental - International",
-    "company": "Clipboard Health",
-    "location": "Internationally located (not in the US, CA, UK, NZ, or AU)",
-    "url": "https://www.workingnomads.com/job/go/1864884/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Account Executive - Dental - International",
-    "company": "Clipboard Health",
-    "location": "Internationally located (not in the US, CA, UK, NZ, or AU)",
-    "url": "https://www.workingnomads.com/job/go/1864883/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Content Reviewer - United States",
-    "company": "TELUS Digital",
-    "location": "USA only",
-    "url": "https://www.workingnomads.com/job/go/1864402/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "Personalized Internet Assessor - Hindi (IN) - Remote",
-    "company": "TELUS Digital",
-    "location": "Anywhere in India",
-    "url": "https://www.workingnomads.com/job/go/1864351/",
-    "published": "",
-    "updated": "2026-10-11T08:33:07.423801+00:00"
-  },
-  {
-    "title": "QA Testers Wanted (No experience needed)",
-    "company": "Tester Work",
-    "location": "Australia & New Zealand (REMOTE)",
-    "url": "https://www.workingnomads.com/job/go/1860630/",
     "published": "",
     "updated": "2026-10-11T08:33:07.423801+00:00"
   }
