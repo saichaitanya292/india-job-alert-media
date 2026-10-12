@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-12",
+  "mode": "quiz",
+  "question": "Which Java feature allows a class to inherit behavior from an interface without implementing every method?",
+  "options": [
+    "A. Default methods",
+    "B. Constructors",
+    "C. Packages",
+    "D. Static blocks"
+  ],
+  "answer": null,
+  "explanation": null,
+  "image": "https://raw.githubusercontent.com/saichaitanya292/india-job-alert-media/main/images/quiz-2026-10-12-java.jpg"
+}
