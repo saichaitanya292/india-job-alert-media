@@ -274,7 +274,7 @@
     }
 
     if (!window.supabase || SUPABASE_URL.indexOf('YOUR_') === 0 || SUPABASE_ANON_KEY.indexOf('YOUR_') === 0) {
-      status.textContent = 'Setup needed: add your Supabase Project URL and public anon/publishable key in index.html.';
+      status.textContent = !window.supabase ? 'Loading sign-in library failed. Refresh the page and try again.' : 'Sign-in configuration is missing. Please contact the site administrator.';
       signIn.addEventListener('click', function () {
         status.textContent = 'Google sign-in is not active yet. Complete the Supabase setup instructions first.';
       });
