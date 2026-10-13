@@ -124,7 +124,7 @@
       if (!quiz || !Array.isArray(quiz.options) || !quiz.question) {
         renderQuizError('The next quiz has not been published yet. Please check back soon.'); return;
       }
-      quizStatus.textContent = (quiz.category || 'Tech') + ' · ' + (state.date || 'Latest quiz') + ' · Choose an answer or tap Answer reveal to see the solution.');
+      quizStatus.textContent = (quiz.category || 'Tech') + ' · ' + (state.date || 'Latest quiz') + ' · Choose an answer or tap Answer reveal to see the solution.';
       quizContent.replaceChildren();
       const question = document.createElement('p');
       question.style.cssText = 'font-size:17px;font-weight:750;line-height:1.5;margin:16px 0;';
