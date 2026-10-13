@@ -196,7 +196,7 @@
       });
       actions.appendChild(explanationToggle);
       actions.appendChild(explanationPanel);
-      actions.appendChild(quizButton('Answer reveal', () => {
+      actions.appendChild(quizButton('Reveal answer & explanation', () => {
         const saved = (readQuizProgress().answers || {})[state.date];
         const chosen = saved && saved.answer;
         if (chosen) {
