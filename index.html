@@ -191,17 +191,34 @@
       });
       actions.appendChild(explanationToggle);
       actions.appendChild(explanationPanel);
-      actions.appendChild(quizButton('View answer reveal', () => {
-        fetch('./quiz_posts.json?updated=' + Date.now(), {cache:'no-store'})
-          .then(response => { if (!response.ok) throw new Error('not ready'); return response.json(); })
-          .then(post => {
-            if (post.mode !== 'answer' || post.date !== state.date || !post.answer) {
-              feedback.hidden = false; feedback.textContent = 'The answer reveal is scheduled for 6 PM IST. Please check back after it is published.';
-              return;
-            }
-            feedback.hidden = false;
-            feedback.textContent = 'Correct answer: ' + post.answer + (post.explanation ? ' — ' + post.explanation : '');
-          }).catch(() => { feedback.hidden = false; feedback.textContent = 'Answer reveal is not available yet. Please try again later.'; });
+      actions.appendChild(quizButton('Answer reveal', () => {
+        const saved = (readQuizProgress().answers || {})[state.date];
+        const chosen = saved && saved.answer;
+        if (chosen) {
+          showFeedback(chosen, false);
+          const result = chosen === correctLetter ? 'Your answer is correct.' : 'Your answer is incorrect.';
+          const resultTitle = document.createElement('strong');
+          resultTitle.textContent = result;
+          feedback.prepend(resultTitle);
+        } else {
+          [...options.children].forEach((button, index) => {
+            const optionLetter = String(quiz.options[index] || '').split('.')[0].trim().toUpperCase();
+            button.disabled = true;
+            if (correctLetter && optionLetter === correctLetter) button.classList.add('correct');
+          });
+          feedback.replaceChildren();
+          const resultTitle = document.createElement('strong');
+          const answerOption = quiz.options.find(option => String(option).trim().toUpperCase().startsWith(correctLetter + '.'));
+          resultTitle.textContent = answerOption ? 'Correct answer: ' + answerOption : 'Answer reveal';
+          const detail = document.createElement('p');
+          detail.textContent = quiz.explanation || 'No explanation has been published for this question yet.';
+          feedback.append(resultTitle, detail);
+          feedback.hidden = false;
+        }
+        explanationVisible = false;
+        explanationPanel.hidden = true;
+        explanationToggle.textContent = 'Show explanation';
+        feedback.scrollIntoView({behavior:'smooth',block:'nearest'});
       }));
       quizContent.appendChild(actions);
       updateScore();
