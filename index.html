@@ -27,6 +27,22 @@
     .filter[aria-pressed="true"] { background:var(--blue); border-color:var(--blue); color:#fff; }
     .count { color:var(--muted); font-size:13px; margin:0 0 12px; }
     #jobs { display:grid; gap:12px; }
+    .quiz-section { margin:0 0 24px; padding:20px; background:#fff; border:1px solid var(--line); border-radius:18px; box-shadow:0 5px 18px #16345b08; }
+    .quiz-kicker { color:var(--blue); font-size:12px; font-weight:800; letter-spacing:.1em; }
+    .quiz-section h2 { margin:7px 0; font-size:23px; }
+    .quiz-muted { color:var(--muted); line-height:1.55; font-size:14px; }
+    #quiz-options { display:grid; gap:9px; margin:16px 0; }
+    .quiz-option { width:100%; padding:13px 14px; text-align:left; border:1px solid #d8e2f0; background:#fff; color:var(--ink); border-radius:12px; font:inherit; cursor:pointer; }
+    .quiz-option:hover:not(:disabled) { border-color:var(--blue); background:#f3f8ff; }
+    .quiz-option:focus-visible, .quiz-action:focus-visible { outline:3px solid #77b9ff; outline-offset:2px; }
+    .quiz-option:disabled { cursor:default; opacity:1; }
+    .quiz-option.correct { background:#e3f7ec; border-color:#168653; color:#11643c; font-weight:700; }
+    .quiz-option.incorrect { background:#fff0ef; border-color:#d84b43; color:#9d2822; }
+    .quiz-feedback { padding:14px; border-radius:12px; background:#f3f7fd; line-height:1.6; margin-top:12px; }
+    .quiz-actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+    .quiz-action { border:1px solid #cbd8eb; background:#fff; color:var(--navy); border-radius:10px; padding:10px 13px; font:inherit; font-weight:700; cursor:pointer; }
+    .quiz-action.primary { background:var(--blue); color:#fff; border-color:var(--blue); }
+    .quiz-score { font-size:13px; color:var(--muted); margin-top:12px; }
     .help { margin-top:24px; padding:20px; background:#fff; border:1px solid var(--line); border-radius:18px; line-height:1.6; }
     .help h2 { margin-top:0; font-size:19px; }
     .help a { color:var(--blue); }
@@ -49,6 +65,13 @@
     </div>
   </header>
   <main>
+    <section class="quiz-section" id="daily-quiz" aria-labelledby="quiz-heading">
+      <div class="quiz-kicker">DAILY INTERVIEW PRACTICE</div>
+      <h2 id="quiz-heading">Tech interview quiz</h2>
+      <p class="quiz-muted" id="quiz-status">Loading today's question…</p>
+      <div id="quiz-content"></div>
+      <p class="quiz-score" id="quiz-score" aria-live="polite"></p>
+    </section>
     <div class="tools">
       <input id="search" type="search" aria-label="Search jobs" placeholder="Search role, company, or location…">
     </div>
@@ -73,7 +96,104 @@
     <footer>Listings link to the original source. Check the employer's official page for eligibility, closing dates, and application details. India Job Alert does not collect applications or charge job seekers. Sponsored posts must be clearly labelled.</footer>
   </main>
   <script>
-    const jobsElement = document.getElementById('jobs');
+    // Website quiz: question content is published by the existing scheduled workflow.
+    const quizContent = document.getElementById('quiz-content');
+    const quizStatus = document.getElementById('quiz-status');
+    const quizScore = document.getElementById('quiz-score');
+    const quizStoreKey = 'india-job-alert-quiz-v1';
+    function readQuizProgress() {
+      try { return JSON.parse(localStorage.getItem(quizStoreKey) || '{"correct":0,"answered":0,"answers":{}}'); }
+      catch (_) { return {correct:0,answered:0,answers:{}}; }
+    }
+    function renderQuizError(message) {
+      quizStatus.textContent = message;
+      quizContent.replaceChildren();
+    }
+    function quizButton(label, handler) {
+      const button = document.createElement('button');
+      button.type = 'button'; button.className = 'quiz-action';
+      button.textContent = label; button.addEventListener('click', handler); return button;
+    }
+    function renderDailyQuiz(state) {
+      const quiz = state && state.quiz;
+      if (!quiz || !Array.isArray(quiz.options) || !quiz.question) {
+        renderQuizError('The next quiz has not been published yet. Please check back soon.'); return;
+      }
+      quizStatus.textContent = (quiz.category || 'Tech') + ' · ' + (state.date || 'Latest quiz') + ' · Answer reveal scheduled for 6 PM IST.';
+      quizContent.replaceChildren();
+      const question = document.createElement('p');
+      question.style.cssText = 'font-size:17px;font-weight:750;line-height:1.5;margin:16px 0;';
+      question.textContent = quiz.question; quizContent.appendChild(question);
+      const options = document.createElement('div'); options.id = 'quiz-options';
+      const feedback = document.createElement('div'); feedback.className = 'quiz-feedback'; feedback.hidden = true;
+      const progress = readQuizProgress();
+      const previous = progress.answers && progress.answers[state.date];
+      const correctLetter = String(quiz.answer || '').trim().toUpperCase().split('.')[0];
+      function showFeedback(letter, save) {
+        const isCorrect = letter === correctLetter;
+        [...options.children].forEach((button, index) => {
+          const optionLetter = String(quiz.options[index] || '').split('.')[0].trim().toUpperCase();
+          button.disabled = true;
+          if (optionLetter === correctLetter) button.classList.add('correct');
+          else if (optionLetter === letter && !isCorrect) button.classList.add('incorrect');
+        });
+        const heading = document.createElement('strong');
+        heading.textContent = isCorrect ? 'Correct answer!' : 'Not quite — review the correct answer.';
+        const detail = document.createElement('p');
+        const answerOption = quiz.options.find(o => String(o).trim().toUpperCase().startsWith(correctLetter + '.')) || correctLetter;
+        detail.textContent = answerOption + (quiz.explanation ? ' — ' + quiz.explanation : '');
+        feedback.replaceChildren(heading, detail); feedback.hidden = false;
+        if (save) {
+          const fresh = readQuizProgress();
+          fresh.answers = fresh.answers || {};
+          if (!fresh.answers[state.date]) {
+            fresh.answers[state.date] = {answer:letter,correct:isCorrect};
+            fresh.answered = (Number(fresh.answered)||0) + 1;
+            if (isCorrect) fresh.correct = (Number(fresh.correct)||0) + 1;
+            try { localStorage.setItem(quizStoreKey, JSON.stringify(fresh)); } catch (_) {}
+          }
+        }
+        updateScore();
+      }
+      quiz.options.forEach(option => {
+        const letter = String(option).split('.')[0].trim().toUpperCase();
+        const button = document.createElement('button');
+        button.type = 'button'; button.className = 'quiz-option'; button.textContent = option;
+        button.addEventListener('click', () => showFeedback(letter, true));
+        options.appendChild(button);
+      });
+      quizContent.appendChild(options); quizContent.appendChild(feedback);
+      if (previous) showFeedback(previous.answer, false);
+      const actions = document.createElement('div'); actions.className = 'quiz-actions';
+      actions.appendChild(quizButton('Show explanation', () => {
+        if (!feedback.hidden) { feedback.scrollIntoView({behavior:'smooth',block:'nearest'}); return; }
+        if (correctLetter) showFeedback(correctLetter, false);
+        else { feedback.hidden = false; feedback.textContent = 'The answer will be published in the scheduled reveal.'; }
+      }));
+      actions.appendChild(quizButton('View answer reveal', () => {
+        fetch('./quiz_posts.json?updated=' + Date.now(), {cache:'no-store'})
+          .then(response => { if (!response.ok) throw new Error('not ready'); return response.json(); })
+          .then(post => {
+            if (post.mode !== 'answer' || post.date !== state.date || !post.answer) {
+              feedback.hidden = false; feedback.textContent = 'The answer reveal is scheduled for 6 PM IST. Please check back after it is published.';
+              return;
+            }
+            feedback.hidden = false;
+            feedback.textContent = 'Correct answer: ' + post.answer + (post.explanation ? ' — ' + post.explanation : '');
+          }).catch(() => { feedback.hidden = false; feedback.textContent = 'Answer reveal is not available yet. Please try again later.'; });
+      }));
+      quizContent.appendChild(actions);
+      updateScore();
+    }
+    function updateScore() {
+      const p = readQuizProgress();
+      quizScore.textContent = 'Your score on this browser: ' + (Number(p.correct)||0) + ' correct / ' + (Number(p.answered)||0) + ' answered. Progress is stored on this device.';
+    }
+    fetch('./quiz_state.json?updated=' + Date.now(), {cache:'no-store'})
+      .then(response => { if (!response.ok) throw new Error('quiz unavailable'); return response.json(); })
+      .then(renderDailyQuiz)
+      .catch(() => renderQuizError('The quiz is temporarily unavailable. Please check back soon.'));
+\n    const jobsElement = document.getElementById('jobs');
     const searchElement = document.getElementById('search');
     const countElement = document.getElementById('count');
     const roleFilters = document.getElementById('role-filter');
