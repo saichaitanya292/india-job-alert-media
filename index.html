@@ -102,13 +102,14 @@
     function safeText(value) { return value == null ? '' : String(value); }
     function loadProgress() { try { progress = JSON.parse(localStorage.getItem('india-job-alert-quiz-v1') || '{"correct":0,"answered":0,"answers":{}}'); } catch(e) {} if (!progress.answers) progress.answers = {}; }
     function saveProgress() { try { localStorage.setItem('india-job-alert-quiz-v1', JSON.stringify(progress)); } catch(e) {} }
-    function currentQuiz() { if (dailyState) return dailyState.quiz; var list = bank.filter(function(q){return q.category === category;}); return list.length ? list[questionIndex % list.length] : null; }
+    function currentQuiz() { if (dailyState) return dailyState.quiz; var list = category === 'all' ? bank : bank.filter(function(q){return q.category === category;}); return list.length ? list[questionIndex % list.length] : null; }
     function renderQuiz() {
       var quiz = currentQuiz(), select = byId('quiz-category');
       select.innerHTML = '';
       var cats = Array.from(new Set(bank.map(function(q){return q.category;}).filter(Boolean))).sort();
+      if (bank.length && !dailyState) cats.unshift('all');
       if (dailyState && !cats.length) cats = [category || 'Daily quiz'];
-      cats.forEach(function(cat){var opt=document.createElement('option');opt.value=cat;opt.textContent=cat;select.appendChild(opt);});
+      cats.forEach(function(cat){var opt=document.createElement('option');opt.value=cat;opt.textContent=cat==='all'?'All categories':cat;select.appendChild(opt);});
       select.value = category; select.disabled = !cats.length || !!dailyState;
       byId('quiz-status').textContent = quiz ? (quiz.category || category) + ' · Choose an answer, then reveal the solution and explanation.' : 'The quiz is temporarily unavailable. Please try again later.';
       byId('quiz-question').textContent = quiz ? safeText(quiz.question) : '';
@@ -154,12 +155,12 @@
     byId('quiz-category').addEventListener('change',function(){category=this.value;questionIndex=0;dailyState=null;refreshQuiz();});
     byId('quiz-reveal').addEventListener('click',function(){revealed=true;showExplanation=true;renderQuiz();});
     byId('quiz-explanation').addEventListener('click',function(){showExplanation=!showExplanation;renderQuiz();});
-    byId('quiz-next').addEventListener('click',function(){var count=bank.filter(function(q){return q.category===category;}).length;if(count>1)questionIndex=(questionIndex+1)%count;refreshQuiz();});
+    byId('quiz-next').addEventListener('click',function(){var list=category==='all'?bank:bank.filter(function(q){return q.category===category;});if(list.length>1)questionIndex=(questionIndex+1)%list.length;refreshQuiz();});
     function loadQuiz() {
       fetch('./quiz_bank.json?v='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw Error('quiz bank');return r.json();}).then(function(data){
         bank = Array.isArray(data.questions) ? data.questions.filter(function(q){return q&&q.category&&q.question&&Array.isArray(q.options);}) : [];
         if (!bank.length) throw Error('empty quiz bank');
-        category = bank.some(function(q){return q.category===category;}) ? category : Array.from(new Set(bank.map(function(q){return q.category;})).sort()[0]);
+        category = 'all';
         dailyState=null;refreshQuiz();
       }).catch(function(){
         fetch('./quiz_state.json?v='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw Error('daily quiz');return r.json();}).then(function(data){
