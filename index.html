@@ -165,23 +165,32 @@
       quizContent.appendChild(options); quizContent.appendChild(feedback);
       if (previous) showFeedback(previous.answer, false);
       const actions = document.createElement('div'); actions.className = 'quiz-actions';
-      actions.appendChild(quizButton('Show explanation', () => {
-        feedback.hidden = false;
-        feedback.replaceChildren();
-        const answerTitle = document.createElement('strong');
-        const answerOption = quiz.options.find(option => String(option).trim().toUpperCase().startsWith(correctLetter + '.'));
-        answerTitle.textContent = correctLetter && answerOption ? 'Correct answer: ' + answerOption : 'Answer explanation';
-        const answerDetail = document.createElement('p');
-        answerDetail.textContent = quiz.explanation || 'No explanation has been published for this question yet.';
-        answerDetail.style.marginBottom = '0';
-        feedback.append(answerTitle, answerDetail);
-        [...options.children].forEach((button, index) => {
-          const optionLetter = String(quiz.options[index] || '').split('.')[0].trim().toUpperCase();
-          button.disabled = true;
-          if (correctLetter && optionLetter === correctLetter) button.classList.add('correct');
-        });
-        feedback.scrollIntoView({behavior:'smooth',block:'nearest'});
-      }));
+      let explanationVisible = false;
+      const explanationPanel = document.createElement('div');
+      explanationPanel.className = 'quiz-feedback';
+      explanationPanel.hidden = true;
+      const explanationToggle = quizButton('Show explanation', () => {
+        explanationVisible = !explanationVisible;
+        explanationPanel.hidden = !explanationVisible;
+        explanationToggle.textContent = explanationVisible ? 'Hide explanation' : 'Show explanation';
+        if (explanationVisible) {
+          explanationPanel.replaceChildren();
+          const answerTitle = document.createElement('strong');
+          const answerOption = quiz.options.find(option => String(option).trim().toUpperCase().startsWith(correctLetter + '.'));
+          answerTitle.textContent = correctLetter && answerOption ? 'Correct answer: ' + answerOption : 'Answer explanation';
+          const answerDetail = document.createElement('p');
+          answerDetail.textContent = quiz.explanation || 'No explanation has been published for this question yet.';
+          answerDetail.style.marginBottom = '0';
+          explanationPanel.append(answerTitle, answerDetail);
+          [...options.children].forEach((button, index) => {
+            const optionLetter = String(quiz.options[index] || '').split('.')[0].trim().toUpperCase();
+            if (correctLetter && optionLetter === correctLetter) button.classList.add('correct');
+          });
+          explanationPanel.scrollIntoView({behavior:'smooth',block:'nearest'});
+        }
+      });
+      actions.appendChild(explanationToggle);
+      actions.appendChild(explanationPanel);
       actions.appendChild(quizButton('View answer reveal', () => {
         fetch('./quiz_posts.json?updated=' + Date.now(), {cache:'no-store'})
           .then(response => { if (!response.ok) throw new Error('not ready'); return response.json(); })
