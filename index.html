@@ -60,6 +60,11 @@
     .help a { color:var(--blue); }
     .job { background:#fff; border:1px solid var(--line); border-radius:18px; padding:19px; box-shadow:0 5px 18px #16345b08; }
     .job-actions { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-top:12px; }
+    .tracking-controls { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-top:14px; }
+    .tracking-controls label { display:grid; gap:5px; color:var(--muted); font-size:12px; font-weight:750; }
+    .tracking-controls select, .tracking-controls input, .tracking-controls textarea { width:100%; min-width:0; padding:10px 11px; border:1px solid #d6e0ef; border-radius:10px; background:#fff; color:var(--ink); font:inherit; }
+    .tracking-controls textarea { grid-column:1/-1; min-height:76px; resize:vertical; }
+    .tracking-status { color:var(--muted); font-size:13px; margin:10px 0 0; }
     .save-job { border:1px solid #cbd8eb; background:#fff; color:var(--navy); border-radius:11px; padding:10px 13px; font:inherit; font-weight:750; cursor:pointer; }
     .save-job.saved { background:#eaf3ff; border-color:#8ab8f2; }
     .job h2 { margin:0 0 9px; font-size:19px; line-height:1.35; }
@@ -84,6 +89,7 @@
       <a class="nav-link active" href="#daily-quiz" data-nav-target="daily-quiz">🧠 Quiz</a>
       <a class="nav-link" href="#jobs-section" data-nav-target="jobs-section">💼 Jobs</a>
       <a class="nav-link" href="#my-jobs" data-nav-target="my-jobs">🔖 My Jobs</a>
+      <a class="nav-link" href="#my-applications" data-nav-target="my-applications">📋 Applications</a>
       <a class="nav-link" href="#job-filters" data-nav-target="job-filters">🏷️ Job categories</a>
       <a class="nav-link" href="#job-search" data-nav-target="job-search">🔎 Search jobs</a>
     </div>
@@ -106,6 +112,13 @@
       <h2>My Jobs</h2>
       <p class="quiz-muted" id="my-jobs-status">Sign in to save jobs and see them here on any device.</p>
       <div id="saved-jobs-list" style="display:grid;gap:12px"></div>
+    </section>
+    <section class="quiz-section" id="my-applications" aria-label="Job application tracker">
+      <div class="quiz-kicker">YOUR APPLICATION PIPELINE</div>
+      <h2>Application tracker</h2>
+      <p class="quiz-muted">Track roles you have applied for, update their status, and keep dates or notes in one place. Sign in to sync your tracker securely across devices.</p>
+      <p class="tracking-status" id="applications-status" role="status" aria-live="polite">Sign in with Google to start tracking applications.</p>
+      <div id="applications-list" style="display:grid;gap:12px"></div>
     </section>
     <section class="quiz-section" id="daily-quiz">
       <div class="quiz-kicker">DAILY INTERVIEW PRACTICE</div><h2>Tech interview quiz</h2>
@@ -136,7 +149,7 @@
     var bank = [], category = '', questionIndex = 0, selected = '', revealed = false, showExplanation = false, dailyState = null;
     var jobs = [], role = 'all', progress = {correct:0,answered:0,answers:{}}, quizDate = '';
     var savedJobUrls = Object.create(null), currentUser = null, supabaseClient = null;
-    var pendingSavedJobs = Object.create(null);
+    var pendingSavedJobs = Object.create(null), trackedApplications = [];
     try { pendingSavedJobs = JSON.parse(localStorage.getItem('ija_pending_saved_jobs') || '{}') || {}; } catch (e) { pendingSavedJobs = {}; }
     function persistPendingSavedJobs() { try { localStorage.setItem('ija_pending_saved_jobs', JSON.stringify(pendingSavedJobs)); } catch (e) {} }
     function isJobSaved(jobUrl) { return !!(savedJobUrls[jobUrl] || pendingSavedJobs[jobUrl]); }
@@ -282,6 +295,82 @@
         actions.appendChild(remove);article.appendChild(actions);root.appendChild(article);
       });
     }
+    var applicationStatuses = ['Interested','Applied','Interviewing','Offered','Rejected'];
+    function applicationStatusOptions(current) {
+      return applicationStatuses.map(function(status) {
+        return '<option value="' + status + '"' + (status === current ? ' selected' : '') + '>' + status + '</option>';
+      }).join('');
+    }
+    async function loadApplications() {
+      var root=byId('applications-list'); root.innerHTML='';
+      if (!supabaseClient || !currentUser) {
+        byId('applications-status').textContent='Sign in with Google to track applications and access them on any device.';
+        return;
+      }
+      byId('applications-status').textContent='Loading your applications…';
+      var result=await supabaseClient.from('job_applications').select('id,job_url,title,company,location,status,applied_date,notes,created_at,updated_at').order('updated_at',{ascending:false});
+      if(result.error) {
+        byId('applications-status').textContent='Application tracker database is not ready. Run supabase/job_applications.sql in Supabase SQL Editor. Details: '+result.error.message;
+        return;
+      }
+      trackedApplications=result.data||[];
+      if(!trackedApplications.length) {
+        byId('applications-status').textContent='No applications tracked yet. Browse jobs and choose “Track application” on a role to add it here.';
+        return;
+      }
+      byId('applications-status').textContent=trackedApplications.length+' role(s) in your application tracker.';
+      trackedApplications.forEach(function(row) {
+        var article=document.createElement('article'); article.className='job';
+        var h=document.createElement('h2'); h.textContent=row.title||'Technology job'; article.appendChild(h);
+        var meta=document.createElement('div'); meta.className='meta';
+        [['🏢 ',row.company||'Company not specified'],['📍 ',row.location||'Location not specified']].forEach(function(pair){var span=document.createElement('span');span.textContent=pair[0]+pair[1];meta.appendChild(span);});
+        article.appendChild(meta);
+        var a=document.createElement('a');a.className='apply';a.href=row.job_url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Apply / View job ↗';article.appendChild(a);
+        var controls=document.createElement('div');controls.className='tracking-controls';
+        var statusLabel=document.createElement('label');statusLabel.textContent='Application status';
+        var status=document.createElement('select');status.innerHTML=applicationStatusOptions(row.status||'Interested');statusLabel.appendChild(status);controls.appendChild(statusLabel);
+        var dateLabel=document.createElement('label');dateLabel.textContent='Date applied';
+        var date=document.createElement('input');date.type='date';date.value=row.applied_date||'';dateLabel.appendChild(date);controls.appendChild(dateLabel);
+        var notesLabel=document.createElement('label');notesLabel.textContent='Notes / next steps';
+        var notes=document.createElement('textarea');notes.maxLength=3000;notes.placeholder='Recruiter, interview date, follow-up reminder…';notes.value=row.notes||'';notesLabel.appendChild(notes);controls.appendChild(notesLabel);
+        article.appendChild(controls);
+        var actions=document.createElement('div');actions.className='job-actions';
+        var save=document.createElement('button');save.type='button';save.className='quiz-action primary';save.textContent='Save updates';
+        save.addEventListener('click',async function(){
+          save.disabled=true;save.textContent='Saving…';
+          var updated=await supabaseClient.from('job_applications').update({status:status.value,applied_date:date.value||null,notes:notes.value.trim(),updated_at:new Date().toISOString()}).eq('id',row.id).select('id');
+          if(updated.error){byId('applications-status').textContent='Could not update application: '+updated.error.message;save.disabled=false;save.textContent='Save updates';return;}
+          byId('applications-status').textContent='Application updated: '+(row.title||'Technology job');
+          await loadApplications();
+        });
+        var remove=document.createElement('button');remove.type='button';remove.className='save-job';remove.textContent='Remove tracker entry';
+        remove.addEventListener('click',async function(){
+          if(!window.confirm('Remove this application from your tracker? This will not delete the job listing.'))return;
+          remove.disabled=true;
+          var deleted=await supabaseClient.from('job_applications').delete().eq('id',row.id);
+          if(deleted.error){byId('applications-status').textContent='Could not remove application: '+deleted.error.message;remove.disabled=false;return;}
+          await loadApplications();
+        });
+        actions.appendChild(save);actions.appendChild(remove);article.appendChild(actions);root.appendChild(article);
+      });
+    }
+    async function trackApplication(job) {
+      if(!currentUser || !supabaseClient) {
+        byId('applications-status').textContent='Please sign in with Google before tracking an application.';
+        byId('account-section').scrollIntoView({behavior:'smooth',block:'start'});
+        return;
+      }
+      var record={user_id:currentUser.id,job_url:job.url,title:job.title||'Technology job',company:job.company||'',location:job.location||'',status:'Interested',applied_date:null,notes:''};
+      var existing=trackedApplications.find(function(item){return item.job_url===job.url;});
+      if(existing) { byId('applications-status').textContent='This role is already in your tracker below.';byId('my-applications').scrollIntoView({behavior:'smooth',block:'start'});return; }
+      var result=await supabaseClient.from('job_applications').insert(record);
+      if(result.error) {
+        if(result.error.code==='23505'){byId('applications-status').textContent='This role is already in your tracker.';await loadApplications();return;}
+        byId('applications-status').textContent='Could not track application: '+result.error.message;return;
+      }
+      await loadApplications();
+      byId('my-applications').scrollIntoView({behavior:'smooth',block:'start'});
+    }
     async function loadSavedJobs() {
       if (!supabaseClient || !currentUser) { renderSavedJobs([]); return; }
       var result=await supabaseClient.from('saved_jobs').select('id,job_url,title,company,location,created_at').order('created_at',{ascending:false});
@@ -331,7 +420,8 @@
       currentUser=event.detail&&event.detail.user||null;
       supabaseClient=window.IndiaJobAlertSupabase||null;
       savedJobUrls=Object.create(null);
-      if (currentUser) syncPendingSavedJobs();
+      if (currentUser) { syncPendingSavedJobs(); loadApplications(); }
+      else { trackedApplications=[]; loadApplications(); }
       else {
         renderSavedJobs(Object.keys(pendingSavedJobs).map(function(key){return Object.assign({id:'pending:'+key},pendingSavedJobs[key]);}));
         renderJobs();
@@ -355,6 +445,7 @@
         var actions=document.createElement('div');actions.className='job-actions';actions.style.cssText='display:flex!important;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;width:100%;';
         var save=document.createElement('button');save.type='button';save.className='save-job';save.style.cssText='display:inline-flex!important;visibility:visible!important;opacity:1!important;align-items:center;justify-content:center;min-height:44px;padding:11px 16px;border:2px solid #1557a6;border-radius:12px;background:#eaf3ff;color:#12345b;font:inherit;font-weight:800;cursor:pointer;position:relative;z-index:2;';save.textContent=isJobSaved(job.url)?(pendingSavedJobs[job.url]?'✓ Saved — sync after sign-in':'✓ Saved'):'🔖 Save job';if(isJobSaved(job.url))save.classList.add('saved');
         save.addEventListener('click',function(){saveJob(job,save);});actions.appendChild(save);
+        var track=document.createElement('button');track.type='button';track.className='save-job';track.textContent='📋 Track application';track.addEventListener('click',function(){trackApplication(job);});actions.appendChild(track);
         var a=document.createElement('a');a.className='apply';a.href=job.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Apply / View job ↗';actions.appendChild(a);article.appendChild(actions);root.appendChild(article);
       });
     }
