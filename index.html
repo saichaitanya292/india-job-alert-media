@@ -136,6 +136,10 @@
     var bank = [], category = '', questionIndex = 0, selected = '', revealed = false, showExplanation = false, dailyState = null;
     var jobs = [], role = 'all', progress = {correct:0,answered:0,answers:{}}, quizDate = '';
     var savedJobUrls = Object.create(null), currentUser = null, supabaseClient = null;
+    var pendingSavedJobs = Object.create(null);
+    try { pendingSavedJobs = JSON.parse(localStorage.getItem('ija_pending_saved_jobs') || '{}') || {}; } catch (e) { pendingSavedJobs = {}; }
+    function persistPendingSavedJobs() { try { localStorage.setItem('ija_pending_saved_jobs', JSON.stringify(pendingSavedJobs)); } catch (e) {} }
+    function isJobSaved(jobUrl) { return !!(savedJobUrls[jobUrl] || pendingSavedJobs[jobUrl]); }
     var roles = [['all','All jobs'],['qa','QA / Testing'],['developer','Developer'],['ai','AI / Data'],['devops','Cloud / DevOps'],['intern','Internships'],['remote','Remote']];
     function byId(id) { return document.getElementById(id); }
     function letter(value) { return String(value || '').split('.')[0].trim().toUpperCase(); }
@@ -224,8 +228,12 @@
     }
     function renderSavedJobs(rows) {
       var root=byId('saved-jobs-list'); root.innerHTML='';
-      if (!currentUser) { byId('my-jobs-status').textContent='Sign in with Google to save jobs and access your list on any device.'; return; }
-      if (!rows || !rows.length) { byId('my-jobs-status').textContent='You have not saved any jobs yet. Browse listings and tap Save job.'; return; }
+      if (!currentUser) {
+        var localRows=Object.keys(pendingSavedJobs).map(function(key){return Object.assign({id:'pending:'+key},pendingSavedJobs[key]);});
+        if (!localRows.length) { byId('my-jobs-status').textContent='Sign in with Google to save jobs and access your list on any device.'; return; }
+        rows=localRows; byId('my-jobs-status').textContent=rows.length+' job(s) saved on this device. Sign in to sync across devices.';
+      }
+      if (!rows || !rows.length) { var pendingCount=Object.keys(pendingSavedJobs).length; byId('my-jobs-status').textContent=pendingCount ? pendingCount+' job(s) saved on this device. Sign in to sync them.' : 'You have not saved any jobs yet. Browse listings and tap Save job.'; return; }
       byId('my-jobs-status').textContent=rows.length+' saved '+(rows.length===1?'job':'jobs')+'.';
       rows.forEach(function(row) {
         var article=document.createElement('article'); article.className='job';
@@ -238,6 +246,11 @@
         var remove=document.createElement('button');remove.type='button';remove.className='save-job';remove.textContent='Remove saved job';
         remove.addEventListener('click',async function(){
           remove.disabled=true; byId('my-jobs-status').textContent='Removing saved job…';
+          if (String(row.id).indexOf('pending:')===0) {
+            delete pendingSavedJobs[row.job_url]; persistPendingSavedJobs();
+            renderSavedJobs(Object.keys(pendingSavedJobs).map(function(key){return Object.assign({id:'pending:'+key},pendingSavedJobs[key]);}));
+            renderJobs(); return;
+          }
           var result=await supabaseClient.from('saved_jobs').delete().eq('id',row.id);
           if(result.error){byId('my-jobs-status').textContent='Could not remove job: '+result.error.message;remove.disabled=false;return;}
           delete savedJobUrls[row.job_url]; await loadSavedJobs(); renderJobs();
@@ -254,30 +267,51 @@
       }
       savedJobUrls=Object.create(null);
       (result.data||[]).forEach(function(row){savedJobUrls[row.job_url]=true;});
-      renderSavedJobs(result.data||[]);
+      renderSavedJobs((result.data||[]).concat(Object.keys(pendingSavedJobs).map(function(key){return Object.assign({id:'pending:'+key},pendingSavedJobs[key]);})));
     }
-    function saveJob(job, button) {
+    async function saveJob(job, button) {
+      var jobUrl=job.url;
+      if (isJobSaved(jobUrl)) return;
+      var record={job_url:jobUrl,title:job.title||'Technology job',company:job.company||'',location:job.location||''};
       if (!currentUser || !supabaseClient) {
-        byId('auth-status').textContent='Please sign in with Google to save jobs.';
-        byId('account-section').scrollIntoView({behavior:'smooth',block:'start'});
+        pendingSavedJobs[jobUrl]=record; persistPendingSavedJobs();
+        button.textContent='✓ Saved — sync after sign-in'; button.classList.add('saved');
+        byId('my-jobs-status').textContent='Job saved on this device. Sign in to sync it to your account.';
+        byId('auth-status').textContent='Saved on this device. Sign in with Google to keep it in My Jobs across devices.';
+        renderSavedJobs(Object.keys(pendingSavedJobs).map(function(key){return Object.assign({id:'pending:'+key},pendingSavedJobs[key]);}));
         return;
       }
-      if (savedJobUrls[job.url]) return;
       button.disabled=true; button.textContent='Saving…';
-      supabaseClient.from('saved_jobs').insert({user_id:currentUser.id,job_url:job.url,title:job.title||'Technology job',company:job.company||'',location:job.location||''})
-        .then(async function(result){
-          if(result.error) {
-            if(result.error.code==='23505') { savedJobUrls[job.url]=true; }
-            else { byId('my-jobs-status').textContent='Could not save job: '+result.error.message; button.disabled=false; button.textContent='🔖 Save job'; return; }
-          } else savedJobUrls[job.url]=true;
-          button.textContent='✓ Saved'; button.classList.add('saved'); await loadSavedJobs();
-        });
+      var result=await supabaseClient.from('saved_jobs').insert({user_id:currentUser.id,job_url:jobUrl,title:record.title,company:record.company,location:record.location});
+      if(result.error && result.error.code!=='23505') {
+        byId('my-jobs-status').textContent='Could not save job: '+result.error.message;
+        button.disabled=false; button.textContent='🔖 Save job'; return;
+      }
+      savedJobUrls[jobUrl]=true; delete pendingSavedJobs[jobUrl]; persistPendingSavedJobs();
+      button.textContent='✓ Saved'; button.classList.add('saved'); await loadSavedJobs();
+    }
+    async function syncPendingSavedJobs() {
+      if (!currentUser || !supabaseClient) return;
+      var entries=Object.keys(pendingSavedJobs);
+      if (!entries.length) return;
+      byId('my-jobs-status').textContent='Syncing '+entries.length+' job(s) saved before sign-in…';
+      for (var i=0;i<entries.length;i++) {
+        var key=entries[i], job=pendingSavedJobs[key];
+        var result=await supabaseClient.from('saved_jobs').insert({user_id:currentUser.id,job_url:job.job_url,title:job.title||'Technology job',company:job.company||'',location:job.location||''});
+        if (!result.error || result.error.code==='23505') { savedJobUrls[key]=true; delete pendingSavedJobs[key]; }
+        else { byId('my-jobs-status').textContent='Some saved jobs could not sync: '+result.error.message+'. Unsynced jobs remain saved on this device.'; }
+      }
+      persistPendingSavedJobs(); await loadSavedJobs(); renderJobs();
     }
     window.addEventListener('india-job-alert-auth',function(event){
       currentUser=event.detail&&event.detail.user||null;
       supabaseClient=window.IndiaJobAlertSupabase||null;
       savedJobUrls=Object.create(null);
-      loadSavedJobs().then(renderJobs);
+      if (currentUser) syncPendingSavedJobs();
+      else {
+        renderSavedJobs(Object.keys(pendingSavedJobs).map(function(key){return Object.assign({id:'pending:'+key},pendingSavedJobs[key]);}));
+        renderJobs();
+      }
     });
     function renderJobs() {
       var query=byId('job-search').value.trim().toLowerCase();
@@ -295,7 +329,7 @@
         var d=job.published||job.updated;if(d&&!isNaN(new Date(d).getTime())){var s=document.createElement('span');s.textContent='🕒 '+new Date(d).toLocaleDateString();meta.appendChild(s);}
         article.appendChild(meta);
         var actions=document.createElement('div');actions.className='job-actions';actions.style.cssText='display:flex!important;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;width:100%;';
-        var save=document.createElement('button');save.type='button';save.className='save-job';save.style.cssText='display:inline-flex!important;visibility:visible!important;opacity:1!important;align-items:center;justify-content:center;min-height:44px;padding:11px 16px;border:2px solid #1557a6;border-radius:12px;background:#eaf3ff;color:#12345b;font:inherit;font-weight:800;cursor:pointer;position:relative;z-index:2;';save.textContent=savedJobUrls[job.url]?'✓ Saved':'🔖 Save job';if(savedJobUrls[job.url])save.classList.add('saved');
+        var save=document.createElement('button');save.type='button';save.className='save-job';save.style.cssText='display:inline-flex!important;visibility:visible!important;opacity:1!important;align-items:center;justify-content:center;min-height:44px;padding:11px 16px;border:2px solid #1557a6;border-radius:12px;background:#eaf3ff;color:#12345b;font:inherit;font-weight:800;cursor:pointer;position:relative;z-index:2;';save.textContent=isJobSaved(job.url)?(pendingSavedJobs[job.url]?'✓ Saved — sync after sign-in':'✓ Saved'):'🔖 Save job';if(isJobSaved(job.url))save.classList.add('saved');
         save.addEventListener('click',function(){saveJob(job,save);});actions.appendChild(save);
         var a=document.createElement('a');a.className='apply';a.href=job.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Apply / View job ↗';actions.appendChild(a);article.appendChild(actions);root.appendChild(article);
       });
