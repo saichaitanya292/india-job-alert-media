@@ -193,7 +193,8 @@
       .then(response => { if (!response.ok) throw new Error('quiz unavailable'); return response.json(); })
       .then(renderDailyQuiz)
       .catch(() => renderQuizError('The quiz is temporarily unavailable. Please check back soon.'));
-\n    const jobsElement = document.getElementById('jobs');
+
+    const jobsElement = document.getElementById('jobs');
     const searchElement = document.getElementById('search');
     const countElement = document.getElementById('count');
     const roleFilters = document.getElementById('role-filter');
