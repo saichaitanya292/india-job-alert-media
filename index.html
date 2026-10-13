@@ -67,194 +67,141 @@
       <p>Fresh job alerts, all in one place. Tap Apply to open the original listing and check requirements.</p>
     </div>
   </header>
-  <div id="root"><main style="max-width:850px;margin:0 auto;padding:22px 14px 44px"><section class="quiz-section"><h2>Loading India Job Alert…</h2><p class="quiz-muted">If this message remains, the interactive page could not start. Try opening the page in your browser or refresh once.</p><p><a href="./quiz_bank.json">Check quiz data</a> · <a href="./jobs.json">Check jobs data</a></p></section></main></div>
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script type="text/babel" data-presets="env,react">
-    const { useState, useEffect, useMemo, useCallback } = React;
-    const QUIZ_PROGRESS_KEY = 'india-job-alert-quiz-v1';
-    const ROLES = [['all','All jobs'],['qa','QA / Testing'],['developer','Developer'],['ai','AI / Data'],['devops','Cloud / DevOps'],['intern','Internships'],['remote','Remote']];
-    function readProgress() {
-      try { return JSON.parse(localStorage.getItem(QUIZ_PROGRESS_KEY) || '{"correct":0,"answered":0,"answers":{}}'); }
-      catch (_) { return {correct:0,answered:0,answers:{}}; }
+  <main>
+    <section class="quiz-section" id="daily-quiz">
+      <div class="quiz-kicker">DAILY INTERVIEW PRACTICE</div><h2>Tech interview quiz</h2>
+      <p class="quiz-muted" id="quiz-status">Loading quiz categories…</p>
+      <label class="quiz-muted" for="quiz-category">Quiz category</label>
+      <select id="quiz-category" style="display:block;width:100%;margin:8px 0 14px;padding:12px;border:1px solid #d6e0ef;border-radius:12px;background:#fff;font:inherit" disabled><option>Loading…</option></select>
+      <p id="quiz-question" style="font-size:17px;font-weight:750;line-height:1.5;margin:16px 0"></p>
+      <div id="quiz-options"></div><div id="quiz-feedback" class="quiz-feedback" hidden aria-live="polite"></div>
+      <div class="quiz-actions"><button type="button" class="quiz-action" id="quiz-explanation" disabled>Show explanation</button><button type="button" class="quiz-action primary" id="quiz-reveal" disabled>Reveal answer &amp; explanation</button><button type="button" class="quiz-action" id="quiz-next" disabled>Next question</button></div>
+      <p class="quiz-score" id="quiz-score">Your score on this browser is stored on this device.</p>
+    </section>
+    <section aria-label="Job listings">
+      <div class="tools"><input id="job-search" type="search" aria-label="Search jobs" placeholder="Search role, company, or location…"></div>
+      <div class="filters" id="job-filters" aria-label="Filter jobs by role"></div>
+      <p class="count" id="job-count">Loading latest jobs…</p><section id="jobs" aria-live="polite"></section>
+    </section>
+    <section class="help"><h2>Job seeker quick help</h2>
+      <p><strong>How do I apply?</strong> Tap “Apply / View job” to visit the original listing.</p>
+      <p><strong>Are these jobs verified?</strong> Check the employer’s official website, eligibility, deadline and URL before sharing personal information.</p>
+      <p><strong>Is it free?</strong> Browsing listings and applying through this website is free.</p>
+      <p><strong>Recruiters:</strong> Contact <a href="https://www.instagram.com/india.tech.jobalerts/" target="_blank" rel="noopener noreferrer">@india.tech.jobalerts</a> to enquire about sponsored listings.</p>
+    </section>
+    <footer>Listings link to the original source. Check the employer's official page for eligibility, closing dates, and application details. India Job Alert does not collect applications or charge job seekers.</footer>
+  </main>
+  <script>
+  (function () {
+    'use strict';
+    var bank = [], category = '', questionIndex = 0, selected = '', revealed = false, showExplanation = false, dailyState = null;
+    var jobs = [], role = 'all', progress = {correct:0,answered:0,answers:{}}, quizDate = '';
+    var roles = [['all','All jobs'],['qa','QA / Testing'],['developer','Developer'],['ai','AI / Data'],['devops','Cloud / DevOps'],['intern','Internships'],['remote','Remote']];
+    function byId(id) { return document.getElementById(id); }
+    function letter(value) { return String(value || '').split('.')[0].trim().toUpperCase(); }
+    function safeText(value) { return value == null ? '' : String(value); }
+    function loadProgress() { try { progress = JSON.parse(localStorage.getItem('india-job-alert-quiz-v1') || '{"correct":0,"answered":0,"answers":{}}'); } catch(e) {} if (!progress.answers) progress.answers = {}; }
+    function saveProgress() { try { localStorage.setItem('india-job-alert-quiz-v1', JSON.stringify(progress)); } catch(e) {} }
+    function currentQuiz() { if (dailyState) return dailyState.quiz; var list = bank.filter(function(q){return q.category === category;}); return list.length ? list[questionIndex % list.length] : null; }
+    function renderQuiz() {
+      var quiz = currentQuiz(), select = byId('quiz-category');
+      select.innerHTML = '';
+      var cats = Array.from(new Set(bank.map(function(q){return q.category;}).filter(Boolean))).sort();
+      if (dailyState && !cats.length) cats = [category || 'Daily quiz'];
+      cats.forEach(function(cat){var opt=document.createElement('option');opt.value=cat;opt.textContent=cat;select.appendChild(opt);});
+      select.value = category; select.disabled = !cats.length || !!dailyState;
+      byId('quiz-status').textContent = quiz ? (quiz.category || category) + ' · Choose an answer, then reveal the solution and explanation.' : 'The quiz is temporarily unavailable. Please try again later.';
+      byId('quiz-question').textContent = quiz ? safeText(quiz.question) : '';
+      var options = byId('quiz-options'); options.innerHTML = '';
+      byId('quiz-feedback').hidden = true;
+      ['quiz-explanation','quiz-reveal','quiz-next'].forEach(function(id){byId(id).disabled = !quiz;});
+      if (!quiz) return;
+      var answer = letter(quiz.answer), saved = progress.answers[quizDate];
+      if (saved) selected = saved.answer; 
+      quiz.options.forEach(function(option){
+        var btn = document.createElement('button'); btn.type='button'; btn.className='quiz-option'; btn.textContent=option;
+        var l = letter(option), answered = !!selected || !!saved;
+        if ((answered || revealed) && l === answer) btn.classList.add('correct');
+        if (answered && l === (saved ? saved.answer : selected) && l !== answer) btn.classList.add('incorrect');
+        btn.disabled = answered || revealed;
+        btn.addEventListener('click',function(){
+          if (selected || progress.answers[quizDate] || revealed) return;
+          selected = l; var correct = l === answer;
+          progress.answers[quizDate] = {answer:l,correct:correct};
+          progress.answered = (Number(progress.answered)||0)+1;
+          if (correct) progress.correct = (Number(progress.correct)||0)+1;
+          saveProgress(); renderQuiz();
+        });
+        options.appendChild(btn);
+      });
+      if (selected || saved || revealed) {
+        var feedback = byId('quiz-feedback'); feedback.hidden = false;
+        var chosen = saved ? saved.answer : selected;
+        var correctOpt = quiz.options.find(function(o){return letter(o)===answer;}) || answer;
+        feedback.textContent = chosen ? (chosen===answer ? 'Correct answer! Your answer is correct. ' : 'Not quite — your answer is incorrect. Correct answer: ') + correctOpt + (quiz.explanation ? ' — ' + quiz.explanation : '') : 'Correct answer: ' + correctOpt;
+      }
+      byId('quiz-explanation').textContent = showExplanation ? 'Hide explanation' : 'Show explanation';
+      if (showExplanation) {
+        var exp = document.createElement('div'); exp.className='quiz-feedback';
+        var correct = quiz.options.find(function(o){return letter(o)===answer;}) || answer;
+        exp.textContent = 'Correct answer: ' + correct + ' — ' + (quiz.explanation || 'No explanation has been published for this question yet.');
+        options.parentNode.insertBefore(exp, byId('quiz-feedback').nextSibling);
+      }
+      byId('quiz-score').textContent = 'Your score on this browser: ' + (Number(progress.correct)||0) + ' correct / ' + (Number(progress.answered)||0) + ' answered. Progress is stored on this device.';
     }
-    function getQuestionLetter(option) { return String(option || '').split('.')[0].trim().toUpperCase(); }
-    function matchesRole(job, role) {
-      const value = [job.title,job.company,job.location].join(' ').toLowerCase();
-      if (role === 'all') return true;
-      if (role === 'qa') return /\b(qa|quality assurance|test|testing|sdet|selenium|playwright|cypress)\b/.test(value);
-      if (role === 'developer') return /developer|software engineer|frontend|front-end|backend|back-end|full.stack|java developer/.test(value);
-      if (role === 'ai') return /artificial intelligence|machine learning|\bai\b|data scientist|data analyst|nlp|computer vision/.test(value);
-      if (role === 'devops') return /devops|cloud engineer|site reliability|kubernetes|aws|azure/.test(value);
-      if (role === 'intern') return /intern|internship/.test(value);
-      if (role === 'remote') return /remote|worldwide|anywhere/.test(value);
+    function setQuizDate() { var q=currentQuiz(); quizDate = (dailyState && dailyState.date) || (new Date().toISOString().slice(0,10)+'-'+category+'-'+(q ? safeText(q.question).slice(0,36) : '')); }
+    function refreshQuiz() { setQuizDate(); selected=''; revealed=false; showExplanation=false; renderQuiz(); }
+    byId('quiz-category').addEventListener('change',function(){category=this.value;questionIndex=0;dailyState=null;refreshQuiz();});
+    byId('quiz-reveal').addEventListener('click',function(){revealed=true;showExplanation=true;renderQuiz();});
+    byId('quiz-explanation').addEventListener('click',function(){showExplanation=!showExplanation;renderQuiz();});
+    byId('quiz-next').addEventListener('click',function(){var count=bank.filter(function(q){return q.category===category;}).length;if(count>1)questionIndex=(questionIndex+1)%count;refreshQuiz();});
+    function loadQuiz() {
+      fetch('./quiz_bank.json?v='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw Error('quiz bank');return r.json();}).then(function(data){
+        bank = Array.isArray(data.questions) ? data.questions.filter(function(q){return q&&q.category&&q.question&&Array.isArray(q.options);}) : [];
+        if (!bank.length) throw Error('empty quiz bank');
+        category = bank.some(function(q){return q.category===category;}) ? category : Array.from(new Set(bank.map(function(q){return q.category;})).sort()[0]);
+        dailyState=null;refreshQuiz();
+      }).catch(function(){
+        fetch('./quiz_state.json?v='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw Error('daily quiz');return r.json();}).then(function(data){
+          if(!data.quiz||!Array.isArray(data.quiz.options))throw Error('invalid quiz');
+          dailyState=data;bank=[];category=data.quiz.category||'Daily quiz';refreshQuiz();
+        }).catch(function(){byId('quiz-status').textContent='Quiz could not load. Refresh the page or try again later.';byId('quiz-question').textContent='';});
+      });
+    }
+    function matchesRole(job, filter) {
+      var v=[job.title,job.company,job.location].join(' ').toLowerCase();
+      if(filter==='all')return true;
+      if(filter==='qa')return /\b(qa|quality assurance|test|testing|sdet|selenium|playwright|cypress)\b/.test(v);
+      if(filter==='developer')return /developer|software engineer|frontend|front-end|backend|back-end|full.stack/.test(v);
+      if(filter==='ai')return /artificial intelligence|machine learning|\bai\b|data scientist|data analyst|nlp|computer vision/.test(v);
+      if(filter==='devops')return /devops|cloud engineer|site reliability|kubernetes|aws|azure/.test(v);
+      if(filter==='intern')return /intern|internship/.test(v);
+      if(filter==='remote')return /remote|worldwide|anywhere/.test(v);
       return true;
     }
-    function QuizSection() {
-      const [bank,setBank] = useState([]);
-      const [dailyState,setDailyState] = useState(null);
-      const [category,setCategory] = useState('');
-      const [selected,setSelected] = useState('');
-      const [revealed,setRevealed] = useState(false);
-      const [showExplanation,setShowExplanation] = useState(false);
-      const [loading,setLoading] = useState(true);
-      const [error,setError] = useState('');
-      const [progress,setProgress] = useState(readProgress);
-      const [questionNonce,setQuestionNonce] = useState(0);
-      const categories = useMemo(() => [...new Set(bank.map(item => item.category).filter(Boolean))].sort(),[bank]);
-      const currentQuestion = useMemo(() => {
-        const list = bank.filter(item => item.category === category);
-        return list.length ? list[questionNonce % list.length] : null;
-      },[bank,category,questionNonce]);
-      const loadQuiz = useCallback(async () => {
-        setLoading(true); setError('');
-        try {
-          const response = await fetch('./quiz_bank.json?updated=' + Date.now(),{cache:'no-store'});
-          if (!response.ok) throw new Error('quiz bank unavailable');
-          const data = await response.json();
-          const questions = Array.isArray(data.questions) ? data.questions.filter(q => q && q.category && q.question && Array.isArray(q.options)) : [];
-          if (!questions.length) throw new Error('quiz bank empty');
-          setBank(questions);
-          setCategory(current => questions.some(q => q.category === current) ? current : [...new Set(questions.map(q => q.category))].sort()[0]);
-          setDailyState(null);
-        } catch (_) {
-          try {
-            const response = await fetch('./quiz_state.json?updated=' + Date.now(),{cache:'no-store'});
-            if (!response.ok) throw new Error('daily quiz unavailable');
-            const state = await response.json();
-            if (!state.quiz || !Array.isArray(state.quiz.options)) throw new Error('invalid quiz');
-            setDailyState(state); setBank([]); setCategory(state.quiz.category || 'Daily quiz');
-          } catch (_) { setError('The quiz is temporarily unavailable. Please check back soon.'); }
-        } finally { setLoading(false); }
-      },[]);
-      useEffect(() => { loadQuiz(); },[loadQuiz]);
-      const quiz = dailyState ? dailyState.quiz : currentQuestion;
-      const quizDate = dailyState?.date || (new Date().toLocaleDateString('en-CA') + '-' + category + '-' + (quiz?.question || '').slice(0,36));
-      const answerLetter = getQuestionLetter(quiz?.answer);
-      const correctOption = quiz?.options?.find(option => getQuestionLetter(option) === answerLetter);
-      const savedAnswer = progress.answers?.[quizDate];
-      useEffect(() => {
-        setSelected(savedAnswer?.answer || ''); setRevealed(false); setShowExplanation(false);
-      },[quizDate,quiz?.question]);
-      useEffect(() => {
-        const refresh = () => { if (document.visibilityState === 'visible') loadQuiz(); };
-        window.addEventListener('pageshow',refresh);
-        document.addEventListener('visibilitychange',refresh);
-        return () => { window.removeEventListener('pageshow',refresh); document.removeEventListener('visibilitychange',refresh); };
-      },[loadQuiz]);
-      function answerQuestion(letter) {
-        if (selected || savedAnswer || revealed) return;
-        setSelected(letter);
-        const next = readProgress(); next.answers = next.answers || {};
-        const correct = letter === answerLetter;
-        if (!next.answers[quizDate]) {
-          next.answers[quizDate] = {answer:letter,correct};
-          next.answered = (Number(next.answered)||0) + 1;
-          if (correct) next.correct = (Number(next.correct)||0) + 1;
-          try { localStorage.setItem(QUIZ_PROGRESS_KEY,JSON.stringify(next)); } catch (_) {}
-          setProgress(next);
-        }
-      }
-      function revealAnswer() { setSelected(savedAnswer?.answer || selected); setRevealed(true); setShowExplanation(true); }
-      function changeCategory(next) { setCategory(next); setDailyState(null); setQuestionNonce(0); setSelected(''); setRevealed(false); setShowExplanation(false); }
-      function nextQuestion() {
-        const count = bank.filter(item => item.category === category).length;
-        if (count > 1) setQuestionNonce(n => (n + 1) % count);
-        setSelected(''); setRevealed(false); setShowExplanation(false);
-      }
-      return <section className="quiz-section" id="daily-quiz" aria-labelledby="quiz-heading">
-        <div className="quiz-kicker">DAILY INTERVIEW PRACTICE</div>
-        <h2 id="quiz-heading">Tech interview quiz</h2>
-        <p className="quiz-muted">{loading ? 'Loading quiz categories…' : error || (quiz ? (quiz.category || category) + ' · Choose an answer, then reveal the solution and explanation.' : 'Choose a category to begin.')}</p>
-        <label htmlFor="quiz-category" className="quiz-muted">Quiz category</label>
-        <select id="quiz-category" aria-label="Choose quiz category" value={category} onChange={event => changeCategory(event.target.value)} disabled={loading || (!!dailyState && !bank.length)}
-          style={{display:'block',width:'100%',margin:'8px 0 14px',padding:12,border:'1px solid #d6e0ef',borderRadius:12,background:'#fff',font:'inherit',color:'var(--ink)'}}>
-          {loading && <option value="">Loading categories…</option>}
-          {!loading && categories.map(item => <option key={item} value={item}>{item}</option>)}
-          {!loading && dailyState && !categories.length && <option value={category}>{category}</option>}
-        </select>
-        {loading && <div className="empty">Loading quiz questions…</div>}
-        {!loading && error && <div className="empty">{error} <button className="quiz-action" onClick={loadQuiz}>Try again</button></div>}
-        {!loading && !error && quiz && <>
-          <p style={{fontSize:17,fontWeight:750,lineHeight:1.5,margin:'16px 0'}}>{quiz.question}</p>
-          <div id="quiz-options">{quiz.options.map(option => {
-            const letter = getQuestionLetter(option);
-            const answered = !!(selected || savedAnswer);
-            let cls = 'quiz-option';
-            if ((revealed || answered) && letter === answerLetter) cls += ' correct';
-            if (answered && letter === (savedAnswer?.answer || selected) && letter !== answerLetter) cls += ' incorrect';
-            return <button key={option} type="button" className={cls} disabled={answered || revealed} onClick={() => answerQuestion(letter)}>{option}</button>;
-          })}</div>
-          {(selected || savedAnswer || revealed) && <div className="quiz-feedback" aria-live="polite">
-            <strong>{(savedAnswer?.answer || selected) ? ((savedAnswer?.answer || selected) === answerLetter ? 'Correct answer!' : 'Not quite — review the correct answer.') : 'Correct answer: ' + (correctOption || answerLetter)}</strong>
-            {(selected || savedAnswer) && <p>{(savedAnswer?.answer || selected) === answerLetter ? 'Your answer is correct.' : 'Your answer is incorrect.'}</p>}
-            {(revealed || selected || savedAnswer) && <p>{correctOption || answerLetter}{quiz.explanation ? ' — ' + quiz.explanation : ''}</p>}
-          </div>}
-          <div className="quiz-actions">
-            <button type="button" className="quiz-action" onClick={() => setShowExplanation(v => !v)}>{showExplanation ? 'Hide explanation' : 'Show explanation'}</button>
-            <button type="button" className="quiz-action primary" onClick={revealAnswer}>Reveal answer &amp; explanation</button>
-            {!dailyState && <button type="button" className="quiz-action" onClick={nextQuestion}>Next question</button>}
-          </div>
-          {showExplanation && <div className="quiz-feedback"><strong>Correct answer: {correctOption || answerLetter}</strong><p style={{marginBottom:0}}>{quiz.explanation || 'No explanation has been published for this question yet.'}</p></div>}
-        </>}
-        <p className="quiz-score" aria-live="polite">Your score on this browser: {Number(progress.correct)||0} correct / {Number(progress.answered)||0} answered. Progress is stored on this device.</p>
-      </section>;
+    function renderJobs() {
+      var query=byId('job-search').value.trim().toLowerCase();
+      var filters=byId('job-filters'); filters.innerHTML='';
+      roles.forEach(function(item){var b=document.createElement('button');b.type='button';b.className='filter';b.textContent=item[1];b.setAttribute('aria-pressed',String(role===item[0]));b.addEventListener('click',function(){role=item[0];renderJobs();});filters.appendChild(b);});
+      var filtered=jobs.filter(function(j){return matchesRole(j,role)&&[j.title,j.company,j.location].join(' ').toLowerCase().indexOf(query)!==-1;});
+      byId('job-count').textContent=filtered.length+(filtered.length===1?' job listing':' job listings');
+      var root=byId('jobs');root.innerHTML='';
+      if(!filtered.length){var empty=document.createElement('div');empty.className='empty';empty.textContent=jobs.length?'No jobs match that search. Try another keyword.':'No job listings are available right now.';root.appendChild(empty);return;}
+      filtered.forEach(function(job){
+        var article=document.createElement('article');article.className='job';
+        var h=document.createElement('h2');h.textContent=job.title||'Technology job';article.appendChild(h);
+        var meta=document.createElement('div');meta.className='meta';
+        [ ['🏢 ',job.company||'Company not specified'],['📍 ',job.location||'Location not specified'] ].forEach(function(pair){var s=document.createElement('span');s.textContent=pair[0]+pair[1];meta.appendChild(s);});
+        var d=job.published||job.updated;if(d&&!isNaN(new Date(d).getTime())){var s=document.createElement('span');s.textContent='🕒 '+new Date(d).toLocaleDateString();meta.appendChild(s);}
+        article.appendChild(meta);var a=document.createElement('a');a.className='apply';a.href=job.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Apply / View job ↗';article.appendChild(a);root.appendChild(article);
+      });
     }
-    function JobsSection() {
-      const [jobs,setJobs] = useState([]);
-      const [query,setQuery] = useState('');
-      const [role,setRole] = useState('all');
-      const [loading,setLoading] = useState(true);
-      const [error,setError] = useState('');
-      const loadJobs = useCallback(async () => {
-        setLoading(true);
-        try {
-          const response = await fetch('./jobs.json?updated=' + Date.now(),{cache:'no-store'});
-          if (!response.ok) throw new Error('Jobs data unavailable');
-          const data = await response.json();
-          setJobs(Array.isArray(data) ? data.filter(job => job && /^https?:/i.test(job.url || '')) : []);
-          setError('');
-        } catch (_) { setError('Job listings are temporarily unavailable. Please check back soon.'); }
-        finally { setLoading(false); }
-      },[]);
-      useEffect(() => {
-        loadJobs();
-        const refresh = () => { if (document.visibilityState === 'visible') loadJobs(); };
-        window.addEventListener('pageshow',refresh);
-        document.addEventListener('visibilitychange',refresh);
-        return () => { window.removeEventListener('pageshow',refresh); document.removeEventListener('visibilitychange',refresh); };
-      },[loadJobs]);
-      const filtered = useMemo(() => jobs.filter(job => matchesRole(job,role) && [job.title,job.company,job.location].join(' ').toLowerCase().includes(query.trim().toLowerCase())),[jobs,role,query]);
-      return <>
-        <div className="tools"><input type="search" aria-label="Search jobs" placeholder="Search role, company, or location…" value={query} onChange={event => setQuery(event.target.value)} /></div>
-        <div className="filters" aria-label="Filter jobs by role">{ROLES.map(([value,label]) => <button key={value} type="button" className="filter" aria-pressed={role === value} onClick={() => setRole(value)}>{label}</button>)}</div>
-        <p className="count">{loading ? 'Loading latest jobs…' : error || (filtered.length + (filtered.length === 1 ? ' job listing' : ' job listings'))}</p>
-        <section id="jobs" aria-live="polite">
-          {!loading && !error && filtered.length === 0 && <div className="empty">{jobs.length ? 'No jobs match that search. Try another keyword.' : 'New job listings will appear here automatically.'}</div>}
-          {filtered.map((job,index) => {
-            const rawDate = job.published || job.updated; const parsedDate = rawDate ? new Date(rawDate) : null;
-            return <article className="job" key={job.url || (job.title + '-' + index)}>
-              <h2>{job.title || 'Technology job'}</h2><div className="meta"><span>🏢 {job.company || 'Company not specified'}</span><span>📍 {job.location || 'Location not specified'}</span>
-              {parsedDate && !Number.isNaN(parsedDate.getTime()) && <span>🕒 {parsedDate.toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'})}</span>}</div>
-              <a className="apply" href={job.url} target="_blank" rel="noopener noreferrer">Apply / View job ↗</a>
-            </article>;
-          })}
-        </section>
-      </>;
-    }
-    function App() {
-      return <main><QuizSection /><JobsSection />
-        <section className="help"><h2>Job seeker quick help</h2>
-          <p><strong>How do I apply?</strong> Open a listing and tap “Apply / View job” to visit the original employer or job-board page. Follow its instructions.</p>
-          <p><strong>Are these jobs verified?</strong> Listings are collected from external sources. Check the employer’s official website, eligibility, deadline and URL before sharing personal information.</p>
-          <p><strong>Is it free?</strong> India Job Alert does not charge candidates to browse listings or apply.</p>
-          <p><strong>Recruiters:</strong> Send a direct message to <a href="https://www.instagram.com/india.tech.jobalerts/" target="_blank" rel="noopener noreferrer">@india.tech.jobalerts</a> to enquire about sponsored listings. Every listing is subject to verification and approval; paid posts must be labelled sponsored.</p>
-        </section>
-        <footer>Listings link to the original source. Check the employer's official page for eligibility, closing dates, and application details. India Job Alert does not collect applications or charge job seekers. Sponsored posts must be clearly labelled.</footer>
-      </main>;
-    }
-    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    byId('job-search').addEventListener('input',renderJobs);
+    loadProgress();loadQuiz();
+    fetch('./jobs.json?v='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw Error('jobs');return r.json();}).then(function(data){
+      jobs=Array.isArray(data)?data.filter(function(j){return j&&/^https?:/i.test(j.url||'');}):[];renderJobs();
+    }).catch(function(){byId('job-count').textContent='Job listings could not load. Please refresh the page.';});
+  })();
   </script>
 </body>
 </html>
