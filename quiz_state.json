@@ -1,16 +1,16 @@
 {
-  "last_index": 0,
-  "date": "2026-10-12",
+  "last_index": 1,
+  "date": "2026-10-13",
   "quiz": {
-    "category": "Java",
-    "question": "Which Java feature allows a class to inherit behavior from an interface without implementing every method?",
+    "category": "Selenium",
+    "question": "Which Selenium 4 class is commonly used to create a new browser tab or window?",
     "options": [
-      "A. Default methods",
-      "B. Constructors",
-      "C. Packages",
-      "D. Static blocks"
+      "A. Select",
+      "B. Actions",
+      "C. WebDriver.TargetLocator",
+      "D. WebDriver.switchTo().newWindow(...)"
     ],
-    "answer": "A",
-    "explanation": "Default methods in interfaces have an implementation, so implementing classes can inherit that behavior unless they override it."
+    "answer": "D",
+    "explanation": "In Selenium 4, driver.switchTo().newWindow(WindowType.TAB) or WindowType.WINDOW opens a new tab or window."
   }
 }

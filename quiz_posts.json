@@ -1,14 +1,14 @@
 {
-  "date": "2026-10-12",
+  "date": "2026-10-13",
   "mode": "quiz",
-  "question": "Which Java feature allows a class to inherit behavior from an interface without implementing every method?",
+  "question": "Which Selenium 4 class is commonly used to create a new browser tab or window?",
   "options": [
-    "A. Default methods",
-    "B. Constructors",
-    "C. Packages",
-    "D. Static blocks"
+    "A. Select",
+    "B. Actions",
+    "C. WebDriver.TargetLocator",
+    "D. WebDriver.switchTo().newWindow(...)"
   ],
   "answer": null,
   "explanation": null,
-  "image": "https://raw.githubusercontent.com/saichaitanya292/india-job-alert-media/main/images/quiz-2026-10-12-java.jpg"
+  "image": "https://raw.githubusercontent.com/saichaitanya292/india-job-alert-media/main/images/quiz-2026-10-13-selenium.jpg"
 }
