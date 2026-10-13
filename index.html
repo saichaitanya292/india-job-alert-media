@@ -85,6 +85,18 @@
     </div>
   </nav>
   <main>
+
+    <section class="quiz-section" id="account-section" aria-label="User account">
+      <div class="quiz-kicker">YOUR ACCOUNT</div>
+      <h2>Sign in to India Job Alert</h2>
+      <p class="quiz-muted">Use your Google account to sign in. Account sign-in can be connected to quiz progress and the leaderboard.</p>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <button type="button" class="quiz-action primary" id="google-sign-in">Continue with Google</button>
+        <button type="button" class="quiz-action" id="sign-out" hidden>Sign out</button>
+        <span id="auth-status" class="quiz-muted" role="status" aria-live="polite">Google sign-in setup is required.</span>
+      </div>
+      <div id="account-profile" class="quiz-feedback" hidden></div>
+    </section>
     <section class="quiz-section" id="daily-quiz">
       <div class="quiz-kicker">DAILY INTERVIEW PRACTICE</div><h2>Tech interview quiz</h2>
       <p class="quiz-muted" id="quiz-status">Loading quiz categories…</p>
@@ -230,5 +242,70 @@
     }).catch(function(){byId('job-count').textContent='Job listings could not load. Please refresh the page.';});
   })();
   </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+  (function () {
+    'use strict';
+    // Replace these two placeholders with your Supabase project's public Project URL
+    // and anon/publishable key. Never put a service_role key in a public website.
+    var SUPABASE_URL = 'YOUR_SUPABASE_PROJECT_URL';
+    var SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_OR_PUBLISHABLE_KEY';
+    var status = document.getElementById('auth-status');
+    var signIn = document.getElementById('google-sign-in');
+    var signOut = document.getElementById('sign-out');
+    var profile = document.getElementById('account-profile');
+    var client = null;
+
+    function showUser(user) {
+      if (user) {
+        status.textContent = 'Signed in';
+        profile.hidden = false;
+        profile.textContent = 'Signed in as ' + (user.user_metadata && (user.user_metadata.full_name || user.user_metadata.name) || user.email || 'Google user');
+        signIn.hidden = true;
+        signOut.hidden = false;
+      } else {
+        status.textContent = 'You are not signed in.';
+        profile.hidden = true;
+        profile.textContent = '';
+        signIn.hidden = false;
+        signOut.hidden = true;
+      }
+    }
+
+    if (!window.supabase || SUPABASE_URL.indexOf('YOUR_') === 0 || SUPABASE_ANON_KEY.indexOf('YOUR_') === 0) {
+      status.textContent = 'Setup needed: add your Supabase Project URL and public anon/publishable key in index.html.';
+      signIn.addEventListener('click', function () {
+        status.textContent = 'Google sign-in is not active yet. Complete the Supabase setup instructions first.';
+      });
+      signOut.hidden = true;
+      return;
+    }
+
+    client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    signIn.addEventListener('click', async function () {
+      signIn.disabled = true;
+      status.textContent = 'Opening Google sign-in…';
+      var result = await client.auth.signInWithOAuth({
+        provider: 'google',
+        options: { redirectTo: window.location.origin + window.location.pathname }
+      });
+      if (result.error) status.textContent = 'Sign-in failed: ' + result.error.message;
+      signIn.disabled = false;
+    });
+    signOut.addEventListener('click', async function () {
+      signOut.disabled = true;
+      var result = await client.auth.signOut();
+      if (result.error) status.textContent = 'Sign-out failed: ' + result.error.message;
+      signOut.disabled = false;
+    });
+    client.auth.onAuthStateChange(function (_event, session) { showUser(session && session.user); });
+    client.auth.getSession().then(function (result) {
+      if (result.error) status.textContent = 'Could not check session: ' + result.error.message;
+      else showUser(result.data.session && result.data.session.user);
+    });
+  })();
+  </script>
+
 </body>
 </html>
