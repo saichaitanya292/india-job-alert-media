@@ -294,10 +294,10 @@
         [ ['🏢 ',job.company||'Company not specified'],['📍 ',job.location||'Location not specified'] ].forEach(function(pair){var s=document.createElement('span');s.textContent=pair[0]+pair[1];meta.appendChild(s);});
         var d=job.published||job.updated;if(d&&!isNaN(new Date(d).getTime())){var s=document.createElement('span');s.textContent='🕒 '+new Date(d).toLocaleDateString();meta.appendChild(s);}
         article.appendChild(meta);
-        var actions=document.createElement('div');actions.className='job-actions';
-        var a=document.createElement('a');a.className='apply';a.href=job.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Apply / View job ↗';actions.appendChild(a);
-        var save=document.createElement('button');save.type='button';save.className='save-job';save.textContent=savedJobUrls[job.url]?'✓ Saved':'🔖 Save job';if(savedJobUrls[job.url])save.classList.add('saved');
-        save.addEventListener('click',function(){saveJob(job,save);});actions.appendChild(save);article.appendChild(actions);root.appendChild(article);
+        var actions=document.createElement('div');actions.className='job-actions';actions.style.cssText='display:flex!important;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px;width:100%;';
+        var save=document.createElement('button');save.type='button';save.className='save-job';save.style.cssText='display:inline-flex!important;visibility:visible!important;opacity:1!important;align-items:center;justify-content:center;min-height:44px;padding:11px 16px;border:2px solid #1557a6;border-radius:12px;background:#eaf3ff;color:#12345b;font:inherit;font-weight:800;cursor:pointer;position:relative;z-index:2;';save.textContent=savedJobUrls[job.url]?'✓ Saved':'🔖 Save job';if(savedJobUrls[job.url])save.classList.add('saved');
+        save.addEventListener('click',function(){saveJob(job,save);});actions.appendChild(save);
+        var a=document.createElement('a');a.className='apply';a.href=job.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Apply / View job ↗';actions.appendChild(a);article.appendChild(actions);root.appendChild(article);
       });
     }
     byId('job-search').addEventListener('input',renderJobs);
