@@ -1,0 +1,244 @@
+{
+  "questions": [
+    {
+      "category": "Java",
+      "question": "Which Java feature allows a class to inherit behavior from an interface without implementing every method?",
+      "options": [
+        "A. Default methods",
+        "B. Constructors",
+        "C. Packages",
+        "D. Static blocks"
+      ],
+      "answer": "A",
+      "explanation": "Default methods in interfaces have an implementation, so implementing classes can inherit that behavior unless they override it."
+    },
+    {
+      "category": "Selenium",
+      "question": "Which Selenium 4 class is commonly used to create a new browser tab or window?",
+      "options": [
+        "A. Select",
+        "B. Actions",
+        "C. WebDriver.TargetLocator",
+        "D. WebDriver.switchTo().newWindow(...)"
+      ],
+      "answer": "D",
+      "explanation": "In Selenium 4, driver.switchTo().newWindow(WindowType.TAB) or WindowType.WINDOW opens a new tab or window."
+    },
+    {
+      "category": "Python",
+      "question": "Which Python collection preserves insertion order and stores key-value pairs?",
+      "options": [
+        "A. set",
+        "B. dict",
+        "C. frozenset",
+        "D. tuple"
+      ],
+      "answer": "B",
+      "explanation": "Python dictionaries preserve insertion order and map unique keys to values."
+    },
+    {
+      "category": "SQL",
+      "question": "Which SQL clause filters grouped rows after aggregate calculations?",
+      "options": [
+        "A. WHERE",
+        "B. ORDER BY",
+        "C. HAVING",
+        "D. DISTINCT"
+      ],
+      "answer": "C",
+      "explanation": "HAVING filters groups after GROUP BY and aggregate calculations; WHERE filters rows before grouping."
+    },
+    {
+      "category": "Playwright",
+      "question": "In Playwright, what is the main benefit of using getByRole('button', { name: 'Save' })?",
+      "options": [
+        "A. It selects by accessible role and name",
+        "B. It disables browser waits",
+        "C. It bypasses authentication",
+        "D. It runs only in Chromium"
+      ],
+      "answer": "A",
+      "explanation": "Role-based locators use accessibility semantics and an accessible name, generally making tests more user-centered and resilient."
+    },
+    {
+      "category": "API Testing",
+      "question": "Which HTTP status code usually indicates that a request succeeded and a resource was created?",
+      "options": [
+        "A. 200",
+        "B. 201",
+        "C. 301",
+        "D. 404"
+      ],
+      "answer": "B",
+      "explanation": "201 Created indicates that the request succeeded and created a resource."
+    },
+    {
+      "category": "Testing",
+      "question": "What is the primary purpose of a regression test?",
+      "options": [
+        "A. To measure network speed only",
+        "B. To prove every bug is impossible",
+        "C. To check existing behavior after a change",
+        "D. To replace all exploratory testing"
+      ],
+      "answer": "C",
+      "explanation": "Regression tests check that previously working functionality still works after code changes."
+    },
+    {
+      "category": "AI/ML",
+      "question": "What does overfitting mean in machine learning?",
+      "options": [
+        "A. The model performs well on training data but generalizes poorly",
+        "B. The model has no training data",
+        "C. The model always predicts the majority class by design",
+        "D. The model cannot calculate a loss"
+      ],
+      "answer": "A",
+      "explanation": "An overfit model learns training-specific patterns, including noise, and often performs worse on unseen data."
+    },
+    {
+      "category": "Git",
+      "question": "Which Git command creates a new branch and switches to it in one step?",
+      "options": [
+        "A. git merge",
+        "B. git status",
+        "C. git log",
+        "D. git switch -c branch-name"
+      ],
+      "answer": "D",
+      "explanation": "git switch -c creates the branch and switches the working tree to it."
+    },
+    {
+      "category": "Java",
+      "question": "Which Java type is immutable and commonly used to represent text?",
+      "options": [
+        "A. StringBuilder",
+        "B. String",
+        "C. char[]",
+        "D. ArrayList"
+      ],
+      "answer": "B",
+      "explanation": "Java String objects are immutable; operations that appear to modify a String create a new String."
+    },
+    {
+      "category": "Automation",
+      "question": "Why should automated tests avoid fixed sleep calls when a condition-based wait is available?",
+      "options": [
+        "A. Sleeps always make tests parallel",
+        "B. Sleeps remove all flakiness",
+        "C. Fixed sleeps can waste time or still be too short",
+        "D. Sleeps validate the page automatically"
+      ],
+      "answer": "C",
+      "explanation": "A fixed delay may be longer than needed or insufficient under slow conditions; condition-based waits poll for the expected state."
+    },
+    {
+      "category": "SQL",
+      "question": "Which join returns only rows that have matching values in both tables?",
+      "options": [
+        "A. INNER JOIN",
+        "B. LEFT JOIN",
+        "C. FULL OUTER JOIN",
+        "D. CROSS JOIN"
+      ],
+      "answer": "A",
+      "explanation": "INNER JOIN returns rows for which the join condition matches in both tables."
+    },
+    {
+      "category": "Python",
+      "question": "What does a Python list comprehension primarily provide?",
+      "options": [
+        "A. Database indexing",
+        "B. A concise way to build a list from an iterable",
+        "C. Automatic parallel execution",
+        "D. Static type enforcement"
+      ],
+      "answer": "B",
+      "explanation": "List comprehensions build lists concisely by transforming and optionally filtering items from an iterable."
+    },
+    {
+      "category": "API Testing",
+      "question": "What does an HTTP 401 response usually indicate?",
+      "options": [
+        "A. The server is permanently gone",
+        "B. The request was created successfully",
+        "C. The request needs valid authentication",
+        "D. The server returned no content"
+      ],
+      "answer": "C",
+      "explanation": "401 Unauthorized indicates missing or invalid authentication credentials; 403 generally means the server understood but refuses authorization."
+    },
+    {
+      "category": "QA",
+      "question": "Which test level focuses on interactions between integrated components?",
+      "options": [
+        "A. Unit testing",
+        "B. Integration testing",
+        "C. Acceptance testing only",
+        "D. Static analysis only"
+      ],
+      "answer": "B",
+      "explanation": "Integration testing checks whether components or services work correctly together."
+    },
+    {
+      "category": "Playwright",
+      "question": "What does Playwright's expect(locator).toBeVisible() do?",
+      "options": [
+        "A. Waits and asserts that the locator is visible",
+        "B. Deletes the locator",
+        "C. Disables auto-waiting globally",
+        "D. Checks only the page title"
+      ],
+      "answer": "A",
+      "explanation": "The web-first assertion retries until the locator is visible or the assertion times out."
+    },
+    {
+      "category": "AI/ML",
+      "question": "In supervised learning, what does a label represent?",
+      "options": [
+        "A. The GPU model",
+        "B. The learning rate only",
+        "C. The target value or class for an example",
+        "D. The number of hidden layers"
+      ],
+      "answer": "C",
+      "explanation": "A label is the expected target associated with a training example, such as a class or numeric value."
+    },
+    {
+      "category": "GitHub Actions",
+      "question": "What is a GitHub Actions secret intended for?",
+      "options": [
+        "A. Public README formatting",
+        "B. Sensitive values such as API tokens",
+        "C. Naming workflow jobs only",
+        "D. Replacing source control"
+      ],
+      "answer": "B",
+      "explanation": "Secrets store sensitive values and can be exposed to workflows through the secrets context without hardcoding them in the repository."
+    },
+    {
+      "category": "Testing",
+      "question": "What is a flaky test?",
+      "options": [
+        "A. A test that always fails for the same product defect",
+        "B. A test that never executes",
+        "C. A test whose result changes inconsistently under the same intended conditions",
+        "D. A test that contains no assertions"
+      ],
+      "answer": "C",
+      "explanation": "Flaky tests pass and fail inconsistently without a relevant change in the code or test conditions."
+    },
+    {
+      "category": "Java",
+      "question": "Which collection is designed to store unique elements without guaranteeing iteration order?",
+      "options": [
+        "A. HashSet",
+        "B. ArrayList",
+        "C. LinkedList",
+        "D. StringBuilder"
+      ],
+      "answer": "A",
+      "explanation": "HashSet stores unique elements and does not guarantee a stable iteration order."
+    }
+  ]
+}
