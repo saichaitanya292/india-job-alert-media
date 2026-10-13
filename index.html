@@ -121,6 +121,8 @@
     function saveProgress() { try { localStorage.setItem('india-job-alert-quiz-v1', JSON.stringify(progress)); } catch(e) {} }
     function currentQuiz() { if (dailyState) return dailyState.quiz; var list = category === 'all' ? bank : bank.filter(function(q){return q.category === category;}); return list.length ? list[questionIndex % list.length] : null; }
     function renderQuiz() {
+      // Remove any explanation from the previous render before drawing the current question.
+      document.querySelectorAll('.quiz-extra-explanation').forEach(function(node){node.remove();});
       var quiz = currentQuiz(), select = byId('quiz-category');
       select.innerHTML = '';
       var cats = Array.from(new Set(bank.map(function(q){return q.category;}).filter(Boolean))).sort();
@@ -160,10 +162,10 @@
       }
       byId('quiz-explanation').textContent = showExplanation ? 'Hide explanation' : 'Show explanation';
       if (showExplanation) {
-        var exp = document.createElement('div'); exp.className='quiz-feedback';
+        var exp = document.createElement('div'); exp.className='quiz-feedback quiz-extra-explanation';
         var correct = quiz.options.find(function(o){return letter(o)===answer;}) || answer;
         exp.textContent = 'Correct answer: ' + correct + ' — ' + (quiz.explanation || 'No explanation has been published for this question yet.');
-        options.parentNode.insertBefore(exp, byId('quiz-feedback').nextSibling);
+        byId('quiz-feedback').insertAdjacentElement('afterend', exp);
       }
       byId('quiz-score').textContent = 'Your score on this browser: ' + (Number(progress.correct)||0) + ' correct / ' + (Number(progress.answered)||0) + ' answered. Progress is stored on this device.';
     }
