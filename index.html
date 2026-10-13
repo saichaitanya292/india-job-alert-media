@@ -309,19 +309,34 @@
       roleFilters.querySelectorAll('button[data-role]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
       renderJobs();
     });
-    fetch('./jobs.json?updated=' + Date.now(), { cache: 'no-store' })
-      .then(response => { if (!response.ok) throw new Error('Jobs data unavailable'); return response.json(); })
-      .then(data => {
+    async function loadJobs() {
+      try {
+        const response = await fetch('./jobs.json?updated=' + Date.now(), {cache:'no-store'});
+        if (!response.ok) throw new Error('Jobs data unavailable');
+        const data = await response.json();
         allJobs = Array.isArray(data) ? data.filter(job => job && /^https?:\/\//i.test(job.url || '')) : [];
         renderJobs();
-      })
-      .catch(() => {
+      } catch (_) {
         countElement.textContent = 'Job listings are temporarily unavailable.';
         const empty = document.createElement('div');
         empty.className = 'empty';
         empty.textContent = 'Please check back soon.';
-        jobsElement.appendChild(empty);
-      });
+        jobsElement.replaceChildren(empty);
+      }
+    }
+    loadJobs();
+
+    // Refresh published data when a visitor returns to the page.
+    let lastDataRefresh = Date.now();
+    async function refreshPublishedData() {
+      if (Date.now() - lastDataRefresh < 1500) return;
+      lastDataRefresh = Date.now();
+      await Promise.all([loadJobs(), loadDailyQuiz()]);
+    }
+    window.addEventListener('pageshow', refreshPublishedData);
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') refreshPublishedData();
+    });
   </script>
 </body>
 </html>
