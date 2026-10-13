@@ -59,6 +59,9 @@
     .help h2 { margin-top:0; font-size:19px; }
     .help a { color:var(--blue); }
     .job { background:#fff; border:1px solid var(--line); border-radius:18px; padding:19px; box-shadow:0 5px 18px #16345b08; }
+    .job-actions { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-top:12px; }
+    .save-job { border:1px solid #cbd8eb; background:#fff; color:var(--navy); border-radius:11px; padding:10px 13px; font:inherit; font-weight:750; cursor:pointer; }
+    .save-job.saved { background:#eaf3ff; border-color:#8ab8f2; }
     .job h2 { margin:0 0 9px; font-size:19px; line-height:1.35; }
     .meta { display:flex; flex-wrap:wrap; gap:7px 13px; color:var(--muted); font-size:13px; margin-bottom:16px; }
     .apply { display:inline-block; background:#ffd21c; color:var(--navy); text-decoration:none; font-weight:800; border-radius:11px; padding:11px 16px; }
@@ -80,6 +83,7 @@
     <div class="nav-inner">
       <a class="nav-link active" href="#daily-quiz" data-nav-target="daily-quiz">🧠 Quiz</a>
       <a class="nav-link" href="#jobs-section" data-nav-target="jobs-section">💼 Jobs</a>
+      <a class="nav-link" href="#my-jobs" data-nav-target="my-jobs">🔖 My Jobs</a>
       <a class="nav-link" href="#job-filters" data-nav-target="job-filters">🏷️ Job categories</a>
       <a class="nav-link" href="#job-search" data-nav-target="job-search">🔎 Search jobs</a>
     </div>
@@ -96,6 +100,12 @@
         <span id="auth-status" class="quiz-muted" role="status" aria-live="polite">Google sign-in setup is required.</span>
       </div>
       <div id="account-profile" class="quiz-feedback" hidden></div>
+    </section>
+    <section class="quiz-section" id="my-jobs" aria-label="My saved jobs">
+      <div class="quiz-kicker">YOUR PERSONAL JOB LIST</div>
+      <h2>My Jobs</h2>
+      <p class="quiz-muted" id="my-jobs-status">Sign in to save jobs and see them here on any device.</p>
+      <div id="saved-jobs-list" style="display:grid;gap:12px"></div>
     </section>
     <section class="quiz-section" id="daily-quiz">
       <div class="quiz-kicker">DAILY INTERVIEW PRACTICE</div><h2>Tech interview quiz</h2>
@@ -125,6 +135,7 @@
     'use strict';
     var bank = [], category = '', questionIndex = 0, selected = '', revealed = false, showExplanation = false, dailyState = null;
     var jobs = [], role = 'all', progress = {correct:0,answered:0,answers:{}}, quizDate = '';
+    var savedJobUrls = Object.create(null), currentUser = null, supabaseClient = null;
     var roles = [['all','All jobs'],['qa','QA / Testing'],['developer','Developer'],['ai','AI / Data'],['devops','Cloud / DevOps'],['intern','Internships'],['remote','Remote']];
     function byId(id) { return document.getElementById(id); }
     function letter(value) { return String(value || '').split('.')[0].trim().toUpperCase(); }
@@ -211,6 +222,63 @@
       if(filter==='remote')return /remote|worldwide|anywhere/.test(v);
       return true;
     }
+    function renderSavedJobs(rows) {
+      var root=byId('saved-jobs-list'); root.innerHTML='';
+      if (!currentUser) { byId('my-jobs-status').textContent='Sign in with Google to save jobs and access your list on any device.'; return; }
+      if (!rows || !rows.length) { byId('my-jobs-status').textContent='You have not saved any jobs yet. Browse listings and tap Save job.'; return; }
+      byId('my-jobs-status').textContent=rows.length+' saved '+(rows.length===1?'job':'jobs')+'.';
+      rows.forEach(function(row) {
+        var article=document.createElement('article'); article.className='job';
+        var h=document.createElement('h2'); h.textContent=row.title||'Technology job'; article.appendChild(h);
+        var meta=document.createElement('div'); meta.className='meta';
+        [['🏢 ',row.company||'Company not specified'],['📍 ',row.location||'Location not specified']].forEach(function(pair){var span=document.createElement('span');span.textContent=pair[0]+pair[1];meta.appendChild(span);});
+        article.appendChild(meta);
+        var actions=document.createElement('div');actions.className='job-actions';
+        var a=document.createElement('a');a.className='apply';a.href=row.job_url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Apply / View job ↗';actions.appendChild(a);
+        var remove=document.createElement('button');remove.type='button';remove.className='save-job';remove.textContent='Remove saved job';
+        remove.addEventListener('click',async function(){
+          remove.disabled=true; byId('my-jobs-status').textContent='Removing saved job…';
+          var result=await supabaseClient.from('saved_jobs').delete().eq('id',row.id);
+          if(result.error){byId('my-jobs-status').textContent='Could not remove job: '+result.error.message;remove.disabled=false;return;}
+          delete savedJobUrls[row.job_url]; await loadSavedJobs(); renderJobs();
+        });
+        actions.appendChild(remove);article.appendChild(actions);root.appendChild(article);
+      });
+    }
+    async function loadSavedJobs() {
+      if (!supabaseClient || !currentUser) { renderSavedJobs([]); return; }
+      var result=await supabaseClient.from('saved_jobs').select('id,job_url,title,company,location,created_at').order('created_at',{ascending:false});
+      if(result.error) {
+        byId('my-jobs-status').textContent='Saved jobs database is not ready yet. Run the SQL setup file in Supabase SQL Editor. Details: '+result.error.message;
+        byId('saved-jobs-list').innerHTML=''; savedJobUrls=Object.create(null); return;
+      }
+      savedJobUrls=Object.create(null);
+      (result.data||[]).forEach(function(row){savedJobUrls[row.job_url]=true;});
+      renderSavedJobs(result.data||[]);
+    }
+    function saveJob(job, button) {
+      if (!currentUser || !supabaseClient) {
+        byId('auth-status').textContent='Please sign in with Google to save jobs.';
+        byId('account-section').scrollIntoView({behavior:'smooth',block:'start'});
+        return;
+      }
+      if (savedJobUrls[job.url]) return;
+      button.disabled=true; button.textContent='Saving…';
+      supabaseClient.from('saved_jobs').insert({user_id:currentUser.id,job_url:job.url,title:job.title||'Technology job',company:job.company||'',location:job.location||''})
+        .then(async function(result){
+          if(result.error) {
+            if(result.error.code==='23505') { savedJobUrls[job.url]=true; }
+            else { byId('my-jobs-status').textContent='Could not save job: '+result.error.message; button.disabled=false; button.textContent='🔖 Save job'; return; }
+          } else savedJobUrls[job.url]=true;
+          button.textContent='✓ Saved'; button.classList.add('saved'); await loadSavedJobs();
+        });
+    }
+    window.addEventListener('india-job-alert-auth',function(event){
+      currentUser=event.detail&&event.detail.user||null;
+      supabaseClient=window.IndiaJobAlertSupabase||null;
+      savedJobUrls=Object.create(null);
+      loadSavedJobs().then(renderJobs);
+    });
     function renderJobs() {
       var query=byId('job-search').value.trim().toLowerCase();
       var filters=byId('job-filters'); filters.innerHTML='';
@@ -225,7 +293,11 @@
         var meta=document.createElement('div');meta.className='meta';
         [ ['🏢 ',job.company||'Company not specified'],['📍 ',job.location||'Location not specified'] ].forEach(function(pair){var s=document.createElement('span');s.textContent=pair[0]+pair[1];meta.appendChild(s);});
         var d=job.published||job.updated;if(d&&!isNaN(new Date(d).getTime())){var s=document.createElement('span');s.textContent='🕒 '+new Date(d).toLocaleDateString();meta.appendChild(s);}
-        article.appendChild(meta);var a=document.createElement('a');a.className='apply';a.href=job.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Apply / View job ↗';article.appendChild(a);root.appendChild(article);
+        article.appendChild(meta);
+        var actions=document.createElement('div');actions.className='job-actions';
+        var a=document.createElement('a');a.className='apply';a.href=job.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Apply / View job ↗';actions.appendChild(a);
+        var save=document.createElement('button');save.type='button';save.className='save-job';save.textContent=savedJobUrls[job.url]?'✓ Saved':'🔖 Save job';if(savedJobUrls[job.url])save.classList.add('saved');
+        save.addEventListener('click',function(){saveJob(job,save);});actions.appendChild(save);article.appendChild(actions);root.appendChild(article);
       });
     }
     byId('job-search').addEventListener('input',renderJobs);
@@ -258,6 +330,8 @@
     var client = null;
 
     function showUser(user) {
+      window.IndiaJobAlertSupabase = client;
+      window.dispatchEvent(new CustomEvent('india-job-alert-auth',{detail:{user:user||null}}));
       if (user) {
         status.textContent = 'Signed in';
         profile.hidden = false;
