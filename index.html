@@ -213,7 +213,7 @@
           const response = await fetch('./jobs.json?updated=' + Date.now(),{cache:'no-store'});
           if (!response.ok) throw new Error('Jobs data unavailable');
           const data = await response.json();
-          setJobs(Array.isArray(data) ? data.filter(job => job && /^https?:\\/\\//i.test(job.url || '')) : []);
+          setJobs(Array.isArray(data) ? data.filter(job => job && /^https?:/i.test(job.url || '')) : []);
           setError('');
         } catch (_) { setError('Job listings are temporarily unavailable. Please check back soon.'); }
         finally { setLoading(false); }
