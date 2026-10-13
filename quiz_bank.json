@@ -13,6 +13,114 @@
       "explanation": "Default methods in interfaces have an implementation, so implementing classes can inherit that behavior unless they override it."
     },
     {
+      "category": "Java",
+      "question": "Which Java type is immutable and commonly used to represent text?",
+      "options": [
+        "A. StringBuilder",
+        "B. String",
+        "C. char[]",
+        "D. ArrayList"
+      ],
+      "answer": "B",
+      "explanation": "Java String objects are immutable; operations that appear to modify a String create a new String."
+    },
+    {
+      "category": "Java",
+      "question": "Which collection is designed to store unique elements without guaranteeing iteration order?",
+      "options": [
+        "A. HashSet",
+        "B. ArrayList",
+        "C. LinkedList",
+        "D. StringBuilder"
+      ],
+      "answer": "A",
+      "explanation": "HashSet stores unique elements and does not guarantee a stable iteration order."
+    },
+    {
+      "category": "Java",
+      "question": "What is the purpose of the `final` keyword on a Java variable?",
+      "options": [
+        "A. It prevents reassignment",
+        "B. It makes the variable public",
+        "C. It creates a thread",
+        "D. It serializes the variable"
+      ],
+      "answer": "A",
+      "explanation": "A final variable can be assigned once and cannot be reassigned."
+    },
+    {
+      "category": "Java",
+      "question": "Which collection allows duplicate elements and preserves insertion order?",
+      "options": [
+        "A. HashSet",
+        "B. ArrayList",
+        "C. TreeSet",
+        "D. HashMap"
+      ],
+      "answer": "B",
+      "explanation": "ArrayList permits duplicates and maintains list order."
+    },
+    {
+      "category": "Java",
+      "question": "Which keyword is used to inherit a class in Java?",
+      "options": [
+        "A. implements",
+        "B. inherits",
+        "C. extends",
+        "D. instanceof"
+      ],
+      "answer": "C",
+      "explanation": "A class uses extends to inherit from another class."
+    },
+    {
+      "category": "Java",
+      "question": "What does method overloading require?",
+      "options": [
+        "A. Same name with different parameter lists",
+        "B. Same name and same parameters only",
+        "C. Different class names",
+        "D. A private constructor"
+      ],
+      "answer": "A",
+      "explanation": "Overloaded methods share a name but differ in parameter lists."
+    },
+    {
+      "category": "Java",
+      "question": "Which block typically executes whether an exception occurs or not?",
+      "options": [
+        "A. catch",
+        "B. throws",
+        "C. throw",
+        "D. finally"
+      ],
+      "answer": "D",
+      "explanation": "A finally block is generally used for cleanup regardless of success or exception."
+    },
+    {
+      "category": "Java",
+      "question": "Which interface is the root of Java's collection hierarchy?",
+      "options": [
+        "A. Map",
+        "B. Collection",
+        "C. Iterator",
+        "D. Comparable"
+      ],
+      "answer": "B",
+      "explanation": "Collection is the root interface for List, Set and Queue; Map is separate."
+    },
+    {
+      "category": "Java",
+      "question": "What does `==` compare for object references?",
+      "options": [
+        "A. Always compares object contents",
+        "B. Only compares strings",
+        "C. Reference identity",
+        "D. Class names"
+      ],
+      "answer": "C",
+      "explanation": "For objects, == checks whether references point to the same object."
+    },
+    {
       "category": "Selenium",
       "question": "Which Selenium 4 class is commonly used to create a new browser tab or window?",
       "options": [
@@ -23,6 +131,114 @@
       ],
       "answer": "D",
       "explanation": "In Selenium 4, driver.switchTo().newWindow(WindowType.TAB) or WindowType.WINDOW opens a new tab or window."
+    },
+    {
+      "category": "Selenium",
+      "question": "Which WebDriver method navigates to a URL?",
+      "options": [
+        "A. driver.open(url)",
+        "B. driver.get(url)",
+        "C. driver.visit(url)",
+        "D. driver.load(url)"
+      ],
+      "answer": "B",
+      "explanation": "WebDriver.get(url) navigates the browser to the supplied URL."
+    },
+    {
+      "category": "Selenium",
+      "question": "Which locator targets an element by its HTML id?",
+      "options": [
+        "A. By.cssClass",
+        "B. By.nameOnly",
+        "C. By.id",
+        "D. By.tag"
+      ],
+      "answer": "C",
+      "explanation": "By.id locates an element using its id attribute."
+    },
+    {
+      "category": "Selenium",
+      "question": "What is the purpose of WebDriverWait?",
+      "options": [
+        "A. Wait until a condition is met or times out",
+        "B. Pause every test for a fixed duration",
+        "C. Restart the browser",
+        "D. Disable JavaScript"
+      ],
+      "answer": "A",
+      "explanation": "Explicit waits poll for a specified condition until it succeeds or times out."
+    },
+    {
+      "category": "Selenium",
+      "question": "Which class is used to interact with a standard HTML select element?",
+      "options": [
+        "A. Alert",
+        "B. Actions",
+        "C. Robot",
+        "D. Select"
+      ],
+      "answer": "D",
+      "explanation": "The Select class supports standard HTML select dropdowns."
+    },
+    {
+      "category": "Selenium",
+      "question": "How do you switch WebDriver into an alert?",
+      "options": [
+        "A. driver.alert()",
+        "B. driver.switchTo().alert()",
+        "C. driver.openAlert()",
+        "D. driver.getAlert()"
+      ],
+      "answer": "B",
+      "explanation": "switchTo().alert() returns the active JavaScript alert interface."
+    },
+    {
+      "category": "Selenium",
+      "question": "Which Selenium interface represents a browser session?",
+      "options": [
+        "A. WebDriver",
+        "B. WebElement",
+        "C. By",
+        "D. Select"
+      ],
+      "answer": "A",
+      "explanation": "WebDriver controls the browser session."
+    },
+    {
+      "category": "Selenium",
+      "question": "What does `findElements` return when no elements match?",
+      "options": [
+        "A. null",
+        "B. An exception always",
+        "C. An empty list",
+        "D. A single placeholder"
+      ],
+      "answer": "C",
+      "explanation": "findElements returns an empty list when no elements match."
+    },
+    {
+      "category": "Selenium",
+      "question": "Which technique is generally best for dynamic elements?",
+      "options": [
+        "A. Use long fixed sleeps everywhere",
+        "B. Use brittle absolute XPath only",
+        "C. Ignore synchronization",
+        "D. Use stable locators and explicit waits"
+      ],
+      "answer": "D",
+      "explanation": "Stable locators and condition-based waits improve reliability with dynamic pages."
+    },
+    {
+      "category": "Selenium",
+      "question": "What is Page Object Model intended to improve?",
+      "options": [
+        "A. Separation of page interactions from test logic",
+        "B. Network bandwidth",
+        "C. Browser rendering speed",
+        "D. Database normalization"
+      ],
+      "answer": "A",
+      "explanation": "POM encapsulates page locators and actions in reusable page classes."
     },
     {
       "category": "Python",
@@ -37,6 +253,114 @@
       "explanation": "Python dictionaries preserve insertion order and map unique keys to values."
     },
     {
+      "category": "Python",
+      "question": "What does a Python list comprehension primarily provide?",
+      "options": [
+        "A. Database indexing",
+        "B. A concise way to build a list from an iterable",
+        "C. Automatic parallel execution",
+        "D. Static type enforcement"
+      ],
+      "answer": "B",
+      "explanation": "List comprehensions build lists concisely by transforming and optionally filtering items from an iterable."
+    },
+    {
+      "category": "Python",
+      "question": "Which keyword defines a function in Python?",
+      "options": [
+        "A. func",
+        "B. def",
+        "C. function",
+        "D. lambda"
+      ],
+      "answer": "B",
+      "explanation": "The def keyword defines a named function."
+    },
+    {
+      "category": "Python",
+      "question": "What is the result type of `len([3, 4, 5])`?",
+      "options": [
+        "A. str",
+        "B. list",
+        "C. int",
+        "D. bool"
+      ],
+      "answer": "C",
+      "explanation": "len returns the integer number of items, which is 3 here."
+    },
+    {
+      "category": "Python",
+      "question": "Which Python type is immutable?",
+      "options": [
+        "A. list",
+        "B. dict",
+        "C. set",
+        "D. tuple"
+      ],
+      "answer": "D",
+      "explanation": "Tuples are immutable sequences."
+    },
+    {
+      "category": "Python",
+      "question": "What does a dictionary's `get(key)` method do when the key is absent and no default is supplied?",
+      "options": [
+        "A. Returns None",
+        "B. Raises KeyError",
+        "C. Returns False",
+        "D. Creates the key"
+      ],
+      "answer": "A",
+      "explanation": "dict.get returns None by default for a missing key."
+    },
+    {
+      "category": "Python",
+      "question": "Which statement handles an exception?",
+      "options": [
+        "A. if/else",
+        "B. try/except",
+        "C. for/in",
+        "D. with/as"
+      ],
+      "answer": "B",
+      "explanation": "try/except catches and handles specified exceptions."
+    },
+    {
+      "category": "Python",
+      "question": "What does `enumerate(items)` commonly provide in a loop?",
+      "options": [
+        "A. Sorted values",
+        "B. Only the last value",
+        "C. Index-value pairs",
+        "D. A dictionary copy"
+      ],
+      "answer": "C",
+      "explanation": "enumerate yields pairs containing an index and corresponding item."
+    },
+    {
+      "category": "Python",
+      "question": "Which operator tests object identity?",
+      "options": [
+        "A. ==",
+        "B. in",
+        "C. is not only",
+        "D. is"
+      ],
+      "answer": "D",
+      "explanation": "The is operator tests whether two references identify the same object."
+    },
+    {
+      "category": "Python",
+      "question": "What is a virtual environment used for?",
+      "options": [
+        "A. Isolate project dependencies",
+        "B. Compile Python into Java",
+        "C. Encrypt source files",
+        "D. Replace the interpreter"
+      ],
+      "answer": "A",
+      "explanation": "Virtual environments isolate package installations for different projects."
+    },
+    {
       "category": "SQL",
       "question": "Which SQL clause filters grouped rows after aggregate calculations?",
       "options": [
@@ -47,90 +371,6 @@
       ],
       "answer": "C",
       "explanation": "HAVING filters groups after GROUP BY and aggregate calculations; WHERE filters rows before grouping."
-    },
-    {
-      "category": "Playwright",
-      "question": "In Playwright, what is the main benefit of using getByRole('button', { name: 'Save' })?",
-      "options": [
-        "A. It selects by accessible role and name",
-        "B. It disables browser waits",
-        "C. It bypasses authentication",
-        "D. It runs only in Chromium"
-      ],
-      "answer": "A",
-      "explanation": "Role-based locators use accessibility semantics and an accessible name, generally making tests more user-centered and resilient."
-    },
-    {
-      "category": "API Testing",
-      "question": "Which HTTP status code usually indicates that a request succeeded and a resource was created?",
-      "options": [
-        "A. 200",
-        "B. 201",
-        "C. 301",
-        "D. 404"
-      ],
-      "answer": "B",
-      "explanation": "201 Created indicates that the request succeeded and created a resource."
-    },
-    {
-      "category": "Testing",
-      "question": "What is the primary purpose of a regression test?",
-      "options": [
-        "A. To measure network speed only",
-        "B. To prove every bug is impossible",
-        "C. To check existing behavior after a change",
-        "D. To replace all exploratory testing"
-      ],
-      "answer": "C",
-      "explanation": "Regression tests check that previously working functionality still works after code changes."
-    },
-    {
-      "category": "AI/ML",
-      "question": "What does overfitting mean in machine learning?",
-      "options": [
-        "A. The model performs well on training data but generalizes poorly",
-        "B. The model has no training data",
-        "C. The model always predicts the majority class by design",
-        "D. The model cannot calculate a loss"
-      ],
-      "answer": "A",
-      "explanation": "An overfit model learns training-specific patterns, including noise, and often performs worse on unseen data."
-    },
-    {
-      "category": "Git",
-      "question": "Which Git command creates a new branch and switches to it in one step?",
-      "options": [
-        "A. git merge",
-        "B. git status",
-        "C. git log",
-        "D. git switch -c branch-name"
-      ],
-      "answer": "D",
-      "explanation": "git switch -c creates the branch and switches the working tree to it."
-    },
-    {
-      "category": "Java",
-      "question": "Which Java type is immutable and commonly used to represent text?",
-      "options": [
-        "A. StringBuilder",
-        "B. String",
-        "C. char[]",
-        "D. ArrayList"
-      ],
-      "answer": "B",
-      "explanation": "Java String objects are immutable; operations that appear to modify a String create a new String."
-    },
-    {
-      "category": "Automation",
-      "question": "Why should automated tests avoid fixed sleep calls when a condition-based wait is available?",
-      "options": [
-        "A. Sleeps always make tests parallel",
-        "B. Sleeps remove all flakiness",
-        "C. Fixed sleeps can waste time or still be too short",
-        "D. Sleeps validate the page automatically"
-      ],
-      "answer": "C",
-      "explanation": "A fixed delay may be longer than needed or insufficient under slow conditions; condition-based waits poll for the expected state."
     },
     {
       "category": "SQL",
@@ -145,40 +385,112 @@
       "explanation": "INNER JOIN returns rows for which the join condition matches in both tables."
     },
     {
-      "category": "Python",
-      "question": "What does a Python list comprehension primarily provide?",
+      "category": "SQL",
+      "question": "Which clause sorts query results?",
       "options": [
-        "A. Database indexing",
-        "B. A concise way to build a list from an iterable",
-        "C. Automatic parallel execution",
-        "D. Static type enforcement"
-      ],
-      "answer": "B",
-      "explanation": "List comprehensions build lists concisely by transforming and optionally filtering items from an iterable."
-    },
-    {
-      "category": "API Testing",
-      "question": "What does an HTTP 401 response usually indicate?",
-      "options": [
-        "A. The server is permanently gone",
-        "B. The request was created successfully",
-        "C. The request needs valid authentication",
-        "D. The server returned no content"
+        "A. GROUP BY",
+        "B. HAVING",
+        "C. ORDER BY",
+        "D. WHERE"
       ],
       "answer": "C",
-      "explanation": "401 Unauthorized indicates missing or invalid authentication credentials; 403 generally means the server understood but refuses authorization."
+      "explanation": "ORDER BY sorts the rows returned by a query."
     },
     {
-      "category": "QA",
-      "question": "Which test level focuses on interactions between integrated components?",
+      "category": "SQL",
+      "question": "Which aggregate function counts rows?",
       "options": [
-        "A. Unit testing",
-        "B. Integration testing",
-        "C. Acceptance testing only",
-        "D. Static analysis only"
+        "A. COUNT(*)",
+        "B. SUM(*)",
+        "C. TOTAL ROWS",
+        "D. NUMBER()"
+      ],
+      "answer": "A",
+      "explanation": "COUNT(*) counts rows, including rows containing nulls."
+    },
+    {
+      "category": "SQL",
+      "question": "Which constraint uniquely identifies each row and disallows NULL values?",
+      "options": [
+        "A. CHECK",
+        "B. PRIMARY KEY",
+        "C. DEFAULT",
+        "D. FOREIGN KEY"
       ],
       "answer": "B",
-      "explanation": "Integration testing checks whether components or services work correctly together."
+      "explanation": "A primary key uniquely identifies each row and cannot contain NULL."
+    },
+    {
+      "category": "SQL",
+      "question": "What does a LEFT JOIN preserve?",
+      "options": [
+        "A. Only matching right-table rows",
+        "B. Only unmatched left rows",
+        "C. All rows from both tables always",
+        "D. All left rows and matching right rows"
+      ],
+      "answer": "D",
+      "explanation": "LEFT JOIN retains every left-side row and matches right-side rows when possible."
+    },
+    {
+      "category": "SQL",
+      "question": "Which operator checks whether a value matches any value in a list?",
+      "options": [
+        "A. BETWEEN",
+        "B. LIKE",
+        "C. IN",
+        "D. EXISTS only"
+      ],
+      "answer": "C",
+      "explanation": "IN tests membership in a specified list or subquery result."
+    },
+    {
+      "category": "SQL",
+      "question": "What is a foreign key used for?",
+      "options": [
+        "A. Enforce a relationship to a key in another or same table",
+        "B. Sort rows automatically",
+        "C. Encrypt columns",
+        "D. Count duplicate rows"
+      ],
+      "answer": "A",
+      "explanation": "A foreign key enforces referential integrity between related records."
+    },
+    {
+      "category": "SQL",
+      "question": "Which command changes existing rows?",
+      "options": [
+        "A. INSERT",
+        "B. UPDATE",
+        "C. CREATE",
+        "D. GRANT"
+      ],
+      "answer": "B",
+      "explanation": "UPDATE modifies values in existing rows."
+    },
+    {
+      "category": "SQL",
+      "question": "What does `IS NULL` test?",
+      "options": [
+        "A. Whether a value equals zero",
+        "B. Whether a string is empty only",
+        "C. Whether a column is unique",
+        "D. Whether a value is NULL"
+      ],
+      "answer": "D",
+      "explanation": "IS NULL checks for the SQL NULL marker."
+    },
+    {
+      "category": "Playwright",
+      "question": "In Playwright, what is the main benefit of using getByRole('button', { name: 'Save' })?",
+      "options": [
+        "A. It selects by accessible role and name",
+        "B. It disables browser waits",
+        "C. It bypasses authentication",
+        "D. It runs only in Chromium"
+      ],
+      "answer": "A",
+      "explanation": "Role-based locators use accessibility semantics and an accessible name, generally making tests more user-centered and resilient."
     },
     {
       "category": "Playwright",
@@ -193,28 +505,232 @@
       "explanation": "The web-first assertion retries until the locator is visible or the assertion times out."
     },
     {
-      "category": "AI/ML",
-      "question": "In supervised learning, what does a label represent?",
+      "category": "Playwright",
+      "question": "Which Playwright feature automatically retries many locator actions until actionable?",
       "options": [
-        "A. The GPU model",
-        "B. The learning rate only",
-        "C. The target value or class for an example",
-        "D. The number of hidden layers"
+        "A. Auto-waiting",
+        "B. Manual polling only",
+        "C. Fixed sleep by default",
+        "D. Page reload loop"
       ],
-      "answer": "C",
-      "explanation": "A label is the expected target associated with a training example, such as a class or numeric value."
+      "answer": "A",
+      "explanation": "Playwright auto-waits for actionability conditions before performing actions."
     },
     {
-      "category": "GitHub Actions",
-      "question": "What is a GitHub Actions secret intended for?",
+      "category": "Playwright",
+      "question": "Which method fills an input with text?",
       "options": [
-        "A. Public README formatting",
-        "B. Sensitive values such as API tokens",
-        "C. Naming workflow jobs only",
-        "D. Replacing source control"
+        "A. locator.typeAll()",
+        "B. locator.fill()",
+        "C. locator.writeText()",
+        "D. page.input()"
       ],
       "answer": "B",
-      "explanation": "Secrets store sensitive values and can be exposed to workflows through the secrets context without hardcoding them in the repository."
+      "explanation": "locator.fill() sets the input value to the supplied text."
+    },
+    {
+      "category": "Playwright",
+      "question": "How can you select a checkbox by its label?",
+      "options": [
+        "A. getByTitle only",
+        "B. getByText without context always",
+        "C. getByLabel(...)",
+        "D. getByBrowser()"
+      ],
+      "answer": "C",
+      "explanation": "getByLabel locates form controls using their associated label."
+    },
+    {
+      "category": "Playwright",
+      "question": "What does `page.goto(url)` do?",
+      "options": [
+        "A. Creates an assertion",
+        "B. Closes the browser",
+        "C. Creates a new test file",
+        "D. Navigates the page to a URL"
+      ],
+      "answer": "D",
+      "explanation": "page.goto navigates the page to the specified URL."
+    },
+    {
+      "category": "Playwright",
+      "question": "Which assertion checks that text is present in a locator?",
+      "options": [
+        "A. expect(locator).toContainText(...)",
+        "B. expect(locator).toHaveURL(...)",
+        "C. expect(page).toClose()",
+        "D. expect(locator).toBeEmptyArray()"
+      ],
+      "answer": "A",
+      "explanation": "toContainText asserts that the locator contains the expected text."
+    },
+    {
+      "category": "Playwright",
+      "question": "What is a BrowserContext useful for?",
+      "options": [
+        "A. Sharing all cookies across every test unconditionally",
+        "B. Isolating sessions, cookies and storage",
+        "C. Compiling tests",
+        "D. Managing SQL transactions"
+      ],
+      "answer": "B",
+      "explanation": "Browser contexts provide isolated browser sessions and storage."
+    },
+    {
+      "category": "Playwright",
+      "question": "Which command is commonly used to run Playwright tests from the CLI?",
+      "options": [
+        "A. node playwright-open",
+        "B. npm browser test",
+        "C. npx playwright test",
+        "D. npx test browser"
+      ],
+      "answer": "C",
+      "explanation": "npx playwright test runs tests with the Playwright test runner."
+    },
+    {
+      "category": "Playwright",
+      "question": "What does `page.screenshot()` do?",
+      "options": [
+        "A. Changes viewport permanently",
+        "B. Starts a trace viewer only",
+        "C. Deletes cookies",
+        "D. Captures a screenshot"
+      ],
+      "answer": "D",
+      "explanation": "The screenshot method captures the page or a specified element."
+    },
+    {
+      "category": "API Testing",
+      "question": "Which HTTP status code usually indicates that a request succeeded and a resource was created?",
+      "options": [
+        "A. 200",
+        "B. 201",
+        "C. 301",
+        "D. 404"
+      ],
+      "answer": "B",
+      "explanation": "201 Created indicates that the request succeeded and created a resource."
+    },
+    {
+      "category": "API Testing",
+      "question": "What does an HTTP 401 response usually indicate?",
+      "options": [
+        "A. The server is permanently gone",
+        "B. The request was created successfully",
+        "C. The request needs valid authentication",
+        "D. The server returned no content"
+      ],
+      "answer": "C",
+      "explanation": "401 Unauthorized indicates missing or invalid authentication credentials; 403 generally means the server understood but refuses authorization."
+    },
+    {
+      "category": "API Testing",
+      "question": "Which HTTP method is typically used to retrieve a resource?",
+      "options": [
+        "A. POST",
+        "B. GET",
+        "C. PATCH",
+        "D. DELETE"
+      ],
+      "answer": "B",
+      "explanation": "GET requests retrieve a representation of a resource."
+    },
+    {
+      "category": "API Testing",
+      "question": "What does HTTP 403 generally mean?",
+      "options": [
+        "A. Resource was created",
+        "B. Request timed out only",
+        "C. Server understood but refuses access",
+        "D. Redirect to another URL"
+      ],
+      "answer": "C",
+      "explanation": "403 Forbidden indicates the server refuses to authorize the request."
+    },
+    {
+      "category": "API Testing",
+      "question": "Which format is commonly used for REST API request and response bodies?",
+      "options": [
+        "A. JSON",
+        "B. PNG",
+        "C. MP3",
+        "D. EXE"
+      ],
+      "answer": "A",
+      "explanation": "JSON is a common data-interchange format for REST APIs."
+    },
+    {
+      "category": "API Testing",
+      "question": "What should an API test validate besides status code?",
+      "options": [
+        "A. Only server hostname",
+        "B. Only response time",
+        "C. Nothing else",
+        "D. Response schema, data and relevant headers"
+      ],
+      "answer": "D",
+      "explanation": "Status alone is insufficient; validate body, schema, headers and behavior as appropriate."
+    },
+    {
+      "category": "API Testing",
+      "question": "Which HTTP method is commonly used for a partial resource update?",
+      "options": [
+        "A. TRACE",
+        "B. PATCH",
+        "C. CONNECT",
+        "D. OPTIONS only"
+      ],
+      "answer": "B",
+      "explanation": "PATCH applies partial modifications to a resource."
+    },
+    {
+      "category": "API Testing",
+      "question": "What does idempotency mean for an operation?",
+      "options": [
+        "A. It must always return 500",
+        "B. It cannot be tested",
+        "C. Repeating it has the same intended effect as doing it once",
+        "D. It always creates a new resource"
+      ],
+      "answer": "C",
+      "explanation": "An idempotent operation has the same intended effect when repeated."
+    },
+    {
+      "category": "API Testing",
+      "question": "Where should bearer tokens generally be sent in an HTTP request?",
+      "options": [
+        "A. Authorization header",
+        "B. URL fragment only",
+        "C. HTML title",
+        "D. User-Agent comment"
+      ],
+      "answer": "A",
+      "explanation": "Bearer tokens are commonly passed in the Authorization header."
+    },
+    {
+      "category": "API Testing",
+      "question": "What is contract testing intended to check?",
+      "options": [
+        "A. Browser colors",
+        "B. Database disk speed only",
+        "C. Whether every API call is free",
+        "D. Agreement between service interactions and their expected interface"
+      ],
+      "answer": "D",
+      "explanation": "Contract tests verify that providers and consumers meet interface expectations."
+    },
+    {
+      "category": "Testing",
+      "question": "What is the primary purpose of a regression test?",
+      "options": [
+        "A. To measure network speed only",
+        "B. To prove every bug is impossible",
+        "C. To check existing behavior after a change",
+        "D. To replace all exploratory testing"
+      ],
+      "answer": "C",
+      "explanation": "Regression tests check that previously working functionality still works after code changes."
     },
     {
       "category": "Testing",
@@ -229,16 +745,700 @@
       "explanation": "Flaky tests pass and fail inconsistently without a relevant change in the code or test conditions."
     },
     {
-      "category": "Java",
-      "question": "Which collection is designed to store unique elements without guaranteeing iteration order?",
+      "category": "Testing",
+      "question": "What is smoke testing primarily used for?",
       "options": [
-        "A. HashSet",
-        "B. ArrayList",
-        "C. LinkedList",
-        "D. StringBuilder"
+        "A. Check critical functions in a build quickly",
+        "B. Prove there are no defects",
+        "C. Test every possible input",
+        "D. Replace all regression tests"
       ],
       "answer": "A",
-      "explanation": "HashSet stores unique elements and does not guarantee a stable iteration order."
+      "explanation": "Smoke tests quickly check whether key functionality is stable enough for further testing."
+    },
+    {
+      "category": "Testing",
+      "question": "What is boundary-value analysis focused on?",
+      "options": [
+        "A. Randomly generated server names",
+        "B. Values at and near input limits",
+        "C. Only valid middle values",
+        "D. Code formatting"
+      ],
+      "answer": "B",
+      "explanation": "Boundary defects often occur at minimum and maximum limits and adjacent values."
+    },
+    {
+      "category": "Testing",
+      "question": "What does severity describe in defect management?",
+      "options": [
+        "A. Who reported the issue",
+        "B. How long the meeting lasted",
+        "C. The impact of the defect",
+        "D. The release date"
+      ],
+      "answer": "C",
+      "explanation": "Severity describes the defect's impact on the system or users."
+    },
+    {
+      "category": "Testing",
+      "question": "What is equivalence partitioning?",
+      "options": [
+        "A. Testing every value individually",
+        "B. Testing only invalid values",
+        "C. Grouping developers by role",
+        "D. Dividing inputs into classes expected to behave similarly"
+      ],
+      "answer": "D",
+      "explanation": "Equivalence partitioning reduces tests by grouping inputs with similar expected behavior."
+    },
+    {
+      "category": "Testing",
+      "question": "When is exploratory testing especially useful?",
+      "options": [
+        "A. When learning a product while designing and executing tests",
+        "B. Only after every script passes",
+        "C. Only for performance metrics",
+        "D. When requirements never change"
+      ],
+      "answer": "A",
+      "explanation": "Exploratory testing combines learning, test design and execution."
+    },
+    {
+      "category": "Testing",
+      "question": "What is a test oracle?",
+      "options": [
+        "A. A test scheduling calendar",
+        "B. A source used to determine expected results",
+        "C. A browser driver",
+        "D. A deployment package"
+      ],
+      "answer": "B",
+      "explanation": "A test oracle provides a basis for deciding whether observed behavior is correct."
+    },
+    {
+      "category": "Testing",
+      "question": "What does test coverage indicate?",
+      "options": [
+        "A. The number of developers",
+        "B. The total project budget",
+        "C. How much of a chosen scope has been exercised",
+        "D. The number of releases"
+      ],
+      "answer": "C",
+      "explanation": "Coverage measures exercised items such as statements, branches or requirements."
+    },
+    {
+      "category": "Testing",
+      "question": "What is a negative test designed to check?",
+      "options": [
+        "A. Only the ideal happy path",
+        "B. Application logo alignment",
+        "C. A successful deployment only",
+        "D. Behavior with invalid or unexpected input"
+      ],
+      "answer": "D",
+      "explanation": "Negative tests verify handling of invalid inputs and adverse conditions."
+    },
+    {
+      "category": "AI/ML",
+      "question": "What does overfitting mean in machine learning?",
+      "options": [
+        "A. The model performs well on training data but generalizes poorly",
+        "B. The model has no training data",
+        "C. The model always predicts the majority class by design",
+        "D. The model cannot calculate a loss"
+      ],
+      "answer": "A",
+      "explanation": "An overfit model learns training-specific patterns, including noise, and often performs worse on unseen data."
+    },
+    {
+      "category": "AI/ML",
+      "question": "In supervised learning, what does a label represent?",
+      "options": [
+        "A. The GPU model",
+        "B. The learning rate only",
+        "C. The target value or class for an example",
+        "D. The number of hidden layers"
+      ],
+      "answer": "C",
+      "explanation": "A label is the expected target associated with a training example, such as a class or numeric value."
+    },
+    {
+      "category": "AI/ML",
+      "question": "Which learning setup uses labeled examples?",
+      "options": [
+        "A. Unsupervised learning",
+        "B. Supervised learning",
+        "C. Reinforcement learning only",
+        "D. Clustering without labels"
+      ],
+      "answer": "B",
+      "explanation": "Supervised learning learns from input examples paired with target labels."
+    },
+    {
+      "category": "AI/ML",
+      "question": "What is a validation set commonly used for?",
+      "options": [
+        "A. Replacing all training data",
+        "B. Storing production passwords",
+        "C. Model selection and hyperparameter tuning",
+        "D. Generating labels automatically in every case"
+      ],
+      "answer": "C",
+      "explanation": "Validation data helps compare models and tune hyperparameters."
+    },
+    {
+      "category": "AI/ML",
+      "question": "What does precision measure in binary classification?",
+      "options": [
+        "A. True positives divided by predicted positives",
+        "B. True negatives divided by all samples",
+        "C. Correct predictions divided by training time",
+        "D. False positives divided by true positives"
+      ],
+      "answer": "A",
+      "explanation": "Precision is TP/(TP+FP), the fraction of positive predictions that are correct."
+    },
+    {
+      "category": "AI/ML",
+      "question": "Which technique can reduce overfitting?",
+      "options": [
+        "A. Increase leakage",
+        "B. Train only on test data",
+        "C. Remove all validation",
+        "D. Regularization"
+      ],
+      "answer": "D",
+      "explanation": "Regularization penalizes overly complex solutions and can improve generalization."
+    },
+    {
+      "category": "AI/ML",
+      "question": "What is an epoch in model training?",
+      "options": [
+        "A. One optimizer parameter only",
+        "B. One complete pass through the training dataset",
+        "C. A model deployment endpoint",
+        "D. A single feature column"
+      ],
+      "answer": "B",
+      "explanation": "An epoch is a complete pass through the training data."
+    },
+    {
+      "category": "AI/ML",
+      "question": "What is tokenization in NLP?",
+      "options": [
+        "A. Converting text into smaller units for processing",
+        "B. Compressing model weights only",
+        "C. Ranking database tables",
+        "D. Removing every punctuation mark by definition"
+      ],
+      "answer": "A",
+      "explanation": "Tokenization splits text into tokens such as words, subwords or characters."
+    },
+    {
+      "category": "AI/ML",
+      "question": "What does a confusion matrix summarize?",
+      "options": [
+        "A. Only training loss",
+        "B. GPU utilization by hour",
+        "C. Counts of predicted versus actual classes",
+        "D. The source code dependency tree"
+      ],
+      "answer": "C",
+      "explanation": "A confusion matrix compares predicted labels with actual labels."
+    },
+    {
+      "category": "AI/ML",
+      "question": "What is data leakage?",
+      "options": [
+        "A. A model using fewer parameters",
+        "B. A valid train-test split",
+        "C. Normalizing training data only",
+        "D. Information unavailable at prediction time influencing training or evaluation"
+      ],
+      "answer": "D",
+      "explanation": "Leakage gives the model access to information that would not legitimately be available."
+    },
+    {
+      "category": "Git",
+      "question": "Which Git command creates a new branch and switches to it in one step?",
+      "options": [
+        "A. git merge",
+        "B. git status",
+        "C. git log",
+        "D. git switch -c branch-name"
+      ],
+      "answer": "D",
+      "explanation": "git switch -c creates the branch and switches the working tree to it."
+    },
+    {
+      "category": "Git",
+      "question": "Which command shows the working tree status?",
+      "options": [
+        "A. git status",
+        "B. git branch --delete",
+        "C. git init --bare",
+        "D. git tag"
+      ],
+      "answer": "A",
+      "explanation": "git status reports changed, staged and untracked files."
+    },
+    {
+      "category": "Git",
+      "question": "Which command records staged changes in repository history?",
+      "options": [
+        "A. git fetch",
+        "B. git commit",
+        "C. git clone",
+        "D. git diff --stat"
+      ],
+      "answer": "B",
+      "explanation": "git commit creates a new commit from staged changes."
+    },
+    {
+      "category": "Git",
+      "question": "What does `git pull` normally do?",
+      "options": [
+        "A. Deletes the remote branch",
+        "B. Creates a GitHub issue",
+        "C. Fetches remote changes and integrates them",
+        "D. Only displays commit history"
+      ],
+      "answer": "C",
+      "explanation": "git pull typically fetches and then integrates remote changes."
+    },
+    {
+      "category": "Git",
+      "question": "Which command downloads a repository as a local copy?",
+      "options": [
+        "A. git stash",
+        "B. git reset",
+        "C. git revert",
+        "D. git clone"
+      ],
+      "answer": "D",
+      "explanation": "git clone creates a local copy of a repository."
+    },
+    {
+      "category": "Git",
+      "question": "What is a merge conflict?",
+      "options": [
+        "A. A situation where Git cannot automatically reconcile changes",
+        "B. A successful clean build",
+        "C. A deleted commit message",
+        "D. A branch protection rule"
+      ],
+      "answer": "A",
+      "explanation": "Conflicting edits may require manual resolution before a merge can complete."
+    },
+    {
+      "category": "Git",
+      "question": "Which command lists commit history?",
+      "options": [
+        "A. git clean",
+        "B. git log",
+        "C. git add",
+        "D. git mv"
+      ],
+      "answer": "B",
+      "explanation": "git log displays commit history."
+    },
+    {
+      "category": "Git",
+      "question": "What does `git stash` commonly do?",
+      "options": [
+        "A. Publishes a release",
+        "B. Renames the remote",
+        "C. Temporarily saves uncommitted changes",
+        "D. Creates a new repository online"
+      ],
+      "answer": "C",
+      "explanation": "git stash stores local changes so you can work on a clean working tree."
+    },
+    {
+      "category": "Git",
+      "question": "Which command stages a file named app.py?",
+      "options": [
+        "A. git push app.py",
+        "B. git commit app.py",
+        "C. git status app.py",
+        "D. git add app.py"
+      ],
+      "answer": "D",
+      "explanation": "git add stages the file's changes for the next commit."
+    },
+    {
+      "category": "Git",
+      "question": "What does a `.gitignore` file specify?",
+      "options": [
+        "A. Files Git should generally ignore when untracked",
+        "B. The commit author",
+        "C. Remote branch permissions",
+        "D. The repository license automatically"
+      ],
+      "answer": "A",
+      "explanation": ".gitignore patterns exclude matching untracked files from normal Git tracking."
+    },
+    {
+      "category": "Automation",
+      "question": "Why should automated tests avoid fixed sleep calls when a condition-based wait is available?",
+      "options": [
+        "A. Sleeps always make tests parallel",
+        "B. Sleeps remove all flakiness",
+        "C. Fixed sleeps can waste time or still be too short",
+        "D. Sleeps validate the page automatically"
+      ],
+      "answer": "C",
+      "explanation": "A fixed delay may be longer than needed or insufficient under slow conditions; condition-based waits poll for the expected state."
+    },
+    {
+      "category": "Automation",
+      "question": "What is a key benefit of automated regression tests?",
+      "options": [
+        "A. They eliminate all need for human testing",
+        "B. They repeat checks consistently after changes",
+        "C. They guarantee zero production defects",
+        "D. They replace product requirements"
+      ],
+      "answer": "B",
+      "explanation": "Automated regression tests can repeatedly check existing behavior after changes."
+    },
+    {
+      "category": "Automation",
+      "question": "What is a common cause of flaky UI automation?",
+      "options": [
+        "A. Stable test data",
+        "B. Explicit waits",
+        "C. Race conditions and unstable dependencies",
+        "D. Deterministic assertions"
+      ],
+      "answer": "C",
+      "explanation": "Timing races and unstable dependencies can make results inconsistent."
+    },
+    {
+      "category": "Automation",
+      "question": "Why use data-driven testing?",
+      "options": [
+        "A. Run the same test logic with multiple input datasets",
+        "B. Avoid assertions",
+        "C. Hardcode every test separately",
+        "D. Skip invalid input scenarios"
+      ],
+      "answer": "A",
+      "explanation": "Data-driven tests separate test logic from input variations."
+    },
+    {
+      "category": "Automation",
+      "question": "What is a test fixture commonly responsible for?",
+      "options": [
+        "A. Writing product marketing",
+        "B. Approving all releases",
+        "C. Replacing version control",
+        "D. Preparing and cleaning up test resources"
+      ],
+      "answer": "D",
+      "explanation": "Fixtures set up and tear down resources required by tests."
+    },
+    {
+      "category": "Automation",
+      "question": "What is the purpose of a CI pipeline?",
+      "options": [
+        "A. Run build and validation steps automatically on changes",
+        "B. Manually copy files every day",
+        "C. Prevent all code reviews",
+        "D. Store only screenshots"
+      ],
+      "answer": "A",
+      "explanation": "CI automates builds and checks as code changes are integrated."
+    },
+    {
+      "category": "Automation",
+      "question": "Why should test data be isolated between parallel tests?",
+      "options": [
+        "A. To make every test use production credentials",
+        "B. To reduce interference and shared-state failures",
+        "C. To force tests to run serially",
+        "D. To disable cleanup"
+      ],
+      "answer": "B",
+      "explanation": "Isolated data helps prevent tests from changing each other's assumptions."
+    },
+    {
+      "category": "Automation",
+      "question": "What does a retry policy risk hiding?",
+      "options": [
+        "A. A clear assertion message",
+        "B. A deterministic failure",
+        "C. Intermittent defects and flaky behavior",
+        "D. The test source file"
+      ],
+      "answer": "C",
+      "explanation": "Retries can mask instability if failures are not investigated and reported."
+    },
+    {
+      "category": "Automation",
+      "question": "What is a useful automation test pyramid principle?",
+      "options": [
+        "A. Only end-to-end tests should exist",
+        "B. Unit tests should be avoided",
+        "C. Every check must use a real browser",
+        "D. Favor many fast lower-level tests and fewer broad end-to-end tests"
+      ],
+      "answer": "D",
+      "explanation": "Lower-level tests are typically faster and more focused, with fewer costly end-to-end checks."
+    },
+    {
+      "category": "Automation",
+      "question": "Why use page objects in UI automation?",
+      "options": [
+        "A. Centralize page-specific locators and actions",
+        "B. Store passwords in source code",
+        "C. Remove all test assertions",
+        "D. Generate test data randomly only"
+      ],
+      "answer": "A",
+      "explanation": "Page objects encapsulate page interactions and improve reuse and maintainability."
+    },
+    {
+      "category": "QA",
+      "question": "Which test level focuses on interactions between integrated components?",
+      "options": [
+        "A. Unit testing",
+        "B. Integration testing",
+        "C. Acceptance testing only",
+        "D. Static analysis only"
+      ],
+      "answer": "B",
+      "explanation": "Integration testing checks whether components or services work correctly together."
+    },
+    {
+      "category": "QA",
+      "question": "What is the main goal of quality assurance?",
+      "options": [
+        "A. Find defects only after release",
+        "B. Improve processes to help prevent quality problems",
+        "C. Write only user manuals",
+        "D. Guarantee no risk exists"
+      ],
+      "answer": "B",
+      "explanation": "QA emphasizes process quality and defect prevention throughout development."
+    },
+    {
+      "category": "QA",
+      "question": "What is the difference between verification and validation?",
+      "options": [
+        "A. They always mean exactly the same thing",
+        "B. Validation checks documents only",
+        "C. Verification checks against specifications; validation checks user needs",
+        "D. Verification happens only after release"
+      ],
+      "answer": "C",
+      "explanation": "Verification asks whether work meets specifications; validation asks whether it meets intended needs."
+    },
+    {
+      "category": "QA",
+      "question": "What is root-cause analysis used for?",
+      "options": [
+        "A. Identify underlying causes of a problem",
+        "B. Assign random defect IDs",
+        "C. Increase the number of test cases without reason",
+        "D. Close every bug automatically"
+      ],
+      "answer": "A",
+      "explanation": "Root-cause analysis seeks underlying causes so corrective actions can prevent recurrence."
+    },
+    {
+      "category": "QA",
+      "question": "What is a defect escape?",
+      "options": [
+        "A. A defect caught before coding",
+        "B. A test environment restart",
+        "C. A duplicate test case",
+        "D. A defect that reaches a later stage or production without being caught earlier"
+      ],
+      "answer": "D",
+      "explanation": "Escaped defects pass through earlier quality controls undetected."
+    },
+    {
+      "category": "QA",
+      "question": "What should a good bug report include?",
+      "options": [
+        "A. Only the reporter's opinion",
+        "B. Reproduction steps, actual and expected results, and evidence",
+        "C. Only the word 'failed'",
+        "D. A guess about who caused it"
+      ],
+      "answer": "B",
+      "explanation": "Clear steps, expected/actual behavior and evidence help reproduce and triage defects."
+    },
+    {
+      "category": "QA",
+      "question": "What is risk-based testing?",
+      "options": [
+        "A. Test every feature equally regardless of risk",
+        "B. Test only easy features",
+        "C. Prioritize tests according to likelihood and impact of failure",
+        "D. Skip business-critical workflows"
+      ],
+      "answer": "C",
+      "explanation": "Risk-based testing focuses effort on areas with greater probability or impact of failure."
+    },
+    {
+      "category": "QA",
+      "question": "What is an acceptance criterion?",
+      "options": [
+        "A. A condition a feature must satisfy to be accepted",
+        "B. A developer's annual review",
+        "C. A deployment server address",
+        "D. A random test value"
+      ],
+      "answer": "A",
+      "explanation": "Acceptance criteria define observable conditions for accepting a requirement or feature."
+    },
+    {
+      "category": "QA",
+      "question": "What is a quality gate in CI/CD?",
+      "options": [
+        "A. A mandatory lunch break",
+        "B. A code editor theme",
+        "C. A database table",
+        "D. A check that must pass before the pipeline proceeds"
+      ],
+      "answer": "D",
+      "explanation": "Quality gates enforce required checks before promotion or release."
+    },
+    {
+      "category": "QA",
+      "question": "What is defect triage?",
+      "options": [
+        "A. Prioritizing and assigning defects based on factors such as severity and urgency",
+        "B. Deleting all low-priority tests",
+        "C. Running load tests only",
+        "D. Writing new requirements without review"
+      ],
+      "answer": "A",
+      "explanation": "Defect triage assesses issues and decides priority, ownership and next steps."
+    },
+    {
+      "category": "GitHub Actions",
+      "question": "What is a GitHub Actions secret intended for?",
+      "options": [
+        "A. Public README formatting",
+        "B. Sensitive values such as API tokens",
+        "C. Naming workflow jobs only",
+        "D. Replacing source control"
+      ],
+      "answer": "B",
+      "explanation": "Secrets store sensitive values and can be exposed to workflows through the secrets context without hardcoding them in the repository."
+    },
+    {
+      "category": "GitHub Actions",
+      "question": "Where are workflow files normally stored in a repository?",
+      "options": [
+        "A. /actions",
+        "B. /.github/workflows/",
+        "C. /workflow-config/",
+        "D. /git/actions/"
+      ],
+      "answer": "B",
+      "explanation": "GitHub Actions workflow YAML files are normally under .github/workflows."
+    },
+    {
+      "category": "GitHub Actions",
+      "question": "Which event can trigger a workflow when code is pushed?",
+      "options": [
+        "A. schedule_only",
+        "B. workflow_finish",
+        "C. push",
+        "D. manual_stop"
+      ],
+      "answer": "C",
+      "explanation": "The push event triggers workflows when commits are pushed to matching branches or paths."
+    },
+    {
+      "category": "GitHub Actions",
+      "question": "How are repository secrets commonly referenced in a workflow?",
+      "options": [
+        "A. ${{ secrets.SECRET_NAME }}",
+        "B. ${{ files.SECRET_NAME }}",
+        "C. $repository.SECRET_NAME",
+        "D. {{ token.secret }}"
+      ],
+      "answer": "A",
+      "explanation": "The secrets context exposes configured secret values to authorized workflow steps."
+    },
+    {
+      "category": "GitHub Actions",
+      "question": "What is a workflow job?",
+      "options": [
+        "A. A repository label",
+        "B. A commit message",
+        "C. A Git tag",
+        "D. A set of steps executed on a runner"
+      ],
+      "answer": "D",
+      "explanation": "A job contains steps that run on a runner and may have dependencies on other jobs."
+    },
+    {
+      "category": "GitHub Actions",
+      "question": "What does `runs-on` specify?",
+      "options": [
+        "A. The runner environment for a job",
+        "B. The branch merge strategy",
+        "C. The artifact retention owner",
+        "D. The workflow's display icon"
+      ],
+      "answer": "A",
+      "explanation": "runs-on selects the runner type or label on which the job executes."
+    },
+    {
+      "category": "GitHub Actions",
+      "question": "Which syntax refers to a step's previous output named `result`?",
+      "options": [
+        "A. ${{ jobs.result }}",
+        "B. ${{ steps.<step_id>.outputs.result }}",
+        "C. ${{ runner.result }}",
+        "D. ${{ github.outputs.result }}"
+      ],
+      "answer": "B",
+      "explanation": "Step outputs are accessed through steps, the step ID and outputs context."
+    },
+    {
+      "category": "GitHub Actions",
+      "question": "What is a scheduled workflow's cron expression interpreted in?",
+      "options": [
+        "A. The repository owner's local time",
+        "B. The runner's current timezone",
+        "C. UTC",
+        "D. The browser timezone"
+      ],
+      "answer": "C",
+      "explanation": "GitHub Actions schedule cron expressions use UTC."
+    },
+    {
+      "category": "GitHub Actions",
+      "question": "What does `needs` express between jobs?",
+      "options": [
+        "A. A job color",
+        "B. A package dependency only",
+        "C. A secret permission",
+        "D. A job dependency that must complete first"
+      ],
+      "answer": "D",
+      "explanation": "needs specifies jobs that must complete successfully before the dependent job runs."
+    },
+    {
+      "category": "GitHub Actions",
+      "question": "Why pin third-party actions to a full commit SHA?",
+      "options": [
+        "A. For stronger supply-chain integrity and reproducibility",
+        "B. To make workflows run without permissions",
+        "C. To skip all updates forever by default",
+        "D. To avoid YAML syntax"
+      ],
+      "answer": "A",
+      "explanation": "A full commit SHA identifies an immutable action revision more reliably than a movable tag."
     }
   ]
 }
