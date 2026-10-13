@@ -23,6 +23,15 @@
     h1 { margin:12px 0 8px; font-size:clamp(30px,7vw,46px); line-height:1.08; }
     header p { margin:0; color:#e1efff; line-height:1.6; }
     main { padding:22px 14px 44px; }
+
+    .site-nav { position:sticky; top:0; z-index:1000; background:#fff; border-bottom:1px solid var(--line); box-shadow:0 3px 12px #16345b0a; }
+    .nav-inner { max-width:850px; margin:0 auto; padding:10px 14px; display:flex; align-items:center; gap:8px; overflow-x:auto; }
+    .nav-link { flex:0 0 auto; display:inline-flex; align-items:center; gap:7px; padding:10px 14px; border-radius:11px; text-decoration:none; color:var(--navy); font-size:14px; font-weight:750; border:1px solid transparent; white-space:nowrap; }
+    .nav-link:hover, .nav-link:focus-visible { background:#edf5ff; border-color:#d6e7ff; outline:none; }
+    .nav-link.active { background:var(--blue); color:#fff; }
+    section[id] { scroll-margin-top:78px; }
+    @media(max-width:480px) { .nav-inner { gap:5px; padding:8px 10px; } .nav-link { padding:9px 11px; font-size:13px; } }
+
     .tools { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:18px; }
     input { flex:1; min-width:190px; padding:13px 15px; border:1px solid #d6e0ef; border-radius:13px; font:inherit; background:#fff; }
     .filters { display:flex; gap:8px; overflow-x:auto; padding:2px 0 12px; }
@@ -67,6 +76,14 @@
       <p>Fresh job alerts, all in one place. Tap Apply to open the original listing and check requirements.</p>
     </div>
   </header>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a class="nav-link active" href="#daily-quiz" data-nav-target="daily-quiz">🧠 Quiz</a>
+      <a class="nav-link" href="#jobs-section" data-nav-target="jobs-section">💼 Jobs</a>
+      <a class="nav-link" href="#job-filters" data-nav-target="job-filters">🏷️ Job categories</a>
+      <a class="nav-link" href="#job-search" data-nav-target="job-search">🔎 Search jobs</a>
+    </div>
+  </nav>
   <main>
     <section class="quiz-section" id="daily-quiz">
       <div class="quiz-kicker">DAILY INTERVIEW PRACTICE</div><h2>Tech interview quiz</h2>
@@ -78,7 +95,7 @@
       <div class="quiz-actions"><button type="button" class="quiz-action" id="quiz-explanation" disabled>Show explanation</button><button type="button" class="quiz-action primary" id="quiz-reveal" disabled>Reveal answer &amp; explanation</button><button type="button" class="quiz-action" id="quiz-next" disabled>Next question</button></div>
       <p class="quiz-score" id="quiz-score">Your score on this browser is stored on this device.</p>
     </section>
-    <section aria-label="Job listings">
+    <section id="jobs-section" aria-label="Job listings">
       <div class="tools"><input id="job-search" type="search" aria-label="Search jobs" placeholder="Search role, company, or location…"></div>
       <div class="filters" id="job-filters" aria-label="Filter jobs by role"></div>
       <p class="count" id="job-count">Loading latest jobs…</p><section id="jobs" aria-live="polite"></section>
@@ -198,6 +215,13 @@
       });
     }
     byId('job-search').addEventListener('input',renderJobs);
+
+    document.querySelectorAll('[data-nav-target]').forEach(function(link){
+      link.addEventListener('click',function(){
+        document.querySelectorAll('[data-nav-target]').forEach(function(item){item.classList.remove('active');});
+        link.classList.add('active');
+      });
+    });
     loadProgress();loadQuiz();
     fetch('./jobs.json?v='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw Error('jobs');return r.json();}).then(function(data){
       jobs=Array.isArray(data)?data.filter(function(j){return j&&/^https?:/i.test(j.url||'');}):[];renderJobs();
