@@ -68,298 +68,20 @@
     </div>
   </header>
   <div id="root"></div>
-
-  <script>
-    // Website quiz: question content is published by the existing scheduled workflow.
-    const quizContent = document.getElementById('quiz-content');
-    const quizStatus = document.getElementById('quiz-status');
-    const quizScore = document.getElementById('quiz-score');
-    const quizStoreKey = 'india-job-alert-quiz-v1';
-    function readQuizProgress() {
-      try { return JSON.parse(localStorage.getItem(quizStoreKey) || '{"correct":0,"answered":0,"answers":{}}'); }
-      catch (_) { return {correct:0,answered:0,answers:{}}; }
-    }
-    function renderQuizError(message) {
-      quizStatus.textContent = message;
-      quizContent.replaceChildren();
-    }
-    function quizButton(label, handler) {
-      const button = document.createElement('button');
-      button.type = 'button'; button.className = 'quiz-action';
-      button.textContent = label; button.addEventListener('click', handler); return button;
-    }
-    function renderDailyQuiz(state) {
-      const quiz = state && state.quiz;
-      if (!quiz || !Array.isArray(quiz.options) || !quiz.question) {
-        renderQuizError('The next quiz has not been published yet. Please check back soon.'); return;
-      }
-      quizStatus.textContent = (quiz.category || 'Tech') + ' · ' + (state.date || 'Latest quiz') + ' · Choose an answer or tap Answer reveal to see the solution.';
-      quizContent.replaceChildren();
-      const question = document.createElement('p');
-      question.style.cssText = 'font-size:17px;font-weight:750;line-height:1.5;margin:16px 0;';
-      question.textContent = quiz.question; quizContent.appendChild(question);
-      const options = document.createElement('div'); options.id = 'quiz-options';
-      const feedback = document.createElement('div'); feedback.className = 'quiz-feedback'; feedback.hidden = true;
-      const progress = readQuizProgress();
-      const previous = progress.answers && progress.answers[state.date];
-      const correctLetter = String(quiz.answer || '').trim().toUpperCase().split('.')[0];
-      function showFeedback(letter, save) {
-        const isCorrect = letter === correctLetter;
-        [...options.children].forEach((button, index) => {
-          const optionLetter = String(quiz.options[index] || '').split('.')[0].trim().toUpperCase();
-          button.disabled = true;
-          if (optionLetter === correctLetter) button.classList.add('correct');
-          else if (optionLetter === letter && !isCorrect) button.classList.add('incorrect');
-        });
-        const heading = document.createElement('strong');
-        heading.textContent = isCorrect ? 'Correct answer!' : 'Not quite — review the correct answer.';
-        const detail = document.createElement('p');
-        const answerOption = quiz.options.find(o => String(o).trim().toUpperCase().startsWith(correctLetter + '.')) || correctLetter;
-        detail.textContent = answerOption + (quiz.explanation ? ' — ' + quiz.explanation : '');
-        feedback.replaceChildren(heading, detail); feedback.hidden = false;
-        if (save) {
-          const fresh = readQuizProgress();
-          fresh.answers = fresh.answers || {};
-          if (!fresh.answers[state.date]) {
-            fresh.answers[state.date] = {answer:letter,correct:isCorrect};
-            fresh.answered = (Number(fresh.answered)||0) + 1;
-            if (isCorrect) fresh.correct = (Number(fresh.correct)||0) + 1;
-            try { localStorage.setItem(quizStoreKey, JSON.stringify(fresh)); } catch (_) {}
-          }
-        }
-        updateScore();
-      }
-      quiz.options.forEach(option => {
-        const letter = String(option).split('.')[0].trim().toUpperCase();
-        const button = document.createElement('button');
-        button.type = 'button'; button.className = 'quiz-option'; button.textContent = option;
-        button.addEventListener('click', () => showFeedback(letter, true));
-        options.appendChild(button);
-      });
-      quizContent.appendChild(options); quizContent.appendChild(feedback);
-      if (previous) showFeedback(previous.answer, false);
-      const actions = document.createElement('div'); actions.className = 'quiz-actions';
-      let explanationVisible = false;
-      const explanationPanel = document.createElement('div');
-      explanationPanel.className = 'quiz-feedback';
-      explanationPanel.hidden = true;
-      const explanationToggle = quizButton('Show explanation', () => {
-        explanationVisible = !explanationVisible;
-        explanationPanel.hidden = !explanationVisible;
-        explanationToggle.textContent = explanationVisible ? 'Hide explanation' : 'Show explanation';
-        if (explanationVisible) {
-          explanationPanel.replaceChildren();
-          const answerTitle = document.createElement('strong');
-          const answerOption = quiz.options.find(option => String(option).trim().toUpperCase().startsWith(correctLetter + '.'));
-          answerTitle.textContent = correctLetter && answerOption ? 'Correct answer: ' + answerOption : 'Answer explanation';
-          const answerDetail = document.createElement('p');
-          answerDetail.textContent = quiz.explanation || 'No explanation has been published for this question yet.';
-          answerDetail.style.marginBottom = '0';
-          explanationPanel.append(answerTitle, answerDetail);
-          [...options.children].forEach((button, index) => {
-            const optionLetter = String(quiz.options[index] || '').split('.')[0].trim().toUpperCase();
-            if (correctLetter && optionLetter === correctLetter) button.classList.add('correct');
-          });
-          explanationPanel.scrollIntoView({behavior:'smooth',block:'nearest'});
-        }
-      });
-      actions.appendChild(explanationToggle);
-      actions.appendChild(explanationPanel);
-      actions.appendChild(quizButton('Reveal answer & explanation', () => {
-        const saved = (readQuizProgress().answers || {})[state.date];
-        const chosen = saved && saved.answer;
-        if (chosen) {
-          showFeedback(chosen, false);
-          const result = chosen === correctLetter ? 'Your answer is correct.' : 'Your answer is incorrect.';
-          const resultTitle = document.createElement('strong');
-          resultTitle.textContent = result;
-          feedback.prepend(resultTitle);
-        } else {
-          [...options.children].forEach((button, index) => {
-            const optionLetter = String(quiz.options[index] || '').split('.')[0].trim().toUpperCase();
-            button.disabled = true;
-            if (correctLetter && optionLetter === correctLetter) button.classList.add('correct');
-          });
-          feedback.replaceChildren();
-          const resultTitle = document.createElement('strong');
-          const answerOption = quiz.options.find(option => String(option).trim().toUpperCase().startsWith(correctLetter + '.'));
-          resultTitle.textContent = answerOption ? 'Correct answer: ' + answerOption : 'Answer reveal';
-          const detail = document.createElement('p');
-          detail.textContent = quiz.explanation || 'No explanation has been published for this question yet.';
-          feedback.append(resultTitle, detail);
-          feedback.hidden = false;
-        }
-        explanationVisible = false;
-        explanationPanel.hidden = true;
-        explanationToggle.textContent = 'Show explanation';
-        feedback.scrollIntoView({behavior:'smooth',block:'nearest'});
-      }));
-      quizContent.appendChild(actions);
-      updateScore();
-    }
-    function updateScore() {
-      const p = readQuizProgress();
-      quizScore.textContent = 'Your score on this browser: ' + (Number(p.correct)||0) + ' correct / ' + (Number(p.answered)||0) + ' answered. Progress is stored on this device.';
-    }
-    const categoryPicker = document.getElementById('quiz-category');
-    let quizBank = [];
-    let activeQuizDate = new Date().toISOString().slice(0,10);
-    function chooseCategory(category) {
-      const candidates = quizBank.filter(item => item.category === category);
-      if (!candidates.length) return;
-      const chosen = candidates[Math.floor(Math.random() * candidates.length)];
-      renderDailyQuiz({date:activeQuizDate + '-' + category.replace(/[^a-z0-9]/gi,'-'), quiz:chosen});
-    }
-    categoryPicker.addEventListener('change', () => chooseCategory(categoryPicker.value));
-    async function loadDailyQuiz() {
-      try {
-        const response = await fetch('./quiz_bank.json?updated=' + Date.now(), {cache:'no-store'});
-        if (!response.ok) throw new Error('quiz bank unavailable');
-        const bank = await response.json();
-        quizBank = Array.isArray(bank.questions) ? bank.questions : [];
-        const categories = [...new Set(quizBank.map(q => q.category).filter(Boolean))].sort();
-        categoryPicker.replaceChildren();
-        categories.forEach(category => {
-          const option = document.createElement('option');
-          option.value = category; option.textContent = category;
-          categoryPicker.appendChild(option);
-        });
-        if (!categories.length) throw new Error('no categories');
-        categoryPicker.value = categories[0];
-        chooseCategory(categories[0]);
-      } catch (_) {
-        try {
-          const response = await fetch('./quiz_state.json?updated=' + Date.now(), {cache:'no-store'});
-          if (!response.ok) throw new Error('quiz unavailable');
-          const state = await response.json();
-          categoryPicker.replaceChildren();
-          const option = document.createElement('option');
-          option.value = state.quiz.category || 'Daily quiz';
-          option.textContent = option.value;
-          categoryPicker.appendChild(option);
-          renderDailyQuiz(state);
-        } catch (_) {
-          renderQuizError('The quiz is temporarily unavailable. Please check back soon.');
-        }
-      }
-    }
-    loadDailyQuiz();
-
-  </script>
-  <script>
-    const jobsElement = document.getElementById('jobs');
-    const searchElement = document.getElementById('search');
-    const countElement = document.getElementById('count');
-    const roleFilters = document.getElementById('role-filter');
-    let activeRole = 'all';
-    let allJobs = [];
-    function matchesRole(job, role) {
-      const text = [job.title, job.company, job.location].join(' ').toLowerCase();
-      if (role === 'all') return true;
-      if (role === 'qa') return /\b(qa|quality assurance|test|testing|sdet|selenium|playwright|cypress)\b/.test(text);
-      if (role === 'developer') return /developer|software engineer|frontend|front-end|backend|back-end|full.stack|java developer/.test(text);
-      if (role === 'ai') return /artificial intelligence|machine learning|\bai\b|data scientist|data analyst|nlp|computer vision/.test(text);
-      if (role === 'devops') return /devops|cloud engineer|site reliability|kubernetes|aws|azure/.test(text);
-      if (role === 'intern') return /intern|internship/.test(text);
-      if (role === 'remote') return /remote|worldwide|anywhere/.test(text);
-      return true;
-    }
-    function renderJobs() {
-      const q = searchElement.value.trim().toLowerCase();
-      const filtered = allJobs.filter(job => matchesRole(job, activeRole) && [job.title, job.company, job.location].join(' ').toLowerCase().includes(q));
-      countElement.textContent = filtered.length + (filtered.length === 1 ? ' job listing' : ' job listings');
-      jobsElement.replaceChildren();
-      if (!filtered.length) {
-        const empty = document.createElement('div');
-        empty.className = 'empty';
-        empty.textContent = allJobs.length ? 'No jobs match that search. Try another keyword.' : 'New job listings will appear here automatically.';
-        jobsElement.appendChild(empty);
-        return;
-      }
-      filtered.forEach(job => {
-        const card = document.createElement('article');
-        card.className = 'job';
-        const title = document.createElement('h2');
-        title.textContent = job.title || 'Technology job';
-        const meta = document.createElement('div');
-        meta.className = 'meta';
-        const company = document.createElement('span');
-        company.textContent = '🏢 ' + (job.company || 'Company not specified');
-        const location = document.createElement('span');
-        location.textContent = '📍 ' + (job.location || 'Location not specified');
-        meta.append(company, location);
-        if (job.published || job.updated) {
-          const date = document.createElement('span');
-          const rawDate = job.published || job.updated;
-          const parsedDate = new Date(rawDate);
-          date.textContent = Number.isNaN(parsedDate.getTime()) ? '' : '🕒 ' + parsedDate.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
-          if (date.textContent) meta.append(date);
-        }
-        const link = document.createElement('a');
-        link.className = 'apply';
-        link.textContent = 'Apply / View job ↗';
-        link.href = job.url;
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        card.append(title, meta, link);
-        jobsElement.appendChild(card);
-      });
-    }
-    searchElement.addEventListener('input', renderJobs);
-    roleFilters.addEventListener('click', event => {
-      const button = event.target.closest('button[data-role]');
-      if (!button) return;
-      activeRole = button.dataset.role;
-      roleFilters.querySelectorAll('button[data-role]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-      renderJobs();
-    });
-    async function loadJobs() {
-      try {
-        const response = await fetch('./jobs.json?updated=' + Date.now(), {cache:'no-store'});
-        if (!response.ok) throw new Error('Jobs data unavailable');
-        const data = await response.json();
-        allJobs = Array.isArray(data) ? data.filter(job => job && /^https?:\/\//i.test(job.url || '')) : [];
-        renderJobs();
-      } catch (_) {
-        countElement.textContent = 'Job listings are temporarily unavailable.';
-        const empty = document.createElement('div');
-        empty.className = 'empty';
-        empty.textContent = 'Please check back soon.';
-        jobsElement.replaceChildren(empty);
-      }
-    }
-    loadJobs();
-
-    // Refresh published data when a visitor returns to the page.
-    let lastDataRefresh = Date.now();
-    async function refreshPublishedData() {
-      if (Date.now() - lastDataRefresh < 1500) return;
-      lastDataRefresh = Date.now();
-      await Promise.all([loadJobs(), loadDailyQuiz()]);
-    }
-    window.addEventListener('pageshow', refreshPublishedData);
-    document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'visible') refreshPublishedData();
-    });
-  </script>
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel" data-presets="env,react">
     const { useState, useEffect, useMemo, useCallback } = React;
     const QUIZ_PROGRESS_KEY = 'india-job-alert-quiz-v1';
-    const ROLES = [
-      ['all', 'All jobs'], ['qa', 'QA / Testing'], ['developer', 'Developer'],
-      ['ai', 'AI / Data'], ['devops', 'Cloud / DevOps'], ['intern', 'Internships'], ['remote', 'Remote']
-    ];
-
+    const ROLES = [['all','All jobs'],['qa','QA / Testing'],['developer','Developer'],['ai','AI / Data'],['devops','Cloud / DevOps'],['intern','Internships'],['remote','Remote']];
     function readProgress() {
       try { return JSON.parse(localStorage.getItem(QUIZ_PROGRESS_KEY) || '{"correct":0,"answered":0,"answers":{}}'); }
-      catch (_) { return { correct: 0, answered: 0, answers: {} }; }
+      catch (_) { return {correct:0,answered:0,answers:{}}; }
     }
     function getQuestionLetter(option) { return String(option || '').split('.')[0].trim().toUpperCase(); }
     function matchesRole(job, role) {
-      const value = [job.title, job.company, job.location].join(' ').toLowerCase();
+      const value = [job.title,job.company,job.location].join(' ').toLowerCase();
       if (role === 'all') return true;
       if (role === 'qa') return /\b(qa|quality assurance|test|testing|sdet|selenium|playwright|cypress)\b/.test(value);
       if (role === 'developer') return /developer|software engineer|frontend|front-end|backend|back-end|full.stack|java developer/.test(value);
@@ -369,28 +91,26 @@
       if (role === 'remote') return /remote|worldwide|anywhere/.test(value);
       return true;
     }
-
     function QuizSection() {
-      const [bank, setBank] = useState([]);
-      const [dailyState, setDailyState] = useState(null);
-      const [category, setCategory] = useState('');
-      const [selected, setSelected] = useState('');
-      const [revealed, setRevealed] = useState(false);
-      const [showExplanation, setShowExplanation] = useState(false);
-      const [loading, setLoading] = useState(true);
-      const [error, setError] = useState('');
-      const [progress, setProgress] = useState(readProgress);
-      const [questionNonce, setQuestionNonce] = useState(0);
-      const categories = useMemo(() => [...new Set(bank.map(item => item.category).filter(Boolean))].sort(), [bank]);
+      const [bank,setBank] = useState([]);
+      const [dailyState,setDailyState] = useState(null);
+      const [category,setCategory] = useState('');
+      const [selected,setSelected] = useState('');
+      const [revealed,setRevealed] = useState(false);
+      const [showExplanation,setShowExplanation] = useState(false);
+      const [loading,setLoading] = useState(true);
+      const [error,setError] = useState('');
+      const [progress,setProgress] = useState(readProgress);
+      const [questionNonce,setQuestionNonce] = useState(0);
+      const categories = useMemo(() => [...new Set(bank.map(item => item.category).filter(Boolean))].sort(),[bank]);
       const currentQuestion = useMemo(() => {
         const list = bank.filter(item => item.category === category);
         return list.length ? list[questionNonce % list.length] : null;
-      }, [bank, category, questionNonce]);
-
+      },[bank,category,questionNonce]);
       const loadQuiz = useCallback(async () => {
         setLoading(true); setError('');
         try {
-          const response = await fetch('./quiz_bank.json?updated=' + Date.now(), { cache: 'no-store' });
+          const response = await fetch('./quiz_bank.json?updated=' + Date.now(),{cache:'no-store'});
           if (!response.ok) throw new Error('quiz bank unavailable');
           const data = await response.json();
           const questions = Array.isArray(data.questions) ? data.questions.filter(q => q && q.category && q.question && Array.isArray(q.options)) : [];
@@ -400,170 +120,132 @@
           setDailyState(null);
         } catch (_) {
           try {
-            const response = await fetch('./quiz_state.json?updated=' + Date.now(), { cache: 'no-store' });
+            const response = await fetch('./quiz_state.json?updated=' + Date.now(),{cache:'no-store'});
             if (!response.ok) throw new Error('daily quiz unavailable');
             const state = await response.json();
             if (!state.quiz || !Array.isArray(state.quiz.options)) throw new Error('invalid quiz');
             setDailyState(state); setBank([]); setCategory(state.quiz.category || 'Daily quiz');
           } catch (_) { setError('The quiz is temporarily unavailable. Please check back soon.'); }
         } finally { setLoading(false); }
-      }, []);
-
-      useEffect(() => { loadQuiz(); }, [loadQuiz]);
+      },[]);
+      useEffect(() => { loadQuiz(); },[loadQuiz]);
       const quiz = dailyState ? dailyState.quiz : currentQuestion;
-      const quizDate = dailyState?.date || (new Date().toLocaleDateString('en-CA') + '-' + category + '-' + (quiz?.question || '').slice(0, 36));
+      const quizDate = dailyState?.date || (new Date().toLocaleDateString('en-CA') + '-' + category + '-' + (quiz?.question || '').slice(0,36));
       const answerLetter = getQuestionLetter(quiz?.answer);
       const correctOption = quiz?.options?.find(option => getQuestionLetter(option) === answerLetter);
       const savedAnswer = progress.answers?.[quizDate];
-
       useEffect(() => {
         setSelected(savedAnswer?.answer || ''); setRevealed(false); setShowExplanation(false);
-      }, [quizDate, quiz?.question]);
-
+      },[quizDate,quiz?.question]);
       useEffect(() => {
         const refresh = () => { if (document.visibilityState === 'visible') loadQuiz(); };
-        window.addEventListener('pageshow', refresh);
-        document.addEventListener('visibilitychange', refresh);
-        return () => {
-          window.removeEventListener('pageshow', refresh);
-          document.removeEventListener('visibilitychange', refresh);
-        };
-      }, [loadQuiz]);
-
+        window.addEventListener('pageshow',refresh);
+        document.addEventListener('visibilitychange',refresh);
+        return () => { window.removeEventListener('pageshow',refresh); document.removeEventListener('visibilitychange',refresh); };
+      },[loadQuiz]);
       function answerQuestion(letter) {
         if (selected || savedAnswer || revealed) return;
         setSelected(letter);
         const next = readProgress(); next.answers = next.answers || {};
         const correct = letter === answerLetter;
         if (!next.answers[quizDate]) {
-          next.answers[quizDate] = { answer: letter, correct };
-          next.answered = (Number(next.answered) || 0) + 1;
-          if (correct) next.correct = (Number(next.correct) || 0) + 1;
-          try { localStorage.setItem(QUIZ_PROGRESS_KEY, JSON.stringify(next)); } catch (_) {}
+          next.answers[quizDate] = {answer:letter,correct};
+          next.answered = (Number(next.answered)||0) + 1;
+          if (correct) next.correct = (Number(next.correct)||0) + 1;
+          try { localStorage.setItem(QUIZ_PROGRESS_KEY,JSON.stringify(next)); } catch (_) {}
           setProgress(next);
         }
       }
-      function revealAnswer() {
-        setSelected(savedAnswer?.answer || selected); setRevealed(true); setShowExplanation(true);
-      }
-      function changeCategory(nextCategory) {
-        setCategory(nextCategory); setDailyState(null); setQuestionNonce(0);
-      }
+      function revealAnswer() { setSelected(savedAnswer?.answer || selected); setRevealed(true); setShowExplanation(true); }
+      function changeCategory(next) { setCategory(next); setDailyState(null); setQuestionNonce(0); setSelected(''); setRevealed(false); setShowExplanation(false); }
       function nextQuestion() {
         const count = bank.filter(item => item.category === category).length;
         if (count > 1) setQuestionNonce(n => (n + 1) % count);
         setSelected(''); setRevealed(false); setShowExplanation(false);
       }
-
-      return (
-        <section className="quiz-section" id="daily-quiz" aria-labelledby="quiz-heading">
-          <div className="quiz-kicker">DAILY INTERVIEW PRACTICE</div>
-          <h2 id="quiz-heading">Tech interview quiz</h2>
-          <p className="quiz-muted">{loading ? 'Loading quiz categories…' : error || (quiz ? (quiz.category || category) + ' · Choose an answer, then reveal the solution and explanation.' : 'Choose a category to begin.')}</p>
-          <label htmlFor="quiz-category" className="quiz-muted">Quiz category</label>
-          <select id="quiz-category" aria-label="Choose quiz category" value={category} onChange={event => changeCategory(event.target.value)}
-            disabled={loading || (!!dailyState && !bank.length)}
-            style={{display:'block',width:'100%',margin:'8px 0 14px',padding:12,border:'1px solid #d6e0ef',borderRadius:12,background:'#fff',font:'inherit',color:'var(--ink)'}}>
-            {loading && <option value="">Loading categories…</option>}
-            {!loading && categories.map(item => <option key={item} value={item}>{item}</option>)}
-            {!loading && dailyState && !categories.length && <option value={category}>{category}</option>}
-          </select>
-          {loading && <div className="empty">Loading quiz questions…</div>}
-          {!loading && error && <div className="empty">{error} <button className="quiz-action" onClick={loadQuiz}>Try again</button></div>}
-          {!loading && !error && quiz && <>
-            <p style={{fontSize:17,fontWeight:750,lineHeight:1.5,margin:'16px 0'}}>{quiz.question}</p>
-            <div id="quiz-options">
-              {quiz.options.map(option => {
-                const letter = getQuestionLetter(option);
-                const answered = !!(selected || savedAnswer);
-                let className = 'quiz-option';
-                if ((revealed || answered) && letter === answerLetter) className += ' correct';
-                if (answered && letter === (savedAnswer?.answer || selected) && letter !== answerLetter) className += ' incorrect';
-                return <button key={option} type="button" className={className} disabled={answered || revealed} onClick={() => answerQuestion(letter)}>{option}</button>;
-              })}
-            </div>
-            {(selected || savedAnswer || revealed) && <div className="quiz-feedback" aria-live="polite">
-              <strong>{(savedAnswer?.answer || selected) ? ((savedAnswer?.answer || selected) === answerLetter ? 'Correct answer!' : 'Not quite — review the correct answer.') : 'Correct answer: ' + (correctOption || answerLetter)}</strong>
-              {(selected || savedAnswer) && <p>{(savedAnswer?.answer || selected) === answerLetter ? 'Your answer is correct.' : 'Your answer is incorrect.'}</p>}
-              {(revealed || selected || savedAnswer) && <p>{correctOption || answerLetter}{quiz.explanation ? ' — ' + quiz.explanation : ''}</p>}
-            </div>}
-            <div className="quiz-actions">
-              <button type="button" className="quiz-action" onClick={() => setShowExplanation(value => !value)}>{showExplanation ? 'Hide explanation' : 'Show explanation'}</button>
-              <button type="button" className="quiz-action primary" onClick={revealAnswer}>Reveal answer &amp; explanation</button>
-              {!dailyState && <button type="button" className="quiz-action" onClick={nextQuestion}>Next question</button>}
-            </div>
-            {showExplanation && <div className="quiz-feedback">
-              <strong>Correct answer: {correctOption || answerLetter}</strong>
-              <p style={{marginBottom:0}}>{quiz.explanation || 'No explanation has been published for this question yet.'}</p>
-            </div>}
-          </>}
-          <p className="quiz-score" aria-live="polite">Your score on this browser: {Number(progress.correct)||0} correct / {Number(progress.answered)||0} answered. Progress is stored on this device.</p>
-        </section>
-      );
+      return <section className="quiz-section" id="daily-quiz" aria-labelledby="quiz-heading">
+        <div className="quiz-kicker">DAILY INTERVIEW PRACTICE</div>
+        <h2 id="quiz-heading">Tech interview quiz</h2>
+        <p className="quiz-muted">{loading ? 'Loading quiz categories…' : error || (quiz ? (quiz.category || category) + ' · Choose an answer, then reveal the solution and explanation.' : 'Choose a category to begin.')}</p>
+        <label htmlFor="quiz-category" className="quiz-muted">Quiz category</label>
+        <select id="quiz-category" aria-label="Choose quiz category" value={category} onChange={event => changeCategory(event.target.value)} disabled={loading || (!!dailyState && !bank.length)}
+          style={{display:'block',width:'100%',margin:'8px 0 14px',padding:12,border:'1px solid #d6e0ef',borderRadius:12,background:'#fff',font:'inherit',color:'var(--ink)'}}>
+          {loading && <option value="">Loading categories…</option>}
+          {!loading && categories.map(item => <option key={item} value={item}>{item}</option>)}
+          {!loading && dailyState && !categories.length && <option value={category}>{category}</option>}
+        </select>
+        {loading && <div className="empty">Loading quiz questions…</div>}
+        {!loading && error && <div className="empty">{error} <button className="quiz-action" onClick={loadQuiz}>Try again</button></div>}
+        {!loading && !error && quiz && <>
+          <p style={{fontSize:17,fontWeight:750,lineHeight:1.5,margin:'16px 0'}}>{quiz.question}</p>
+          <div id="quiz-options">{quiz.options.map(option => {
+            const letter = getQuestionLetter(option);
+            const answered = !!(selected || savedAnswer);
+            let cls = 'quiz-option';
+            if ((revealed || answered) && letter === answerLetter) cls += ' correct';
+            if (answered && letter === (savedAnswer?.answer || selected) && letter !== answerLetter) cls += ' incorrect';
+            return <button key={option} type="button" className={cls} disabled={answered || revealed} onClick={() => answerQuestion(letter)}>{option}</button>;
+          })}</div>
+          {(selected || savedAnswer || revealed) && <div className="quiz-feedback" aria-live="polite">
+            <strong>{(savedAnswer?.answer || selected) ? ((savedAnswer?.answer || selected) === answerLetter ? 'Correct answer!' : 'Not quite — review the correct answer.') : 'Correct answer: ' + (correctOption || answerLetter)}</strong>
+            {(selected || savedAnswer) && <p>{(savedAnswer?.answer || selected) === answerLetter ? 'Your answer is correct.' : 'Your answer is incorrect.'}</p>}
+            {(revealed || selected || savedAnswer) && <p>{correctOption || answerLetter}{quiz.explanation ? ' — ' + quiz.explanation : ''}</p>}
+          </div>}
+          <div className="quiz-actions">
+            <button type="button" className="quiz-action" onClick={() => setShowExplanation(v => !v)}>{showExplanation ? 'Hide explanation' : 'Show explanation'}</button>
+            <button type="button" className="quiz-action primary" onClick={revealAnswer}>Reveal answer &amp; explanation</button>
+            {!dailyState && <button type="button" className="quiz-action" onClick={nextQuestion}>Next question</button>}
+          </div>
+          {showExplanation && <div className="quiz-feedback"><strong>Correct answer: {correctOption || answerLetter}</strong><p style={{marginBottom:0}}>{quiz.explanation || 'No explanation has been published for this question yet.'}</p></div>}
+        </>}
+        <p className="quiz-score" aria-live="polite">Your score on this browser: {Number(progress.correct)||0} correct / {Number(progress.answered)||0} answered. Progress is stored on this device.</p>
+      </section>;
     }
-
     function JobsSection() {
-      const [jobs, setJobs] = useState([]);
-      const [query, setQuery] = useState('');
-      const [role, setRole] = useState('all');
-      const [loading, setLoading] = useState(true);
-      const [error, setError] = useState('');
+      const [jobs,setJobs] = useState([]);
+      const [query,setQuery] = useState('');
+      const [role,setRole] = useState('all');
+      const [loading,setLoading] = useState(true);
+      const [error,setError] = useState('');
       const loadJobs = useCallback(async () => {
         setLoading(true);
         try {
-          const response = await fetch('./jobs.json?updated=' + Date.now(), { cache: 'no-store' });
+          const response = await fetch('./jobs.json?updated=' + Date.now(),{cache:'no-store'});
           if (!response.ok) throw new Error('Jobs data unavailable');
           const data = await response.json();
           setJobs(Array.isArray(data) ? data.filter(job => job && /^https?:\\/\\//i.test(job.url || '')) : []);
           setError('');
         } catch (_) { setError('Job listings are temporarily unavailable. Please check back soon.'); }
         finally { setLoading(false); }
-      }, []);
+      },[]);
       useEffect(() => {
         loadJobs();
         const refresh = () => { if (document.visibilityState === 'visible') loadJobs(); };
-        window.addEventListener('pageshow', refresh);
-        document.addEventListener('visibilitychange', refresh);
-        return () => {
-          window.removeEventListener('pageshow', refresh);
-          document.removeEventListener('visibilitychange', refresh);
-        };
-      }, [loadJobs]);
-      const filtered = useMemo(() => jobs.filter(job =>
-        matchesRole(job, role) && [job.title, job.company, job.location].join(' ').toLowerCase().includes(query.trim().toLowerCase())
-      ), [jobs, role, query]);
+        window.addEventListener('pageshow',refresh);
+        document.addEventListener('visibilitychange',refresh);
+        return () => { window.removeEventListener('pageshow',refresh); document.removeEventListener('visibilitychange',refresh); };
+      },[loadJobs]);
+      const filtered = useMemo(() => jobs.filter(job => matchesRole(job,role) && [job.title,job.company,job.location].join(' ').toLowerCase().includes(query.trim().toLowerCase())),[jobs,role,query]);
       return <>
-        <div className="tools">
-          <input type="search" aria-label="Search jobs" placeholder="Search role, company, or location…" value={query} onChange={event => setQuery(event.target.value)} />
-        </div>
-        <div className="filters" aria-label="Filter jobs by role">
-          {ROLES.map(([value, label]) => <button key={value} type="button" className="filter" aria-pressed={role === value} onClick={() => setRole(value)}>{label}</button>)}
-        </div>
+        <div className="tools"><input type="search" aria-label="Search jobs" placeholder="Search role, company, or location…" value={query} onChange={event => setQuery(event.target.value)} /></div>
+        <div className="filters" aria-label="Filter jobs by role">{ROLES.map(([value,label]) => <button key={value} type="button" className="filter" aria-pressed={role === value} onClick={() => setRole(value)}>{label}</button>)}</div>
         <p className="count">{loading ? 'Loading latest jobs…' : error || (filtered.length + (filtered.length === 1 ? ' job listing' : ' job listings'))}</p>
         <section id="jobs" aria-live="polite">
           {!loading && !error && filtered.length === 0 && <div className="empty">{jobs.length ? 'No jobs match that search. Try another keyword.' : 'New job listings will appear here automatically.'}</div>}
-          {filtered.map((job, index) => {
-            const rawDate = job.published || job.updated;
-            const parsedDate = rawDate ? new Date(rawDate) : null;
+          {filtered.map((job,index) => {
+            const rawDate = job.published || job.updated; const parsedDate = rawDate ? new Date(rawDate) : null;
             return <article className="job" key={job.url || (job.title + '-' + index)}>
-              <h2>{job.title || 'Technology job'}</h2>
-              <div className="meta">
-                <span>🏢 {job.company || 'Company not specified'}</span><span>📍 {job.location || 'Location not specified'}</span>
-                {parsedDate && !Number.isNaN(parsedDate.getTime()) && <span>🕒 {parsedDate.toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'})}</span>}
-              </div>
+              <h2>{job.title || 'Technology job'}</h2><div className="meta"><span>🏢 {job.company || 'Company not specified'}</span><span>📍 {job.location || 'Location not specified'}</span>
+              {parsedDate && !Number.isNaN(parsedDate.getTime()) && <span>🕒 {parsedDate.toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'})}</span>}</div>
               <a className="apply" href={job.url} target="_blank" rel="noopener noreferrer">Apply / View job ↗</a>
             </article>;
           })}
         </section>
       </>;
     }
-
     function App() {
-      return <main>
-        <QuizSection />
-        <JobsSection />
-        <section className="help">
-          <h2>Job seeker quick help</h2>
+      return <main><QuizSection /><JobsSection />
+        <section className="help"><h2>Job seeker quick help</h2>
           <p><strong>How do I apply?</strong> Open a listing and tap “Apply / View job” to visit the original employer or job-board page. Follow its instructions.</p>
           <p><strong>Are these jobs verified?</strong> Listings are collected from external sources. Check the employer’s official website, eligibility, deadline and URL before sharing personal information.</p>
           <p><strong>Is it free?</strong> India Job Alert does not charge candidates to browse listings or apply.</p>
