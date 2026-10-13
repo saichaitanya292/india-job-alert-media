@@ -71,7 +71,9 @@
     <section class="quiz-section" id="daily-quiz" aria-labelledby="quiz-heading">
       <div class="quiz-kicker">DAILY INTERVIEW PRACTICE</div>
       <h2 id="quiz-heading">Tech interview quiz</h2>
-      <p class="quiz-muted" id="quiz-status">Loading today's question…</p>
+      <p class="quiz-muted" id="quiz-status">Choose a category, answer the question, then reveal the answer and explanation.</p>
+      <label for="quiz-category" class="quiz-muted">Quiz category</label>
+      <select id="quiz-category" aria-label="Choose quiz category" style="display:block;width:100%;margin:8px 0 14px;padding:12px;border:1px solid #d6e0ef;border-radius:12px;background:#fff;font:inherit;color:var(--ink)"><option value="">Loading categories…</option></select>
       <div id="quiz-content"></div>
       <p class="quiz-score" id="quiz-score" aria-live="polite"></p>
     </section>
@@ -230,13 +232,46 @@
       const p = readQuizProgress();
       quizScore.textContent = 'Your score on this browser: ' + (Number(p.correct)||0) + ' correct / ' + (Number(p.answered)||0) + ' answered. Progress is stored on this device.';
     }
+    const categoryPicker = document.getElementById('quiz-category');
+    let quizBank = [];
+    let activeQuizDate = new Date().toISOString().slice(0,10);
+    function chooseCategory(category) {
+      const candidates = quizBank.filter(item => item.category === category);
+      if (!candidates.length) return;
+      const chosen = candidates[Math.floor(Math.random() * candidates.length)];
+      renderDailyQuiz({date:activeQuizDate + '-' + category.replace(/[^a-z0-9]/gi,'-'), quiz:chosen});
+    }
+    categoryPicker.addEventListener('change', () => chooseCategory(categoryPicker.value));
     async function loadDailyQuiz() {
       try {
-        const response = await fetch('./quiz_state.json?updated=' + Date.now(), {cache:'no-store'});
-        if (!response.ok) throw new Error('quiz unavailable');
-        renderDailyQuiz(await response.json());
+        const response = await fetch('./quiz_bank.json?updated=' + Date.now(), {cache:'no-store'});
+        if (!response.ok) throw new Error('quiz bank unavailable');
+        const bank = await response.json();
+        quizBank = Array.isArray(bank.questions) ? bank.questions : [];
+        const categories = [...new Set(quizBank.map(q => q.category).filter(Boolean))].sort();
+        categoryPicker.replaceChildren();
+        categories.forEach(category => {
+          const option = document.createElement('option');
+          option.value = category; option.textContent = category;
+          categoryPicker.appendChild(option);
+        });
+        if (!categories.length) throw new Error('no categories');
+        categoryPicker.value = categories[0];
+        chooseCategory(categories[0]);
       } catch (_) {
-        renderQuizError('The quiz is temporarily unavailable. Please check back soon.');
+        try {
+          const response = await fetch('./quiz_state.json?updated=' + Date.now(), {cache:'no-store'});
+          if (!response.ok) throw new Error('quiz unavailable');
+          const state = await response.json();
+          categoryPicker.replaceChildren();
+          const option = document.createElement('option');
+          option.value = state.quiz.category || 'Daily quiz';
+          option.textContent = option.value;
+          categoryPicker.appendChild(option);
+          renderDailyQuiz(state);
+        } catch (_) {
+          renderQuizError('The quiz is temporarily unavailable. Please check back soon.');
+        }
       }
     }
     loadDailyQuiz();
