@@ -1,14 +1,14 @@
 {
-  "date": "2026-10-13",
+  "date": "2026-10-14",
   "mode": "quiz",
-  "question": "Which Selenium 4 class is commonly used to create a new browser tab or window?",
+  "question": "Which Python collection preserves insertion order and stores key-value pairs?",
   "options": [
-    "A. Select",
-    "B. Actions",
-    "C. WebDriver.TargetLocator",
-    "D. WebDriver.switchTo().newWindow(...)"
+    "A. set",
+    "B. dict",
+    "C. frozenset",
+    "D. tuple"
   ],
   "answer": null,
   "explanation": null,
-  "image": "https://raw.githubusercontent.com/saichaitanya292/india-job-alert-media/main/images/quiz-2026-10-13-selenium.jpg"
+  "image": "https://raw.githubusercontent.com/saichaitanya292/india-job-alert-media/main/images/quiz-2026-10-14-python.jpg"
 }
