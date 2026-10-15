@@ -1,14 +1,14 @@
 {
-  "date": "2026-10-14",
+  "date": "2026-10-15",
   "mode": "quiz",
-  "question": "Which Python collection preserves insertion order and stores key-value pairs?",
+  "question": "Which SQL clause filters grouped rows after aggregate calculations?",
   "options": [
-    "A. set",
-    "B. dict",
-    "C. frozenset",
-    "D. tuple"
+    "A. WHERE",
+    "B. ORDER BY",
+    "C. HAVING",
+    "D. DISTINCT"
   ],
   "answer": null,
   "explanation": null,
-  "image": "https://raw.githubusercontent.com/saichaitanya292/india-job-alert-media/main/images/quiz-2026-10-14-python.jpg"
+  "image": "https://raw.githubusercontent.com/saichaitanya292/india-job-alert-media/main/images/quiz-2026-10-15-sql.jpg"
 }

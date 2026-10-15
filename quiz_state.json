@@ -1,16 +1,16 @@
 {
-  "last_index": 2,
-  "date": "2026-10-14",
+  "last_index": 3,
+  "date": "2026-10-15",
   "quiz": {
-    "category": "Python",
-    "question": "Which Python collection preserves insertion order and stores key-value pairs?",
+    "category": "SQL",
+    "question": "Which SQL clause filters grouped rows after aggregate calculations?",
     "options": [
-      "A. set",
-      "B. dict",
-      "C. frozenset",
-      "D. tuple"
+      "A. WHERE",
+      "B. ORDER BY",
+      "C. HAVING",
+      "D. DISTINCT"
     ],
-    "answer": "B",
-    "explanation": "Python dictionaries preserve insertion order and map unique keys to values."
+    "answer": "C",
+    "explanation": "HAVING filters groups after GROUP BY and aggregate calculations; WHERE filters rows before grouping."
   }
 }
