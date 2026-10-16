@@ -1,14 +1,14 @@
 {
-  "date": "2026-10-15",
+  "date": "2026-10-16",
   "mode": "quiz",
-  "question": "Which SQL clause filters grouped rows after aggregate calculations?",
+  "question": "In Playwright, what is the main benefit of using getByRole('button', { name: 'Save' })?",
   "options": [
-    "A. WHERE",
-    "B. ORDER BY",
-    "C. HAVING",
-    "D. DISTINCT"
+    "A. It selects by accessible role and name",
+    "B. It disables browser waits",
+    "C. It bypasses authentication",
+    "D. It runs only in Chromium"
   ],
   "answer": null,
   "explanation": null,
-  "image": "https://raw.githubusercontent.com/saichaitanya292/india-job-alert-media/main/images/quiz-2026-10-15-sql.jpg"
+  "image": "https://raw.githubusercontent.com/saichaitanya292/india-job-alert-media/main/images/quiz-2026-10-16-playwright.jpg"
 }

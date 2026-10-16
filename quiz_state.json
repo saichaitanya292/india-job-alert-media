@@ -1,16 +1,16 @@
 {
-  "last_index": 3,
-  "date": "2026-10-15",
+  "last_index": 4,
+  "date": "2026-10-16",
   "quiz": {
-    "category": "SQL",
-    "question": "Which SQL clause filters grouped rows after aggregate calculations?",
+    "category": "Playwright",
+    "question": "In Playwright, what is the main benefit of using getByRole('button', { name: 'Save' })?",
     "options": [
-      "A. WHERE",
-      "B. ORDER BY",
-      "C. HAVING",
-      "D. DISTINCT"
+      "A. It selects by accessible role and name",
+      "B. It disables browser waits",
+      "C. It bypasses authentication",
+      "D. It runs only in Chromium"
     ],
-    "answer": "C",
-    "explanation": "HAVING filters groups after GROUP BY and aggregate calculations; WHERE filters rows before grouping."
+    "answer": "A",
+    "explanation": "Role-based locators use accessibility semantics and an accessible name, generally making tests more user-centered and resilient."
   }
 }
