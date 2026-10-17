@@ -1,16 +1,16 @@
 {
-  "last_index": 4,
-  "date": "2026-10-16",
+  "last_index": 5,
+  "date": "2026-10-17",
   "quiz": {
-    "category": "Playwright",
-    "question": "In Playwright, what is the main benefit of using getByRole('button', { name: 'Save' })?",
+    "category": "API Testing",
+    "question": "Which HTTP status code usually indicates that a request succeeded and a resource was created?",
     "options": [
-      "A. It selects by accessible role and name",
-      "B. It disables browser waits",
-      "C. It bypasses authentication",
-      "D. It runs only in Chromium"
+      "A. 200",
+      "B. 201",
+      "C. 301",
+      "D. 404"
     ],
-    "answer": "A",
-    "explanation": "Role-based locators use accessibility semantics and an accessible name, generally making tests more user-centered and resilient."
+    "answer": "B",
+    "explanation": "201 Created indicates that the request succeeded and created a resource."
   }
 }

@@ -1,14 +1,14 @@
 {
-  "date": "2026-10-16",
+  "date": "2026-10-17",
   "mode": "quiz",
-  "question": "In Playwright, what is the main benefit of using getByRole('button', { name: 'Save' })?",
+  "question": "Which HTTP status code usually indicates that a request succeeded and a resource was created?",
   "options": [
-    "A. It selects by accessible role and name",
-    "B. It disables browser waits",
-    "C. It bypasses authentication",
-    "D. It runs only in Chromium"
+    "A. 200",
+    "B. 201",
+    "C. 301",
+    "D. 404"
   ],
   "answer": null,
   "explanation": null,
-  "image": "https://raw.githubusercontent.com/saichaitanya292/india-job-alert-media/main/images/quiz-2026-10-16-playwright.jpg"
+  "image": "https://raw.githubusercontent.com/saichaitanya292/india-job-alert-media/main/images/quiz-2026-10-17-api-testing.jpg"
 }
