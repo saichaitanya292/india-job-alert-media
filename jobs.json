@@ -504,14 +504,6 @@
     "updated": "2026-10-16T16:27:02.803972+00:00"
   },
   {
-    "title": "3D Generalist (Talent Pool)",
-    "company": "See original listing",
-    "location": "Not specified",
-    "url": "https://himalayas.app/companies/indg/jobs/3d-generalist-talent-pool",
-    "published": "2026-10-16T16:20:18+00:00",
-    "updated": "2026-10-16T16:27:02.803972+00:00"
-  },
-  {
     "title": "Recruitment Administrator - Jnr",
     "company": "See original listing",
     "location": "Not specified",
@@ -1140,14 +1132,6 @@
     "company": "See original listing",
     "location": "Not specified",
     "url": "https://himalayas.app/companies/gofluent/jobs/corporate-slovak-trainer",
-    "published": "2026-10-16T00:11:03+00:00",
-    "updated": "2026-10-16T00:18:21.969060+00:00"
-  },
-  {
-    "title": "Python Senior Software Engineer, AI Training",
-    "company": "See original listing",
-    "location": "Not specified",
-    "url": "https://himalayas.app/companies/g2i/jobs/python-senior-software-engineer-ai-training",
     "published": "2026-10-16T00:11:03+00:00",
     "updated": "2026-10-16T00:18:21.969060+00:00"
   },
@@ -2398,5 +2382,21 @@
     "url": "https://himalayas.app/companies/cedars-sinai-medical-center/jobs/family-medicine-physician-virtual-overnight-100-remote-primary-care-cs-c",
     "published": "2026-10-14T20:16:49+00:00",
     "updated": "2026-10-14T20:32:43.074631+00:00"
+  },
+  {
+    "title": "Reporting Manager",
+    "company": "Heritage Holdings",
+    "location": "Worldwide (Remote)",
+    "url": "https://himalayas.app/companies/heritage-holdings/jobs/reporting-manager",
+    "published": "1970-01-21T17:50:03.271000+00:00",
+    "updated": "2026-10-17T02:51:31.265707+00:00"
+  },
+  {
+    "title": "Vice President, Strategic Growth",
+    "company": "AffirmedRx, PBC",
+    "location": "Worldwide (Remote)",
+    "url": "https://himalayas.app/companies/affirmedrx-pbc/jobs/vice-president-strategic-growth-4175888640",
+    "published": "1970-01-21T17:50:01.595000+00:00",
+    "updated": "2026-10-17T02:51:31.265707+00:00"
   }
 ]
