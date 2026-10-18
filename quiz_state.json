@@ -1,16 +1,16 @@
 {
-  "last_index": 5,
-  "date": "2026-10-17",
+  "last_index": 6,
+  "date": "2026-10-18",
   "quiz": {
-    "category": "API Testing",
-    "question": "Which HTTP status code usually indicates that a request succeeded and a resource was created?",
+    "category": "Testing",
+    "question": "What is the primary purpose of a regression test?",
     "options": [
-      "A. 200",
-      "B. 201",
-      "C. 301",
-      "D. 404"
+      "A. To measure network speed only",
+      "B. To prove every bug is impossible",
+      "C. To check existing behavior after a change",
+      "D. To replace all exploratory testing"
     ],
-    "answer": "B",
-    "explanation": "201 Created indicates that the request succeeded and created a resource."
+    "answer": "C",
+    "explanation": "Regression tests check that previously working functionality still works after code changes."
   }
 }
