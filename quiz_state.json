@@ -1,16 +1,16 @@
 {
-  "last_index": 6,
-  "date": "2026-10-18",
+  "last_index": 7,
+  "date": "2026-10-19",
   "quiz": {
-    "category": "Testing",
-    "question": "What is the primary purpose of a regression test?",
+    "category": "AI/ML",
+    "question": "What does overfitting mean in machine learning?",
     "options": [
-      "A. To measure network speed only",
-      "B. To prove every bug is impossible",
-      "C. To check existing behavior after a change",
-      "D. To replace all exploratory testing"
+      "A. The model performs well on training data but generalizes poorly",
+      "B. The model has no training data",
+      "C. The model always predicts the majority class by design",
+      "D. The model cannot calculate a loss"
     ],
-    "answer": "C",
-    "explanation": "Regression tests check that previously working functionality still works after code changes."
+    "answer": "A",
+    "explanation": "An overfit model learns training-specific patterns, including noise, and often performs worse on unseen data."
   }
 }
