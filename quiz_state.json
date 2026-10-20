@@ -1,16 +1,16 @@
 {
-  "last_index": 7,
-  "date": "2026-10-19",
+  "last_index": 8,
+  "date": "2026-10-20",
   "quiz": {
-    "category": "AI/ML",
-    "question": "What does overfitting mean in machine learning?",
+    "category": "Git",
+    "question": "Which Git command creates a new branch and switches to it in one step?",
     "options": [
-      "A. The model performs well on training data but generalizes poorly",
-      "B. The model has no training data",
-      "C. The model always predicts the majority class by design",
-      "D. The model cannot calculate a loss"
+      "A. git merge",
+      "B. git status",
+      "C. git log",
+      "D. git switch -c branch-name"
     ],
-    "answer": "A",
-    "explanation": "An overfit model learns training-specific patterns, including noise, and often performs worse on unseen data."
+    "answer": "D",
+    "explanation": "git switch -c creates the branch and switches the working tree to it."
   }
 }

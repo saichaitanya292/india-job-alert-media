@@ -1,14 +1,14 @@
 {
-  "date": "2026-10-19",
+  "date": "2026-10-20",
   "mode": "quiz",
-  "question": "What does overfitting mean in machine learning?",
+  "question": "Which Git command creates a new branch and switches to it in one step?",
   "options": [
-    "A. The model performs well on training data but generalizes poorly",
-    "B. The model has no training data",
-    "C. The model always predicts the majority class by design",
-    "D. The model cannot calculate a loss"
+    "A. git merge",
+    "B. git status",
+    "C. git log",
+    "D. git switch -c branch-name"
   ],
   "answer": null,
   "explanation": null,
-  "image": "https://raw.githubusercontent.com/saichaitanya292/india-job-alert-media/main/images/quiz-2026-10-19-ai-ml.jpg"
+  "image": "https://raw.githubusercontent.com/saichaitanya292/india-job-alert-media/main/images/quiz-2026-10-20-git.jpg"
 }
