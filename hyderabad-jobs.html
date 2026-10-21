@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0750a5">
+<meta name="description" content="Search Hyderabad jobs with direct application links. Browse Hyderabad, HITEC City, Gachibowli, Madhapur and nearby openings.">
+<title>Hyderabad Jobs | India Job Alert</title>
+<style>
+:root{--blue:#0750a5;--navy:#071d50;--ink:#15243b;--muted:#5d6b80;--line:#e4ebf5}*{box-sizing:border-box}body{margin:0;background:#f3f7fd;color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}header{background:linear-gradient(135deg,#063b86,#0873c7);color:white;padding:34px 18px}.wrap{max-width:900px;margin:auto}h1{font-size:clamp(30px,7vw,46px);line-height:1.1;margin:10px 0}header p{color:#e1efff;line-height:1.6}.nav{display:flex;gap:14px;flex-wrap:wrap;padding:12px 16px;background:#fff;border-bottom:1px solid var(--line)}a{color:var(--blue)}.nav a{font-weight:750;text-decoration:none}main{max-width:900px;margin:auto;padding:22px 14px 40px}.search{display:flex;gap:10px;flex-wrap:wrap}input,select{min-width:0;flex:1;padding:13px 14px;border:1px solid #d6e0ef;border-radius:12px;font:inherit;background:white}.links{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0 20px}.links a,.apply{display:inline-block;background:#0750a5;color:white;text-decoration:none;padding:10px 13px;border-radius:10px;font-weight:750}.links a{background:#fff;color:var(--navy);border:1px solid #cbd8eb}.count{font-size:13px;color:var(--muted);margin:12px 0}.job,.panel{background:white;border:1px solid var(--line);border-radius:16px;padding:18px;margin:12px 0}.job h2{font-size:19px;margin:0 0 8px}.meta{font-size:13px;color:var(--muted);display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}.empty{background:white;padding:22px;border-radius:14px;line-height:1.65}.muted{color:var(--muted);font-size:14px}footer{color:var(--muted);font-size:12px;line-height:1.6;padding:18px 0}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div><strong>INDIA JOB ALERT · HYDERABAD</strong></div><h1>Hyderabad jobs, in one place.</h1><p>Search openings in Hyderabad and nearby technology hubs. Open the original employer listing to confirm eligibility and apply.</p></div></header>
+<nav class="nav"><a href="./">All job alerts</a><a href="https://t.me/AITechJobsIndia" target="_blank" rel="noopener noreferrer">Telegram alerts ↗</a><a href="https://www.instagram.com/india.tech.jobalerts/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></nav>
+<main>
+<section class="panel"><h2>Find a Hyderabad role</h2><div class="search"><input id="q" type="search" placeholder="Search title, company, skill…" aria-label="Search jobs"><select id="area" aria-label="Area"><option value="">All Hyderabad areas</option><option>Hyderabad</option><option>HITEC City</option><option>Gachibowli</option><option>Madhapur</option><option>Financial District</option><option>Secunderabad</option></select></div>
+<div class="links"><a href="https://www.google.com/search?q=Hyderabad+jobs" target="_blank" rel="noopener noreferrer">Search Google Jobs ↗</a><a href="https://www.linkedin.com/jobs/search/?keywords=&location=Hyderabad%2C%20Telangana%2C%20India" target="_blank" rel="noopener noreferrer">LinkedIn jobs ↗</a><a href="https://www.naukri.com/jobs-in-hyderabad" target="_blank" rel="noopener noreferrer">Naukri Hyderabad ↗</a></div>
+<p class="muted">Listings below come from the existing India Job Alert workflow and appear here only when the published location identifies Hyderabad or a Hyderabad area. External search links can show additional vacancies.</p></section>
+<p class="count" id="count">Loading Hyderabad listings…</p><section id="jobs" aria-live="polite"></section>
+<section class="panel"><h2>Popular Hyderabad job areas</h2><p>HITEC City · Gachibowli · Madhapur · Kondapur · Financial District · Nanakramguda · Kukatpally · Secunderabad</p><p class="muted">Always check the employer’s original posting for work location, salary, experience, closing date and application requirements. India Job Alert does not charge candidates to apply.</p></section>
+<footer>India Job Alert · <a href="./">Back to all job listings</a></footer>
+</main>
+<script>
+(function(){
+var jobs=[],q=document.getElementById('q'),area=document.getElementById('area'),root=document.getElementById('jobs'),count=document.getElementById('count');
+var localTerms=['hyderabad','hitec city','hitech city','gachibowli','madhapur','financial district','kondapur','nanakramguda','kukatpally','secunderabad'];
+function render(){
+var query=q.value.trim().toLowerCase(),selected=area.value.toLowerCase();
+var list=jobs.filter(function(j){
+var loc=String(j.location||'').toLowerCase();
+var local=localTerms.some(function(t){return loc.indexOf(t)!==-1;});
+return local&&(!selected||loc.indexOf(selected)!==-1)&&[j.title,j.company,j.location].join(' ').toLowerCase().indexOf(query)!==-1;
+});
+count.textContent=list.length+' matching Hyderabad listing'+(list.length===1?'':'s');
+root.innerHTML='';
+if(!list.length){var empty=document.createElement('div');empty.className='empty';empty.innerHTML='<strong>No Hyderabad-specific listings are currently present in the workflow data.</strong><p>Use one of the live job-search links above to see current openings. This page will automatically show Hyderabad-area listings when they appear in the shared jobs.json feed.</p>';root.appendChild(empty);return;}
+list.forEach(function(j){var card=document.createElement('article');card.className='job';var h=document.createElement('h2');h.textContent=j.title||'Job listing';card.appendChild(h);var meta=document.createElement('div');meta.className='meta';[j.company||'Company not specified',j.location||'Location not specified',j.published?new Date(j.published).toLocaleDateString():''].filter(Boolean).forEach(function(v){var s=document.createElement('span');s.textContent=v;meta.appendChild(s)});card.appendChild(meta);var a=document.createElement('a');a.className='apply';a.href=j.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Apply / View original listing ↗';card.appendChild(a);root.appendChild(card);});
+}
+q.addEventListener('input',render);area.addEventListener('change',render);
+fetch('./jobs.json?v='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw Error('jobs unavailable');return r.json()}).then(function(data){jobs=Array.isArray(data)?data.filter(function(j){return j&&/^https?:/i.test(j.url||'')}):[];render()}).catch(function(){count.textContent='Could not load the workflow job feed';root.innerHTML='<div class="empty">The shared job feed could not be loaded. Please refresh or use the external job-search links above.</div>';});
+})();
+</script>
+</body>
+</html>
