@@ -1,5 +1,9 @@
 {
   "published_job_urls": [],
-  "published_media_ids": {},
-  "published_interview_ids": []
+  "published_media_ids": {
+    "2026-10-21:gradient-descent": "18204825304375425"
+  },
+  "published_interview_ids": [
+    "2026-10-21:gradient-descent"
+  ]
 }
