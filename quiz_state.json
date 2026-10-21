@@ -1,16 +1,16 @@
 {
-  "last_index": 8,
-  "date": "2026-10-20",
+  "last_index": 9,
+  "date": "2026-10-21",
   "quiz": {
-    "category": "Git",
-    "question": "Which Git command creates a new branch and switches to it in one step?",
+    "category": "Java",
+    "question": "Which Java type is immutable and commonly used to represent text?",
     "options": [
-      "A. git merge",
-      "B. git status",
-      "C. git log",
-      "D. git switch -c branch-name"
+      "A. StringBuilder",
+      "B. String",
+      "C. char[]",
+      "D. ArrayList"
     ],
-    "answer": "D",
-    "explanation": "git switch -c creates the branch and switches the working tree to it."
+    "answer": "B",
+    "explanation": "Java String objects are immutable; operations that appear to modify a String create a new String."
   }
 }

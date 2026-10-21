@@ -1,14 +1,14 @@
 {
-  "date": "2026-10-20",
+  "date": "2026-10-21",
   "mode": "quiz",
-  "question": "Which Git command creates a new branch and switches to it in one step?",
+  "question": "Which Java type is immutable and commonly used to represent text?",
   "options": [
-    "A. git merge",
-    "B. git status",
-    "C. git log",
-    "D. git switch -c branch-name"
+    "A. StringBuilder",
+    "B. String",
+    "C. char[]",
+    "D. ArrayList"
   ],
   "answer": null,
   "explanation": null,
-  "image": "https://raw.githubusercontent.com/saichaitanya292/india-job-alert-media/main/images/quiz-2026-10-20-git.jpg"
+  "image": "https://raw.githubusercontent.com/saichaitanya292/india-job-alert-media/main/images/quiz-2026-10-21-java.jpg"
 }
