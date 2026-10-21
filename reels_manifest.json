@@ -2,10 +2,14 @@
   "published_job_urls": [],
   "published_media_ids": {
     "2026-10-21:gradient-descent": "18204825304375425",
-    "2026-10-21:overfitting": "18046620713695720"
+    "2026-10-21:overfitting": "18637488478048483"
   },
   "published_interview_ids": [
     "2026-10-21:gradient-descent",
+    "2026-10-21:overfitting",
     "2026-10-21:overfitting"
-  ]
+  ],
+  "published_story_media_ids": {
+    "2026-10-21:overfitting": "18637488478048483"
+  }
 }
