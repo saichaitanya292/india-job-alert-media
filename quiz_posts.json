@@ -1,14 +1,14 @@
 {
-  "date": "2026-10-21",
+  "date": "2026-10-22",
   "mode": "quiz",
-  "question": "Which Java type is immutable and commonly used to represent text?",
+  "question": "Why should automated tests avoid fixed sleep calls when a condition-based wait is available?",
   "options": [
-    "A. StringBuilder",
-    "B. String",
-    "C. char[]",
-    "D. ArrayList"
+    "A. Sleeps always make tests parallel",
+    "B. Sleeps remove all flakiness",
+    "C. Fixed sleeps can waste time or still be too short",
+    "D. Sleeps validate the page automatically"
   ],
   "answer": null,
   "explanation": null,
-  "image": "https://raw.githubusercontent.com/saichaitanya292/india-job-alert-media/main/images/quiz-2026-10-21-java.jpg"
+  "image": "https://raw.githubusercontent.com/saichaitanya292/india-job-alert-media/main/images/quiz-2026-10-22-automation.jpg"
 }

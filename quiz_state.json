@@ -1,16 +1,16 @@
 {
-  "last_index": 9,
-  "date": "2026-10-21",
+  "last_index": 10,
+  "date": "2026-10-22",
   "quiz": {
-    "category": "Java",
-    "question": "Which Java type is immutable and commonly used to represent text?",
+    "category": "Automation",
+    "question": "Why should automated tests avoid fixed sleep calls when a condition-based wait is available?",
     "options": [
-      "A. StringBuilder",
-      "B. String",
-      "C. char[]",
-      "D. ArrayList"
+      "A. Sleeps always make tests parallel",
+      "B. Sleeps remove all flakiness",
+      "C. Fixed sleeps can waste time or still be too short",
+      "D. Sleeps validate the page automatically"
     ],
-    "answer": "B",
-    "explanation": "Java String objects are immutable; operations that appear to modify a String create a new String."
+    "answer": "C",
+    "explanation": "A fixed delay may be longer than needed or insufficient under slow conditions; condition-based waits poll for the expected state."
   }
 }
