@@ -1,16 +1,16 @@
 {
-  "last_index": 10,
-  "date": "2026-10-22",
+  "last_index": 11,
+  "date": "2026-10-23",
   "quiz": {
-    "category": "Automation",
-    "question": "Why should automated tests avoid fixed sleep calls when a condition-based wait is available?",
+    "category": "SQL",
+    "question": "Which join returns only rows that have matching values in both tables?",
     "options": [
-      "A. Sleeps always make tests parallel",
-      "B. Sleeps remove all flakiness",
-      "C. Fixed sleeps can waste time or still be too short",
-      "D. Sleeps validate the page automatically"
+      "A. INNER JOIN",
+      "B. LEFT JOIN",
+      "C. FULL OUTER JOIN",
+      "D. CROSS JOIN"
     ],
-    "answer": "C",
-    "explanation": "A fixed delay may be longer than needed or insufficient under slow conditions; condition-based waits poll for the expected state."
+    "answer": "A",
+    "explanation": "INNER JOIN returns rows for which the join condition matches in both tables."
   }
 }

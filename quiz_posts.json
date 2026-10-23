@@ -1,14 +1,14 @@
 {
-  "date": "2026-10-22",
+  "date": "2026-10-23",
   "mode": "quiz",
-  "question": "Why should automated tests avoid fixed sleep calls when a condition-based wait is available?",
+  "question": "Which join returns only rows that have matching values in both tables?",
   "options": [
-    "A. Sleeps always make tests parallel",
-    "B. Sleeps remove all flakiness",
-    "C. Fixed sleeps can waste time or still be too short",
-    "D. Sleeps validate the page automatically"
+    "A. INNER JOIN",
+    "B. LEFT JOIN",
+    "C. FULL OUTER JOIN",
+    "D. CROSS JOIN"
   ],
   "answer": null,
   "explanation": null,
-  "image": "https://raw.githubusercontent.com/saichaitanya292/india-job-alert-media/main/images/quiz-2026-10-22-automation.jpg"
+  "image": "https://raw.githubusercontent.com/saichaitanya292/india-job-alert-media/main/images/quiz-2026-10-23-sql.jpg"
 }
