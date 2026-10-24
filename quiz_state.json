@@ -1,16 +1,16 @@
 {
-  "last_index": 11,
-  "date": "2026-10-23",
+  "last_index": 12,
+  "date": "2026-10-24",
   "quiz": {
-    "category": "SQL",
-    "question": "Which join returns only rows that have matching values in both tables?",
+    "category": "Python",
+    "question": "What does a Python list comprehension primarily provide?",
     "options": [
-      "A. INNER JOIN",
-      "B. LEFT JOIN",
-      "C. FULL OUTER JOIN",
-      "D. CROSS JOIN"
+      "A. Database indexing",
+      "B. A concise way to build a list from an iterable",
+      "C. Automatic parallel execution",
+      "D. Static type enforcement"
     ],
-    "answer": "A",
-    "explanation": "INNER JOIN returns rows for which the join condition matches in both tables."
+    "answer": "B",
+    "explanation": "List comprehensions build lists concisely by transforming and optionally filtering items from an iterable."
   }
 }

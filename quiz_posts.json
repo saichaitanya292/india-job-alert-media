@@ -1,14 +1,14 @@
 {
-  "date": "2026-10-23",
+  "date": "2026-10-24",
   "mode": "quiz",
-  "question": "Which join returns only rows that have matching values in both tables?",
+  "question": "What does a Python list comprehension primarily provide?",
   "options": [
-    "A. INNER JOIN",
-    "B. LEFT JOIN",
-    "C. FULL OUTER JOIN",
-    "D. CROSS JOIN"
+    "A. Database indexing",
+    "B. A concise way to build a list from an iterable",
+    "C. Automatic parallel execution",
+    "D. Static type enforcement"
   ],
   "answer": null,
   "explanation": null,
-  "image": "https://raw.githubusercontent.com/saichaitanya292/india-job-alert-media/main/images/quiz-2026-10-23-sql.jpg"
+  "image": "https://raw.githubusercontent.com/saichaitanya292/india-job-alert-media/main/images/quiz-2026-10-24-python.jpg"
 }
